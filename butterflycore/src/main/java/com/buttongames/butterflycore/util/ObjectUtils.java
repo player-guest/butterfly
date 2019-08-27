@@ -6,6 +6,16 @@ public class ObjectUtils {
         return value == null ? defaultValue : value;
     }
 
+    public static String checkNull(String value, String defaultValue) {
+        if(value==null){
+            return defaultValue;
+        }else if(value.equals("")){
+            return defaultValue;
+        }else{
+            return value;
+        }
+    }
+
     public static boolean isNull(Object value) {
         return value == null;
     }

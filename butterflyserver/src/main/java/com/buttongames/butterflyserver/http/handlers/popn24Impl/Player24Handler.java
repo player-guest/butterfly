@@ -148,7 +148,6 @@ public class Player24Handler extends BaseRequestHandler {
             for (Map.Entry<Integer, HashMap<Integer, Object[]>> entry : userTopScores.entrySet()) {
                 for(int l = 0;l<4;l++) {
                     if (entry.getValue().containsKey(l)) {
-                        LOG.info("Read record"+l);
                         Object[] record = entry.getValue().get(l);
                         popn24StageRecord topRecord = (popn24StageRecord) record[1];
                         Node music = KXmlBuilder.create("music").s16("music_num", entry.getKey()).up()
@@ -261,7 +260,7 @@ public class Player24Handler extends BaseRequestHandler {
 
             popn24AccountDao.update(ac);
         } catch (NullPointerException e){
-            LOG.error(" Null pointer error, some field is null");
+
             e.printStackTrace();
         }
 
@@ -299,6 +298,7 @@ public class Player24Handler extends BaseRequestHandler {
                     ObjectUtils.checkNull(XmlUtils.strAtChild(configNode,"story_folder"),config[16])
             );
 
+            // TODO:Option not saving
             Element optionNode = (Element) XmlUtils.nodeAtPath(requestBody, "/player24/option");
             String[] option = pf.getOption().split(",");
             pf.setOption(
@@ -335,7 +335,7 @@ public class Player24Handler extends BaseRequestHandler {
 
             popn24ProfileDao.update(pf);
         }catch (NullPointerException e){
-            LOG.error(" Null pointer error, some field is null 2");
+
             e.printStackTrace();
         }
 
@@ -620,6 +620,15 @@ public class Player24Handler extends BaseRequestHandler {
                     .u64("get_time", item.getGet_time()).up().up().getElement();
             XmlUtils.importNodeToPath(document,itemBuilder,path);
         }
+        List<popn24CharaParam> charaParamsList = popn24CharaParamDao.findByCard(card);
+        for(popn24CharaParam item : charaParamsList){
+            Node charaBuilder = KXmlBuilder.create("chara_param")
+                    .u16("chara_id", item.getChara_id()).up()
+                    .u16("friendship", item.getFriendship()).up().up().getElement();
+            XmlUtils.importNodeToPath(document,charaBuilder,path);
+        }
+
+
 
         String eaappli = "<eaappli>\n" +
                 "<relation __type=\"s8\">1</relation>\n" +

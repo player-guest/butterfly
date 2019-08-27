@@ -6,10 +6,7 @@ import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24AccountDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ItemDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ProfileDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24StageRecordDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ParamDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ProfileDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4SkillDao;
@@ -323,7 +320,7 @@ public class HttpConfiguration {
     }
 
     @Bean
-    public Player24Handler player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao , Popn24ItemDao popn24ItemDao){
-        return new Player24Handler(cardDao,popn24AccountDao,popn24ProfileDao,popn24StageRecordDao,popn24ItemDao);
+    public Player24Handler player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao , Popn24ItemDao popn24ItemDao, Popn24CharaParamDao popn24CharaParamDao){
+        return new Player24Handler(cardDao,popn24AccountDao,popn24ProfileDao,popn24StageRecordDao,popn24ItemDao,popn24CharaParamDao);
     }
 }
