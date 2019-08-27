@@ -1,15 +1,12 @@
 package com.buttongames.butterflymodel.model;
 
 import javax.persistence.*;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "apitokens")
-public class Token implements Externalizable {
+public class Token implements Serializable {
 
     @Id
     @GeneratedValue
@@ -35,23 +32,6 @@ public class Token implements Externalizable {
         this.token = token;
         this.expireTime = expireTime;
     }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeLong(this.id);
-        out.writeObject(this.user);
-        out.writeUTF(this.token);
-        out.writeObject(this.expireTime);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.setId(in.readLong());
-        this.setExpireTime((LocalDateTime) in.readObject());
-        this.setToken(in.readUTF());
-        this.setUser((ButterflyUser) in.readObject());
-    }
-
 
     public long getId() {
         return id;

@@ -3,10 +3,7 @@ package com.buttongames.butterflymodel.model;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -15,7 +12,7 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "cards")
-public class Card implements Externalizable {
+public class Card implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -94,32 +91,6 @@ public class Card implements Externalizable {
         this.pin = pin;
         this.registerTime = registerTime;
         this.lastPlayTime = lastPlayTime;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeLong(this.id);
-        out.writeObject(this.user);
-        out.writeObject(this.type);
-        out.writeUTF(this.nfcId);
-        out.writeUTF(this.displayId);
-        out.writeUTF(this.refId);
-        out.writeUTF(this.pin);
-        out.writeObject(this.registerTime);
-        out.writeObject(this.lastPlayTime);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.setId(in.readLong());
-        this.setUser((ButterflyUser) in.readObject());
-        this.setType((CardType) in.readObject());
-        this.setNfcId(in.readUTF());
-        this.setDisplayId(in.readUTF());
-        this.setRefId(in.readUTF());
-        this.setPin(in.readUTF());
-        this.setRegisterTime((LocalDateTime) in.readObject());
-        this.setLastPlayTime((LocalDateTime) in.readObject());
     }
 
     public long getId() {

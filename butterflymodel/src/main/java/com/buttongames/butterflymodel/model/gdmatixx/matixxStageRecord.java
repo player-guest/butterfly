@@ -4,15 +4,14 @@ import com.buttongames.butterflymodel.model.Card;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "matixx_stage")
-public class matixxStageRecord implements Externalizable {
+public class matixxStageRecord implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /** ID of the object, primary key */
     @Id
@@ -204,18 +203,6 @@ public class matixxStageRecord implements Externalizable {
         this.phrase_type = phrase_type;
         this.phrase_status = phrase_status;
         this.phrase_end_addr = phrase_end_addr;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeLong(this.id);
-        out.writeObject(this.musicid);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.setId(in.readLong());
-        this.setMusicid((matixxMusic) in.readObject());
     }
 
     public long getId() {

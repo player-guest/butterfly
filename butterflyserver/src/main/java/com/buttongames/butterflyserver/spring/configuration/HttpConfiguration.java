@@ -1,11 +1,9 @@
 package com.buttongames.butterflyserver.spring.configuration;
 
+import com.buttongames.butterflycore.util.CardIdUtils;
 import com.buttongames.butterflydao.hibernate.dao.impl.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.*;
-import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.popn24.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ParamDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ProfileDao;
@@ -20,19 +18,8 @@ import com.buttongames.butterflyserver.http.handlers.KfcHandler;
 import com.buttongames.butterflyserver.http.handlers.M32Handler;
 import com.buttongames.butterflyserver.http.handlers.M39Handler;
 import com.buttongames.butterflyserver.http.handlers.MdxHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.CardManageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.EacoinRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.EventLogRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.FacilityRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.MessageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.PackageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.PcbEventRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.PcbTrackerRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.*;
 import com.buttongames.butterflyserver.http.handlers.ddr16impl.PlayerDataRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.ServicesRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.SystemRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.baseImpl.TaxRequestHandler;
-import com.buttongames.butterflycore.util.CardIdUtils;
 import com.buttongames.butterflyserver.http.handlers.kfcivImpl.GameRequestHandler;
 import com.buttongames.butterflyserver.http.handlers.matixxImpl.*;
 import com.buttongames.butterflyserver.http.handlers.popn24Impl.*;
@@ -240,8 +227,8 @@ public class HttpConfiguration {
     }
 
     @Bean
-    public MatixxGameTopRequestHandler matixxGameTopRequestHandler(CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao) {
-        return new MatixxGameTopRequestHandler(cardDao, matixxProfileDao, matixxStageDao);
+    public MatixxGameTopRequestHandler matixxGameTopRequestHandler(CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxPlayerboardDao matixxPlayerboardDao, MatixxEventDao matixxEventDao) {
+        return new MatixxGameTopRequestHandler(cardDao, matixxProfileDao, matixxStageDao, matixxPlayerboardDao, matixxEventDao);
     }
 
     @Bean
@@ -320,7 +307,7 @@ public class HttpConfiguration {
     }
 
     @Bean
-    public Player24Handler player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao , Popn24ItemDao popn24ItemDao, Popn24CharaParamDao popn24CharaParamDao){
-        return new Player24Handler(cardDao,popn24AccountDao,popn24ProfileDao,popn24StageRecordDao,popn24ItemDao,popn24CharaParamDao);
+    public Player24Handler player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao, Popn24ItemDao popn24ItemDao, Popn24CharaParamDao popn24CharaParamDao, Popn24MissionDao popn24MissionDao) {
+        return new Player24Handler(cardDao, popn24AccountDao, popn24ProfileDao, popn24StageRecordDao, popn24ItemDao, popn24CharaParamDao, popn24MissionDao);
     }
 }

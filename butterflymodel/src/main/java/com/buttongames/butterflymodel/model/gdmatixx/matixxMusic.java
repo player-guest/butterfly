@@ -3,15 +3,14 @@ package com.buttongames.butterflymodel.model.gdmatixx;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 
 // TODO: Support multiple  music list for omnimix
 @Entity
 @Table(name = "matixx_music")
-public class matixxMusic implements Externalizable {
+public class matixxMusic implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @GeneratedValue
     @Column(name = "id")
@@ -134,18 +133,6 @@ public class matixxMusic implements Externalizable {
         this.music_type = music_type;
         this.genre = genre;
         this.type_category = type_category;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeLong(this.id);
-        out.writeObject(this.musicid);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.setId(in.readLong());
-        this.setMusicid(in.readInt());
     }
 
     public long getId() {

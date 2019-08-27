@@ -2,10 +2,7 @@ package com.buttongames.butterflydao.spring.configuration;
 
 import com.buttongames.butterflydao.hibernate.dao.impl.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.*;
-import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.popn24.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ParamDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ProfileDao;
@@ -168,6 +165,11 @@ public class HibernateConfiguration {
     @Bean
     public MatixxStageDao matixxStageDao(final SessionFactory sessionFactory){
         return new MatixxStageDao(sessionFactory);
+    }
+
+    @Bean
+    public MatixxPlayerboardDao matixxPlayerboardDao(final SessionFactory sessionFactory) {
+        return new MatixxPlayerboardDao(sessionFactory);
     }
 
     @Bean

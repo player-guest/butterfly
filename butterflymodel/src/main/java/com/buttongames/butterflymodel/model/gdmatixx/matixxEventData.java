@@ -1,17 +1,15 @@
 package com.buttongames.butterflymodel.model.gdmatixx;
 
-import com.buttongames.butterflymodel.model.ButterflyUser;
 import com.buttongames.butterflymodel.model.Card;
 
 import javax.persistence.*;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "matixx_event_data")
-public class matixxEventData implements Externalizable {
+public class matixxEventData implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /** ID of the object, primary key */
     @Id
@@ -37,22 +35,6 @@ public class matixxEventData implements Externalizable {
         this.card = card;
         this.event_name = event_name;
         this.value = value;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeLong(this.id);
-        out.writeObject(this.card);
-        out.writeUTF(this.event_name);
-        out.writeUTF(this.value);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.setId(in.readLong());
-        this.setCard((Card) in.readObject());
-        this.setEvent_name(in.readUTF());
-        this.setValue(in.readUTF());
     }
 
     public long getId() {

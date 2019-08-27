@@ -4,14 +4,13 @@ package com.buttongames.butterflymodel.model.popn24;
 import com.buttongames.butterflymodel.model.Card;
 
 import javax.persistence.*;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "popn24_profile")
-public class popn24Profile implements Externalizable {
+public class popn24Profile implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -52,18 +51,6 @@ public class popn24Profile implements Externalizable {
         this.info = info;
         this.customize = customize;
         this.netvs = netvs;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeLong(this.id);
-        out.writeObject(this.card);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.setId(in.readLong());
-        this.setCard((Card) in.readObject());
     }
 
     public long getId() {

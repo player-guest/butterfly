@@ -7,17 +7,13 @@ import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
 import com.buttongames.butterflymodel.model.Card;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerProfile;
-import com.buttongames.butterflyserver.Main;
 import com.buttongames.butterflyserver.http.exception.InvalidRequestException;
 import com.buttongames.butterflyserver.http.exception.UnsupportedRequestException;
 import com.buttongames.butterflyserver.http.handlers.BaseRequestHandler;
-import com.google.common.io.ByteStreams;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import spark.Request;
 import spark.Response;
@@ -87,10 +83,9 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
             matixxPlayerProfile matixxplayer;
                 matixxplayer = matixxProfileDao.findByCard(card);
 
-
             if(matixxplayer!=null){
                 String[] skilldata = matixxplayer.getSkilldata().split(",");
-                respBuilder.e("player").attr("no",new String().valueOf(i+1)).attr("state","2")
+                respBuilder.e("player").attr("no", String.valueOf(i + 1)).attr("state", "2")
                         .str("name",matixxplayer.getName()).up()
                         .s32("did",matixxplayer.getDid()).up()
                         .s32("charaid",matixxplayer.getCharaid()).up()
@@ -100,7 +95,7 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
                         .s32("old_all_skill",new Integer(skilldata[0])).up();
 
             }else{
-                respBuilder.e("player").attr("no",new String().valueOf(i+1)).attr("state","1").up();
+                respBuilder.e("player").attr("no", String.valueOf(i + 1)).attr("state", "1").up();
             }
 
         }
@@ -116,7 +111,6 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
 
         for(int i=0;i<players.getLength();i++) {
 
-
             Element player = (Element) players.item(i);
             String refid = XmlUtils.strAtPath(player, "/refid");
             Card card = cardDao.findByRefId(refid);
@@ -124,14 +118,8 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
             if (card == null) {
                 throw new InvalidRequestException();
             }
-            matixxPlayerProfile matixxplayer;
-            if(card.getUser()==null){
-                matixxplayer = matixxProfileDao.findByCard(card);
-            }else {
-                matixxplayer = matixxProfileDao.findByUser(card.getUser());
-            }
 
-
+            matixxPlayerProfile matixxplayer = matixxProfileDao.findByCard(card);
 
             if (matixxplayer != null){
                 throw new InvalidRequestException();
@@ -303,10 +291,8 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
 
             matixxProfileDao.create(newplayer);
 
-            respBuilder.e("player").attr("no",new String().valueOf(i+1)).s32("did",did).up()
+            respBuilder.e("player").attr("no", String.valueOf(i + 1)).s32("did", did).up()
                     .bool("is_succession",false).up().up();
-
-
         }
 
         return this.sendResponse(request,response,respBuilder);

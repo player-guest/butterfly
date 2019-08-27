@@ -5,10 +5,13 @@ import com.buttongames.butterflycore.util.TimeUtils;
 import com.buttongames.butterflycore.xml.XmlUtils;
 import com.buttongames.butterflycore.xml.kbinxml.KXmlBuilder;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxPlayerboardDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
 import com.buttongames.butterflymodel.model.Card;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerProfile;
+import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerboard;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxStageRecord;
 import com.buttongames.butterflyserver.http.exception.InvalidRequestException;
 import com.buttongames.butterflyserver.http.exception.UnsupportedRequestException;
@@ -36,16 +39,22 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
 
     private final Logger LOG = LogManager.getLogger(MatixxShopInfoRequestHandler.class);
 
-    private CardDao cardDao;
+    private final CardDao cardDao;
 
-    private MatixxProfileDao matixxProfileDao;
+    private final MatixxProfileDao matixxProfileDao;
 
-    private MatixxStageDao matixxStageDao;
+    private final MatixxStageDao matixxStageDao;
 
-    public MatixxGameTopRequestHandler(CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao) {
+    private final MatixxPlayerboardDao matixxPlayerboardDao;
+
+    private final MatixxEventDao matixxEventDao;
+
+    public MatixxGameTopRequestHandler(CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxPlayerboardDao matixxPlayerboardDao, MatixxEventDao matixxEventDao) {
         this.cardDao = cardDao;
         this.matixxProfileDao = matixxProfileDao;
         this.matixxStageDao = matixxStageDao;
+        this.matixxPlayerboardDao = matixxPlayerboardDao;
+        this.matixxEventDao = matixxEventDao;
     }
 
     /**
@@ -60,11 +69,12 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
     public Object handleRequest(final Element requestBody, final Request request, final Response response) {
         final String requestMethod = request.attribute("method");
 
-        if (requestMethod.equals("get")) {
-            return handleGetRequest(requestBody,request, response);
+        switch (requestMethod) {
+            case "get":
+                return handleGetRequest(requestBody, request, response);
+            default:
+                throw new UnsupportedRequestException();
         }
-
-        throw new UnsupportedRequestException();
     }
 
     private Object handleGetRequest(final Element requestBody,Request request, Response response) {
@@ -94,59 +104,24 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
             final Document document = respBuilder.getDocument();
             String path = "/matixx_gametop/player";
 
-            String playerboard= "<playerboard>\n" +
-                    "<index __type=\"s32\">1</index>\n" +
-                    "<is_active __type=\"bool\">1</is_active>\n" +
-                    "<sticker>\n" +
-                    "<id __type=\"s32\">53</id>\n" +
-                    "<pos_x __type=\"float\">120.000000</pos_x>\n" +
-                    "<pos_y __type=\"float\">420.000000</pos_y>\n" +
-                    "<scale_x __type=\"float\">0.600000</scale_x>\n" +
-                    "<scale_y __type=\"float\">0.600000</scale_y>\n" +
-                    "<rotate __type=\"float\">0.000000</rotate>\n" +
-                    "</sticker>\n" +
-                    "<sticker>\n" +
-                    "<id __type=\"s32\">55</id>\n" +
-                    "<pos_x __type=\"float\">200.000000</pos_x>\n" +
-                    "<pos_y __type=\"float\">420.000000</pos_y>\n" +
-                    "<scale_x __type=\"float\">0.600000</scale_x>\n" +
-                    "<scale_y __type=\"float\">0.600000</scale_y>\n" +
-                    "<rotate __type=\"float\">0.000000</rotate>\n" +
-                    "</sticker>\n" +
-                    "<sticker>\n" +
-                    "<id __type=\"s32\">659</id>\n" +
-                    "<pos_x __type=\"float\">150.000000</pos_x>\n" +
-                    "<pos_y __type=\"float\">48.000000</pos_y>\n" +
-                    "<scale_x __type=\"float\">0.600000</scale_x>\n" +
-                    "<scale_y __type=\"float\">0.600000</scale_y>\n" +
-                    "<rotate __type=\"float\">0.000000</rotate>\n" +
-                    "</sticker>\n" +
-                    "<sticker>\n" +
-                    "<id __type=\"s32\">520</id>\n" +
-                    "<pos_x __type=\"float\">150.000000</pos_x>\n" +
-                    "<pos_y __type=\"float\">200.000000</pos_y>\n" +
-                    "<scale_x __type=\"float\">0.900000</scale_x>\n" +
-                    "<scale_y __type=\"float\">0.900000</scale_y>\n" +
-                    "<rotate __type=\"float\">0.000000</rotate>\n" +
-                    "</sticker>\n" +
-                    "<sticker>\n" +
-                    "<id __type=\"s32\">706</id>\n" +
-                    "<pos_x __type=\"float\">150.000000</pos_x>\n" +
-                    "<pos_y __type=\"float\">200.000000</pos_y>\n" +
-                    "<scale_x __type=\"float\">0.400000</scale_x>\n" +
-                    "<scale_y __type=\"float\">0.400000</scale_y>\n" +
-                    "<rotate __type=\"float\">0.000000</rotate>\n" +
-                    "</sticker>\n" +
-                    "<sticker>\n" +
-                    "<id __type=\"s32\">658</id>\n" +
-                    "<pos_x __type=\"float\">0.000000</pos_x>\n" +
-                    "<pos_y __type=\"float\">0.000000</pos_y>\n" +
-                    "<scale_x __type=\"float\">1.000000</scale_x>\n" +
-                    "<scale_y __type=\"float\">1.000000</scale_y>\n" +
-                    "<rotate __type=\"float\">0.000000</rotate>\n" +
-                    "</sticker>\n" +
-                    "</playerboard>\n";
-            XmlUtils.importStringToPath(document,playerboard,path);
+
+            List<matixxPlayerboard> pblist = matixxPlayerboardDao.findByCard(card);
+            boolean is_active = pblist != null;
+            Document playerboardDoc = KXmlBuilder.create("playerboard")
+                    .s32("index", 1).up()
+                    .bool("is_active", is_active).up().getDocument();
+            for (matixxPlayerboard sticker : pblist) {
+                Node stickerNode = KXmlBuilder.create("sticker")
+                        .s32("id", sticker.getStickerId()).up()
+                        .flo("pos_x", sticker.getPos_x()).up()
+                        .flo("pos_y", sticker.getPos_y()).up()
+                        .flo("scale_x", sticker.getScale_x()).up()
+                        .flo("scale_x", sticker.getScale_y()).up()
+                        .flo("rotate", sticker.getRotate()).up().up().getElement();
+                XmlUtils.importNodeToPath(playerboardDoc, stickerNode, "/");
+            }
+            Node playerboardNode = playerboardDoc.getDocumentElement();
+            XmlUtils.importNodeToPath(document, playerboardNode, path);
 
             Node player_info = KXmlBuilder.create("player_info").s8("player_type",matixxplayer.getPlayer_type()).up()
                     .s32("did",matixxplayer.getDid()).up()
@@ -191,13 +166,11 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
                     .s32("disp_level", playinfo[30]).up().up().getElement();
             XmlUtils.importNodeToPath(document,playinfonode,path);
 
-
             if(type.equals("a")){
                 XmlUtils.importStringToPath(document,matixxplayer.getCustomdata_gf(),path);
             }else if(type.equals("b")){
                 XmlUtils.importStringToPath(document,matixxplayer.getCustomdata_dm(),path);
             }
-
 
             String[] skilldata  = matixxplayer.getSkilldata().split(",");
             Node skilldatanode = KXmlBuilder.create("skilldata").s32("skill",new Integer(skilldata[0])).up()
@@ -211,7 +184,7 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
             secretmusic = secretmusic.e("music").s32("musicid",2475).up()
                     .u16("seq",225).up()
                     .s32("kind",52).up().up();
-            XmlUtils.importNodeToPath(document,(Node) secretmusic.getElement(),path);
+            XmlUtils.importNodeToPath(document, secretmusic.getElement(), path);
 
             String favmuisc = "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1";
             Node favoritemusic = KXmlBuilder.create("favoritemusic")

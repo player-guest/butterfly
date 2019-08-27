@@ -3,14 +3,13 @@ package com.buttongames.butterflymodel.model.popn24;
 import com.buttongames.butterflymodel.model.Card;
 
 import javax.persistence.*;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "popn24_charaparam")
-public class popn24CharaParam implements Externalizable {
+public class popn24CharaParam implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -35,18 +34,6 @@ public class popn24CharaParam implements Externalizable {
         this.card = card;
         this.chara_id = chara_id;
         this.friendship = friendship;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeLong(this.id);
-        out.writeObject(this.card);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.setId(in.readLong());
-        this.setCard((Card) in.readObject());
     }
 
     public long getId() {

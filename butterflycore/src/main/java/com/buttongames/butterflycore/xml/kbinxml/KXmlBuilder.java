@@ -25,21 +25,6 @@ package com.buttongames.butterflycore.xml.kbinxml;
  * This code is available from the GitHub code repository at:
  * https://github.com/jmurty/java-xmlbuilder
  */
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.Writer;
-import java.util.Properties;
-
-import javax.xml.namespace.NamespaceContext;
-import javax.xml.namespace.QName;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.xpath.XPathExpressionException;
 
 import com.jamesmurty.utils.BaseXMLBuilder;
 import com.jamesmurty.utils.XMLBuilderRuntimeException;
@@ -48,6 +33,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import javax.xml.namespace.NamespaceContext;
+import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
+import java.io.*;
+import java.util.Properties;
 
 /**
  * XML Builder is a utility that creates simple XML documents using relatively
@@ -752,6 +747,10 @@ public final class KXmlBuilder extends BaseXMLBuilder {
         return e(name).a("__type", "ip4").t(value);
     }
 
+    public KXmlBuilder flo(final String name, final float value) {
+        return e(name).a("__type", "float").t(String.valueOf(value));
+    }
+
     /** String */
 
     public KXmlBuilder u8(final String name, final String value) {
@@ -788,6 +787,10 @@ public final class KXmlBuilder extends BaseXMLBuilder {
 
     public KXmlBuilder bool(final String name, final String value) {
         return e(name).a("__type", "bool").t(value);
+    }
+
+    public KXmlBuilder flo(final String name, final String value) {
+        return e(name).a("__type", "float").t(value);
     }
 
     /** Count */

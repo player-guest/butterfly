@@ -3,6 +3,7 @@ package com.buttongames.butterflyserver.http.handlers.matixxImpl;
 import com.buttongames.butterflycore.util.ObjectUtils;
 import com.buttongames.butterflycore.util.TimeUtils;
 import com.buttongames.butterflycore.xml.XmlUtils;
+import com.buttongames.butterflycore.xml.kbinxml.KXmlBuilder;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
@@ -12,11 +13,9 @@ import com.buttongames.butterflymodel.model.Card;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxMusic;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerProfile;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxStageRecord;
-import com.buttongames.butterflyserver.Main;
 import com.buttongames.butterflyserver.http.exception.InvalidRequestException;
 import com.buttongames.butterflyserver.http.exception.UnsupportedRequestException;
 import com.buttongames.butterflyserver.http.handlers.BaseRequestHandler;
-import com.google.common.io.ByteStreams;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -76,11 +75,15 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
         final String type = request.attribute("type");
 
         NodeList players = XmlUtils.nodesAtPath(requestBody,"/matixx_gameend/player");
+
+        Element e = (Element) XmlUtils.nodeAtPath(requestBody, "/matixx_gameend/gamemode");
+        String gamemode = e.getAttribute("mode");
+        KXmlBuilder respBuilder = KXmlBuilder.create("response").e("matixx_gameend").e("gamemode").a("mode", gamemode).up();
+
         for(int i=0;i<players.getLength();i++){
             final Element player = (Element) players.item(i);
             if(player.getAttribute("card").equals("use")){
                 // not save guest now
-
                 final String refid = XmlUtils.strAtPath(player,"/refid");
 
                 Card card = cardDao.findByRefId(refid);
@@ -165,7 +168,7 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
                 player.removeChild(chara_list);
 
                 //tutorial
-                String tutorial = new String().concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/tutorial/progress"),"0")+",")
+                String tutorial = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/tutorial/progress"), "0") + ",")
                         .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/tutorial/disp_state"),"0"));
                 matixxplayer.setTutorial(tutorial);
                 player.removeChild(XmlUtils.nodeAtPath(player,"/tutorial"));
@@ -181,14 +184,14 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
                 player.removeChild(reward);
 
                 //skilldata
-                String skilldata = new String().concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/skilldata/skill"),"0")+",")
+                String skilldata = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/skilldata/skill"), "0") + ",")
                         .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/skilldata/all_skill"),"0"));
                 matixxplayer.setSkilldata(skilldata);
                 player.removeChild(XmlUtils.nodeAtPath(player,"/skilldata"));
 
 
                 //groove (maybe for encore gauge
-                String groove = new String().concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/extra_gauge"),"0")+",")
+                String groove = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/groove/extra_gauge"), "0") + ",")
                         .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_gauge"),"0")+",")
                         .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_cnt"),"0")+",")
                         .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_success"),"0"));
@@ -233,7 +236,7 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
                 player.removeChild(XmlUtils.nodeAtPath(player,"/monstar_subjugation"));
                 player.removeChild(XmlUtils.nodeAtPath(player,"/bear_fes"));
 
-                //stage(3 or more)
+                //stage
                 NodeList stageList = XmlUtils.nodesAtPath(player,"/stage");
                 for(int j = 0;j<stageList.getLength();j++){
                     Element stage = (Element) stageList.item(j);
@@ -286,19 +289,24 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
                 }
 
                 matixxProfileDao.update(matixxplayer);
+
+                respBuilder = respBuilder.e("player").a("no", String.valueOf(i + 1))
+                        .e("skill")
+                        .s32("rank", 1).up()
+                        .s32("total_nr", 1).up().up()
+                        .e("all_skill")
+                        .s32("rank", 1).up()
+                        .s32("total_nr", 1).up().up()
+                        .e("kac2017").e("data")
+                        .s32("term", 0).up()
+                        .s32("total_score", 0).up()
+                        .s32("score", 0).up()
+                        .s32("music_type", 0).up()
+                        .s32("play_count", 0).up().up().up();
             }
 
         }
 
-        try {
-            final byte[] respBody = ByteStreams.toByteArray(
-                    Main.class.getResourceAsStream("/static_responses/m32/matixx_gameend.regist.resp.xml"));
-
-            return this.sendBytesToClient(respBody,request,response);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 500;
-        }
-
+        return this.sendResponse(request, response, respBuilder);
     }
 }

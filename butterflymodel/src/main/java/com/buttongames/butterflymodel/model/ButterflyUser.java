@@ -1,14 +1,7 @@
 package com.buttongames.butterflymodel.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -17,12 +10,12 @@ import java.time.LocalDateTime;
  * and all cards they possess. <code>ButterflyUser</code> does *NOT* represent a profile for any
  * particular game.
  *
- * Update: PIN are bind to card not user now. Butterfly User use to interact with public
+ * Update: PIN are bind to card not user now. Butterfly User use to interact with API
  * @author skogaby (skogabyskogaby@gmail.com)
  */
 @Entity
 @Table(name = "users")
-public class ButterflyUser implements Externalizable {
+public class ButterflyUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -75,22 +68,6 @@ public class ButterflyUser implements Externalizable {
         this.lastPlayTime = lastPlayTime;
         this.paseliBalance = paseliBalance;
         this.user_group = user_group;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeLong(this.id);
-        out.writeObject(this.registerTime);
-        out.writeObject(this.lastPlayTime);
-        out.writeInt(this.paseliBalance);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.setId(in.readLong());
-        this.setRegisterTime((LocalDateTime) in.readObject());
-        this.setLastPlayTime((LocalDateTime) in.readObject());
-        this.setPaseliBalance(in.readInt());
     }
 
     public long getId() {
