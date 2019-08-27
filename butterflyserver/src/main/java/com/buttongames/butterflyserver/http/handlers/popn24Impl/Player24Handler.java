@@ -1,6 +1,7 @@
 package com.buttongames.butterflyserver.http.handlers.popn24Impl;
 
 import com.buttongames.butterflycore.util.ObjectUtils;
+import com.buttongames.butterflycore.util.TimeUtils;
 import com.buttongames.butterflycore.xml.XmlUtils;
 import com.buttongames.butterflycore.xml.kbinxml.KXmlBuilder;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
@@ -219,7 +220,7 @@ public class Player24Handler extends BaseRequestHandler {
                     XmlUtils.intAtChild(node, "netvs_ojama_2"),
                     XmlUtils.boolAtChild(node, "is_staff"),
                     XmlUtils.intAtChild(node, "course_id"),
-                    XmlUtils.strAtChild(node, "course_name") //maybe Null
+                    XmlUtils.strAtChild(node, "course_name"), TimeUtils.getLocalDateTimeInUTC() //maybe Null
             );
 
             popn24StageRecordDao.create(record);

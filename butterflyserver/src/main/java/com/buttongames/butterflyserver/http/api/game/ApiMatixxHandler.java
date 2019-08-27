@@ -74,14 +74,13 @@ public class ApiMatixxHandler {
             return JSONUtil.errorMsg("Can't find a profile by your first card. Multiple card not support now");
         }
 
-        if (function.equals("get_profile")) {
-            return handleGetProfileRequest(reqBody, profile, request, response);
-        } else if (function.equals("update_profile")) {
-            return handleUpdateProfileRequest(reqBody, profile, request, response);
-        } else if (function.equals("play_record_list")) {
-            return handlePlayRecordListRequest(reqBody, card, request, response);
+        switch (function){
+            case "get_profile": return handleGetProfileRequest(reqBody, profile, request, response);
+            case "update_profile": return handleUpdateProfileRequest(reqBody, profile, request, response);
+            case "play_record_list": return handlePlayRecordListRequest(reqBody, card, request, response);
+            case "play_record_detail": return handlePlayRecordRequest(reqBody,card,request,response);
+            default: return 404;
         }
-        return null;
 
     }
 
@@ -90,7 +89,6 @@ public class ApiMatixxHandler {
         final String player_name = profile.getName();
         final String player_title = profile.getTitle();
         final String[] player_skill = profile.getSkilldata().split(",");
-
 
         return JSONUtil.create("SUCCESS", new JSONObject().put("player_name", player_name)
                 .put("player_title", player_title)
@@ -138,7 +136,24 @@ public class ApiMatixxHandler {
 
         List<matixxStageRecord> list =  matixxStageDao.findByCard(card);
         return gson.toJson(list);
+    }
 
+    private Object handlePlayRecordRequest(final JSONObject reqBody, final Card card, final Request request, final Response response){
+        final String recordId = reqBody.getString("id");
+
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                .create();
+
+        matixxStageRecord record =  matixxStageDao.findById(Long.parseLong(recordId));
+        if(record==null){
+            return JSONUtil.errorMsg("Record not found");
+        }else if(record.getCard().getId()!=card.getId()){
+            return JSONUtil.errorMsg("This record id not belong to you");
+        }else {
+            return gson.toJson(record);
+        }
 
     }
 

@@ -15,6 +15,7 @@ public class matixxStageRecord implements Serializable {
 
     /** ID of the object, primary key */
     @Id
+    @Expose
     @GeneratedValue
     @Column(name = "id")
     private long id;

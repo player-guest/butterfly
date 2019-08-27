@@ -4,6 +4,7 @@ import com.buttongames.butterflymodel.model.Card;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "popn24_stagerecord")
@@ -156,10 +157,13 @@ public class popn24StageRecord implements Serializable {
     @Column(name = "course_name")
     private String course_name;
 
+    @Column(name = "date")
+    private LocalDateTime date;
+
     public popn24StageRecord() {
     }
 
-    public popn24StageRecord(Card card, int chara_num, int mode, int play_id, int stage, int music_num, int sheet_num, int clear_type, int clear_rank, int score, int cool, int great, int good, int bad, int combo, int highlight, int gauge, int gauge_type, int is_netvs, int is_win, boolean is_image_store, int hispeed, int popkun, boolean hidden, int hidden_rate, boolean sudden, int sudden_rate, int randmir, int ojama_0, int ojama_1, boolean forever_0, boolean forever_1, boolean full_setting, int guide_se, int judge, int slow, int fast, int netvs_ojama_type, int netvs_type, int netvs_rank, int netvs_ojama_0, int netvs_ojama_1, int netvs_ojama_2, boolean is_staff, int course_id, String course_name) {
+    public popn24StageRecord(Card card, int chara_num, int mode, int play_id, int stage, int music_num, int sheet_num, int clear_type, int clear_rank, int score, int cool, int great, int good, int bad, int combo, int highlight, int gauge, int gauge_type, int is_netvs, int is_win, boolean is_image_store, int hispeed, int popkun, boolean hidden, int hidden_rate, boolean sudden, int sudden_rate, int randmir, int ojama_0, int ojama_1, boolean forever_0, boolean forever_1, boolean full_setting, int guide_se, int judge, int slow, int fast, int netvs_ojama_type, int netvs_type, int netvs_rank, int netvs_ojama_0, int netvs_ojama_1, int netvs_ojama_2, boolean is_staff, int course_id, String course_name, LocalDateTime date) {
         this.card = card;
         this.chara_num = chara_num;
         this.mode = mode;
@@ -206,6 +210,7 @@ public class popn24StageRecord implements Serializable {
         this.is_staff = is_staff;
         this.course_id = course_id;
         this.course_name = course_name;
+        this.date = date;
     }
 
     public long getId() {
@@ -582,5 +587,13 @@ public class popn24StageRecord implements Serializable {
 
     public void setCourse_name(String course_name) {
         this.course_name = course_name;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }
