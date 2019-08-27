@@ -51,13 +51,16 @@ public class Player24Handler extends BaseRequestHandler {
 
     private final Popn24CharaParamDao popn24CharaParamDao;
 
-    public Player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao, Popn24ItemDao popn24ItemDao, Popn24CharaParamDao popn24CharaParamDao) {
+    private final Popn24MissionDao popn24MissionDao;
+
+    public Player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao, Popn24ItemDao popn24ItemDao, Popn24CharaParamDao popn24CharaParamDao, Popn24MissionDao popn24MissionDao) {
         this.cardDao = cardDao;
         this.popn24AccountDao = popn24AccountDao;
         this.popn24ProfileDao = popn24ProfileDao;
         this.popn24StageRecordDao = popn24StageRecordDao;
         this.popn24ItemDao = popn24ItemDao;
         this.popn24CharaParamDao = popn24CharaParamDao;
+        this.popn24MissionDao = popn24MissionDao;
     }
 
     @Override
@@ -72,7 +75,7 @@ public class Player24Handler extends BaseRequestHandler {
                 throw new InvalidRequestException();
             }
         }
-        // TODO: Login?
+
         switch(requestMethod) {
             case "new": return handleNewRequest(requestBody,card,request,response);
             case "start": return handleStartRequest(requestBody,request,response);
@@ -86,6 +89,7 @@ public class Player24Handler extends BaseRequestHandler {
     }
 
     private Object handleNewRequest(final Element requestBody, final Card card, final Request request, final Response response) {
+        //create new profile
         final String name = XmlUtils.strAtPath(requestBody, "/player24/name");
         popn24Account account = getNewAccount();
         account.setName(name);
@@ -130,7 +134,6 @@ public class Player24Handler extends BaseRequestHandler {
 
         return this.sendResponse(request,response,respBuilder);
 
-
     }
 
     private Object handleReadScoreRequest(final Element requestBody, final Card card, final Request request, final Response response) {
@@ -142,6 +145,7 @@ public class Player24Handler extends BaseRequestHandler {
         KXmlBuilder respBuilder = buildReadBody(ac,pf,card);
         final Document document = respBuilder.getDocument();
 
+        // Generate Music Score
         List<popn24StageRecord> stageList = popn24StageRecordDao.findByCard(card);
         if(stageList!=null){
             HashMap<Integer, HashMap<Integer, Object[]>> userTopScores = this.sortScoresByTopScore(stageList);
@@ -171,7 +175,7 @@ public class Player24Handler extends BaseRequestHandler {
         Element node = (Element) XmlUtils.nodeAtPath(requestBody,"/player24");
         try{
             popn24StageRecord record = new popn24StageRecord(card,
-                    XmlUtils.intAtChild(node, "chara_num",0),
+                    XmlUtils.intAtChild(node, "chara_num"),
                     XmlUtils.intAtChild(node, "mode"),
                     XmlUtils.intAtChild(node, "play_id"),
                     XmlUtils.intAtChild(node, "stage"),
@@ -341,43 +345,68 @@ public class Player24Handler extends BaseRequestHandler {
 
         // Save Item
         NodeList itemList = XmlUtils.nodesAtPath(requestBody,"/player24/item");
-        for(int i = 0;i<itemList.getLength();i++){
-            Element item  = (Element) itemList.item(i);
-            int type = XmlUtils.intAtChild(item,"type");
-            int itemId = XmlUtils.intAtChild(item,"id");
-            int param = XmlUtils.intAtChild(item,"param");
-            boolean is_new = XmlUtils.boolAtChild(item,"is_new");
-            long get_time = XmlUtils.longAtChild(item,"get_time");
-            popn24Item popn24ItemObj =  popn24ItemDao.findByItemid(card,itemId);
-            if(popn24ItemObj==null){
-                popn24ItemObj = new popn24Item(card,type,itemId,param,is_new,get_time);
-                popn24ItemDao.create(popn24ItemObj);
-            }else{
-                popn24ItemObj.setType(type);
-                popn24ItemObj.setParam(param);
-                popn24ItemObj.setIs_new(is_new);
-                popn24ItemObj.setGet_time(get_time);
-                popn24ItemDao.update(popn24ItemObj);
+        if (itemList != null) {
+            for (int i = 0; i < itemList.getLength(); i++) {
+                Element item = (Element) itemList.item(i);
+                int type = XmlUtils.intAtChild(item, "type");
+                int itemId = XmlUtils.intAtChild(item, "id");
+                int param = XmlUtils.intAtChild(item, "param");
+                boolean is_new = XmlUtils.boolAtChild(item, "is_new");
+                long get_time = XmlUtils.longAtChild(item, "get_time");
+                popn24Item popn24ItemObj = popn24ItemDao.findByItemid(card, itemId);
+                if (popn24ItemObj == null) {
+                    popn24ItemObj = new popn24Item(card, type, itemId, param, is_new, get_time);
+                    popn24ItemDao.create(popn24ItemObj);
+                } else {
+                    popn24ItemObj.setType(type);
+                    popn24ItemObj.setParam(param);
+                    popn24ItemObj.setIs_new(is_new);
+                    popn24ItemObj.setGet_time(get_time);
+                    popn24ItemDao.update(popn24ItemObj);
+                }
             }
         }
+
 
         // Save CharaParam
         NodeList charaList = XmlUtils.nodesAtPath(requestBody,"/player24/chara_param");
-        for(int i = 0;i<charaList.getLength();i++){
-            Element item  = (Element) charaList.item(i);
-            int chara_id = XmlUtils.intAtChild(item,"chara_id");
-            int friendship = XmlUtils.intAtChild(item,"friendship");
-            popn24CharaParam popn24CharaObj =  popn24CharaParamDao.findByCharaId(card,chara_id);
-            if(popn24CharaObj==null){
-                popn24CharaObj = new popn24CharaParam(card,chara_id,friendship);
-                popn24CharaParamDao.create(popn24CharaObj);
-            }else{
-                popn24CharaObj.setChara_id(chara_id);
-                popn24CharaObj.setFriendship(friendship);
-                popn24CharaParamDao.update(popn24CharaObj);
+        if (charaList != null) {
+            for (int i = 0; i < charaList.getLength(); i++) {
+                Element item = (Element) charaList.item(i);
+                int chara_id = XmlUtils.intAtChild(item, "chara_id");
+                int friendship = XmlUtils.intAtChild(item, "friendship");
+                popn24CharaParam popn24CharaObj = popn24CharaParamDao.findByCharaId(card, chara_id);
+                if (popn24CharaObj == null) {
+                    popn24CharaObj = new popn24CharaParam(card, chara_id, friendship);
+                    popn24CharaParamDao.create(popn24CharaObj);
+                } else {
+                    popn24CharaObj.setChara_id(chara_id);
+                    popn24CharaObj.setFriendship(friendship);
+                    popn24CharaParamDao.update(popn24CharaObj);
+                }
             }
         }
 
+        // Save Mission
+        NodeList missionList = XmlUtils.nodesAtPath(requestBody, "/player24/mission");
+        if (missionList != null) {
+            for (int i = 0; i < missionList.getLength(); i++) {
+                Element item = (Element) missionList.item(i);
+                int mission_id = XmlUtils.intAtChild(item, "mission_id");
+                int gauge_point = XmlUtils.intAtChild(item, "gauge_point");
+                int mission_comp = XmlUtils.intAtChild(item, "mission_comp");
+                popn24Mission popn24MissionObj = popn24MissionDao.findByMissionId(card, mission_id);
+                if (popn24MissionObj == null) {
+                    popn24MissionObj = new popn24Mission(card, mission_id, gauge_point, mission_comp);
+                    popn24MissionDao.create(popn24MissionObj);
+                } else {
+                    popn24MissionObj.setMission_id(mission_id);
+                    popn24MissionObj.setGauge_point(gauge_point);
+                    popn24MissionObj.setMission_comp(mission_comp);
+                    popn24MissionDao.update(popn24MissionObj);
+                }
+            }
+        }
 
 
         KXmlBuilder respBuilder = KXmlBuilder.create("response").e("player24");
@@ -620,6 +649,7 @@ public class Player24Handler extends BaseRequestHandler {
                     .u64("get_time", item.getGet_time()).up().up().getElement();
             XmlUtils.importNodeToPath(document,itemBuilder,path);
         }
+
         List<popn24CharaParam> charaParamsList = popn24CharaParamDao.findByCard(card);
         for(popn24CharaParam item : charaParamsList){
             Node charaBuilder = KXmlBuilder.create("chara_param")
@@ -628,7 +658,14 @@ public class Player24Handler extends BaseRequestHandler {
             XmlUtils.importNodeToPath(document,charaBuilder,path);
         }
 
-
+        List<popn24Mission> missionList = popn24MissionDao.findByCard(card);
+        for (popn24Mission item : missionList) {
+            Node missionBuilder = KXmlBuilder.create("mission")
+                    .u32("mission_id", item.getMission_id()).up()
+                    .u32("gauge_point", item.getGauge_point()).up()
+                    .u32("mission_comp", item.getMission_comp()).up().up().getElement();
+            XmlUtils.importNodeToPath(document, missionBuilder, path);
+        }
 
         String eaappli = "<eaappli>\n" +
                 "<relation __type=\"s8\">1</relation>\n" +
@@ -652,27 +689,6 @@ public class Player24Handler extends BaseRequestHandler {
                 "<diary __type=\"u32\">0</diary>\n" +
                 "</area>";
         XmlUtils.importStringToPath(document,area,path);
-
-        String mission1 = "<mission>\n" +
-                "<mission_id __type=\"u32\">170</mission_id>\n" +
-                "<gauge_point __type=\"u32\">0</gauge_point>\n" +
-                "<mission_comp __type=\"u32\">0</mission_comp>\n" +
-                "</mission>";
-        XmlUtils.importStringToPath(document,mission1,path);
-
-        String mission2 = "<mission>\n" +
-                "<mission_id __type=\"u32\">157</mission_id>\n" +
-                "<gauge_point __type=\"u32\">0</gauge_point>\n" +
-                "<mission_comp __type=\"u32\">0</mission_comp>\n" +
-                "</mission>";
-        XmlUtils.importStringToPath(document,mission2,path);
-
-        String mission3 = "<mission>\n" +
-                "<mission_id __type=\"u32\">47</mission_id>\n" +
-                "<gauge_point __type=\"u32\">0</gauge_point>\n" +
-                "<mission_comp __type=\"u32\">0</mission_comp>\n" +
-                "</mission>";
-        XmlUtils.importStringToPath(document,mission3,path);
 
         return respBuilder;
     }

@@ -1,6 +1,5 @@
 package com.buttongames.butterflycore.xml;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -257,11 +256,7 @@ public class XmlUtils {
      * @return The value at the given element
      */
     public static Integer intAtChild(final Element doc, final String name) {
-        try{
-            return Integer.parseInt(doc.getElementsByTagName(name).item(0).getTextContent());
-        }catch (Exception e){
-            return null;
-        }
+        return Integer.parseInt(doc.getElementsByTagName(name).item(0).getTextContent());
     }
 
     public static Integer intAtChild(final Element doc, final String name, final int defaultValue) {
@@ -279,11 +274,7 @@ public class XmlUtils {
      * @return The value at the given element
      */
     public static Long longAtChild(final Element doc, final String name) {
-        try{
-            return Long.parseLong(doc.getElementsByTagName(name).item(0).getTextContent());
-        }catch (Exception e){
-            return null;
-        }
+        return Long.parseLong(doc.getElementsByTagName(name).item(0).getTextContent());
 
     }
 
@@ -309,12 +300,7 @@ public class XmlUtils {
      * @return The value at the given element
      */
     public static Boolean boolAtChild(final Element doc, final String name) {
-        try{
-            return doc.getElementsByTagName(name).item(0).getTextContent().equals("1");
-        }catch (Exception e){
-            return null;
-        }
-
+        return doc.getElementsByTagName(name).item(0).getTextContent().equals("1");
     }
 
 

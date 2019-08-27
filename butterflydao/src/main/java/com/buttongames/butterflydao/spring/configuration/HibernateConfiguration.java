@@ -1,8 +1,7 @@
 package com.buttongames.butterflydao.spring.configuration;
 
 import com.buttongames.butterflydao.hibernate.dao.impl.*;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.GhostDataDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.Ddr16ProfileDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
@@ -10,10 +9,6 @@ import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.popn24.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ParamDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ProfileDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.ShopDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.GameplayEventLogDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.PcbEventLogDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.UserSongRecordDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4SkillDao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -212,4 +207,8 @@ public class HibernateConfiguration {
         return new Popn24CharaParamDao(sessionFactory);
     }
 
+    @Bean
+    public Popn24MissionDao popn24MissionDao(final SessionFactory sessionFactory) {
+        return new Popn24MissionDao(sessionFactory);
+    }
 }
