@@ -1,6 +1,7 @@
 package com.buttongames.butterflyserver.http.handlers;
 
 import com.buttongames.butterflycore.encryption.Rc4;
+import com.buttongames.butterflycore.util.CollectionUtils;
 import com.buttongames.butterflycore.xml.XmlUtils;
 import com.buttongames.butterflycore.xml.kbinxml.PublicKt;
 import com.google.common.net.MediaType;
@@ -81,12 +82,14 @@ public abstract class BaseRequestHandler {
     protected Object sendBytesToClient(byte[] respBytes, final Request request, final Response response) {
         response.header("Connection", "keep-alive");
 
+        System.out.println("RESP:" + new String(respBytes));
         // convert them to binary XML
         if (!XmlUtils.isBinaryXML(respBytes)) {
             respBytes = PublicKt.kbinEncode(new String(respBytes));
         }
 
         response.header(COMPRESSION_HEADER, "none");
+
 
         // encrypt if needed
         final String encryptionKey = request.headers(CRYPT_KEY_HEADER);

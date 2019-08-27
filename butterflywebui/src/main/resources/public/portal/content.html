@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EA Server</title>
+    <style>
+        body{
+            background-color: rgb(223, 255, 255);
+        }
+        tbody {
+            text-align: center;
+        }
+        #index_list tr{
+            background-color: rgb(182, 221, 221);
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <table width="95%">
+            <tbody>
+                <tr bgcolor="#204020">
+                    <td height="20">
+                        <font color="white">
+                            GameServer!
+                        </font>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table width="40%" style="margin:30px;">
+            <tbody>
+                <tr>
+                    <td height="20">
+                        Welcome
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table width="95%">
+            <tbody>
+                <tr>
+                    <td width="20%">
+                        <center>
+                            <table id="index_list">
+                                <font color="red">INDEX</font>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <center>
+                                                <font face="IMPACT"><a href="/profile/" target="iframe">Profile</a>
+                                                </font>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                            <td>
+                                                <center>
+                                                    <font face="IMPACT"><a href="/card/" target="iframe">Card</a>
+                                                    </font>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                    <center>
+                                                        <font face="IMPACT"><a href="/machine/" target="iframe">Machine</a>
+                                                        </font>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                </tbody>
+                            </table>
+
+                        </center>
+
+                    </td>
+                    <td width="80%">
+                        <iframe name="iframe" src="/profile/" width="100%" height="500px"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </center>
+
+    <script>
+        function login() {
+            var http = new XMLHttpRequest();
+            var url = "/api/user/auth";
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            http.withCredentials = true;
+            http.onreadystatechange = function () {
+                if (http.readyState == XMLHttpRequest.DONE) {
+                    if (http.status == 200) {
+                        location.href = "/portal/";
+                    } else {
+                        resp = JSON.parse(http.responseText);
+                        alert(resp.data.message);
+                    }
+
+                }
+            }
+            http.open("POST", url);
+            http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            http.send(JSON.stringify({ "email": email, "password": password }));
+        }
+    </script>
+</body>
+
+</html>

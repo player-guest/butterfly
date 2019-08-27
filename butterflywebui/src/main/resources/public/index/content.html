@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EA Server</title>
+    <style>
+        tbody {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body background="/bg.gif">
+    <center>
+        <table width="95%">
+            <tbody>
+                <tr bgcolor="#204020">
+                    <td height="20">
+                        <font color="white">
+                            Welcome!
+                        </font>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table width="40%" style="border: solid;margin-top:50px;">
+            <tbody>
+                <tr>
+                    <td height="20">
+                        Login
+                    </td>
+                </tr>
+                <tr>
+                    <td height="20">
+                        E-Mail:<input id="email" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="20">
+                        Password:<input id="password" type="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="20">
+                        <button id="login_btn" onclick="login()">Login</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="/register/">New User?</a>
+    </center>
+
+    <script>
+        function login(){
+            var http = new XMLHttpRequest();
+            var url = "/api/user/auth";
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            http.withCredentials = true;
+            http.onreadystatechange = function() {
+                if(http.readyState == XMLHttpRequest.DONE){
+                    if(http.status==200){
+                        location.href = "/portal/";
+                    }else{
+                        resp = JSON.parse(http.responseText);
+                        alert(resp.data.message);
+                    }
+                    
+                }
+            }
+            http.open("POST",url);
+            http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            http.send(JSON.stringify({"email":email,"password":password}));
+        }
+    </script>
+</body>
+
+</html>

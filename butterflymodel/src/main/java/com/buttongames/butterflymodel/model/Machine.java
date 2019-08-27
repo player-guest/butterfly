@@ -1,5 +1,7 @@
 package com.buttongames.butterflymodel.model;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class Machine implements Externalizable {
      */
     @Id
     @GeneratedValue
+    @Expose
     @Column(name = "id")
     private long id;
 
@@ -41,24 +44,28 @@ public class Machine implements Externalizable {
     /**
      * The PCBID string for this machine.
      */
+    @Expose
     @Column(name = "pcbid")
     private String pcbId;
 
     /**
      * The date and time this machine was registered.
      */
+    @Expose
     @Column(name = "register_time")
     private LocalDateTime registerTime;
 
     /**
      * Whether this machine is enabled.
      */
+    @Expose
     @Column(name = "enabled")
     private boolean enabled;
 
     /**
      * The port to use for this machine.
      */
+    @Expose
     @Column(name = "port")
     private int port;
 

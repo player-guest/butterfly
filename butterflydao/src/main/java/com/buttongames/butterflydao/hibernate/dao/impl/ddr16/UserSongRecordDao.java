@@ -1,7 +1,7 @@
 package com.buttongames.butterflydao.hibernate.dao.impl.ddr16;
 
 import com.buttongames.butterflydao.hibernate.dao.AbstractHibernateDao;
-import com.buttongames.butterflymodel.model.ddr16.UserProfile;
+import com.buttongames.butterflymodel.model.ddr16.ddr16UserProfile;
 import com.buttongames.butterflymodel.model.ddr16.UserSongRecord;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -35,7 +35,7 @@ public class UserSongRecordDao extends AbstractHibernateDao<UserSongRecord> {
      * @param user The user of the record
      * @return A matching record, or null
      */
-    public UserSongRecord findByEndtimeAndUser(final LocalDateTime endtime, final UserProfile user) {
+    public UserSongRecord findByEndtimeAndUser(final LocalDateTime endtime, final ddr16UserProfile user) {
         final Query<UserSongRecord> query = this.getCurrentSession().createQuery("from UserSongRecord where user = :user and endtime = :endtime");
         query.setParameter("user", user);
         query.setParameter("endtime", endtime);
@@ -64,7 +64,7 @@ public class UserSongRecordDao extends AbstractHibernateDao<UserSongRecord> {
      * @param user The user of the records
      * @return A list of matching records
      */
-    public List<UserSongRecord> findByUser(final UserProfile user) {
+    public List<UserSongRecord> findByUser(final ddr16UserProfile user) {
         final Query<UserSongRecord> query = this.getCurrentSession().createQuery("from UserSongRecord where user = :user");
         query.setParameter("user", user);
 
@@ -76,7 +76,7 @@ public class UserSongRecordDao extends AbstractHibernateDao<UserSongRecord> {
      * @param user The user of the records
      * @return The latest record
      */
-    public UserSongRecord findLatestScoreForUser(final UserProfile user) {
+    public UserSongRecord findLatestScoreForUser(final ddr16UserProfile user) {
         final Query<UserSongRecord> query = this.getCurrentSession().createQuery(
                 "from UserSongRecord r where r.user = :user order by r.endtime desc")
                 .setMaxResults(1);

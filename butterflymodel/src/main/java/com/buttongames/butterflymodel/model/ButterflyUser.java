@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
  * address, password, etc. This user also has a PIN, which is applied across any
  * and all cards they possess. <code>ButterflyUser</code> does *NOT* represent a profile for any
  * particular game.
+ *
+ * Update: PIN are bind to card not user now. Butterfly User use to interact with public
  * @author skogaby (skogabyskogaby@gmail.com)
  */
 @Entity
@@ -32,11 +34,15 @@ public class ButterflyUser implements Externalizable {
     @Column(name = "id")
     private long id;
 
-    /**
-     * The user's card PIN.
-     */
-    @Column(name = "pin")
-    private String pin;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "salt")
+    private String salt;
+
+    @Column(name = "passwordHash")
+    private String passwordHash;
+
 
     /**
      * The date and time this user was registered.
@@ -56,20 +62,24 @@ public class ButterflyUser implements Externalizable {
     @Column(name = "paseli_balance")
     private int paseliBalance;
 
+    @Column(name = "user_group")
+    private String user_group;
+
     public ButterflyUser() { }
 
-    public ButterflyUser(final String pin, final LocalDateTime registerTime, final LocalDateTime lastPlayTime,
-                         final int paseliBalance) {
-        this.pin = pin;
+    public ButterflyUser(String email, String salt, String passwordHash, LocalDateTime registerTime, LocalDateTime lastPlayTime, int paseliBalance, String user_group) {
+        this.email = email;
+        this.salt = salt;
+        this.passwordHash = passwordHash;
         this.registerTime = registerTime;
         this.lastPlayTime = lastPlayTime;
         this.paseliBalance = paseliBalance;
+        this.user_group = user_group;
     }
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeLong(this.id);
-        out.writeUTF(this.pin);
         out.writeObject(this.registerTime);
         out.writeObject(this.lastPlayTime);
         out.writeInt(this.paseliBalance);
@@ -78,7 +88,6 @@ public class ButterflyUser implements Externalizable {
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.setId(in.readLong());
-        this.setPin(in.readUTF());
         this.setRegisterTime((LocalDateTime) in.readObject());
         this.setLastPlayTime((LocalDateTime) in.readObject());
         this.setPaseliBalance(in.readInt());
@@ -100,14 +109,6 @@ public class ButterflyUser implements Externalizable {
         this.registerTime = registerTime;
     }
 
-    public String getPin() {
-        return pin;
-    }
-
-    public void setPin(String pin) {
-        this.pin = pin;
-    }
-
     public LocalDateTime getLastPlayTime() {
         return lastPlayTime;
     }
@@ -122,5 +123,37 @@ public class ButterflyUser implements Externalizable {
 
     public void setPaseliBalance(int paseliBalance) {
         this.paseliBalance = paseliBalance;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public String getUser_group() {
+        return user_group;
+    }
+
+    public void setUser_group(String group) {
+        this.user_group = user_group;
     }
 }

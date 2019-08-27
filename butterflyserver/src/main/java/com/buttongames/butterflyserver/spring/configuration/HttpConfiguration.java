@@ -1,29 +1,44 @@
 package com.buttongames.butterflyserver.spring.configuration;
 
-import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.GameplayEventLogDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.GhostDataDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.PcbEventLogDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.ProfileDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.ShopDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.MachineDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.UserPhasesDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.UserSongRecordDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.*;
+import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.*;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24AccountDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ItemDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ProfileDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24StageRecordDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ParamDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ProfileDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4SkillDao;
 import com.buttongames.butterflyserver.http.ButterflyHttpServer;
-import com.buttongames.butterflyserver.http.handlers.impl.CardManageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.EacoinRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.EventLogRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.FacilityRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.MessageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.PackageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.PcbEventRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.PcbTrackerRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.PlayerDataRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.ServicesRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.SystemRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.TaxRequestHandler;
+import com.buttongames.butterflyserver.http.api.ApiCardHandler;
+import com.buttongames.butterflyserver.http.api.ApiMachineHandler;
+import com.buttongames.butterflyserver.http.api.ApiUserHandler;
+import com.buttongames.butterflyserver.http.api.game.ApiMatixxHandler;
+import com.buttongames.butterflyserver.http.api.game.MatixxManageHandler;
+import com.buttongames.butterflyserver.http.handlers.KfcHandler;
+import com.buttongames.butterflyserver.http.handlers.M32Handler;
+import com.buttongames.butterflyserver.http.handlers.M39Handler;
+import com.buttongames.butterflyserver.http.handlers.MdxHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.CardManageRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.EacoinRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.EventLogRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.FacilityRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.MessageRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.PackageRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.PcbEventRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.PcbTrackerRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.ddr16impl.PlayerDataRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.ServicesRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.SystemRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.baseImpl.TaxRequestHandler;
 import com.buttongames.butterflycore.util.CardIdUtils;
+import com.buttongames.butterflyserver.http.handlers.kfcivImpl.GameRequestHandler;
+import com.buttongames.butterflyserver.http.handlers.matixxImpl.*;
+import com.buttongames.butterflyserver.http.handlers.popn24Impl.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -31,34 +46,62 @@ import org.springframework.context.annotation.PropertySource;
 
 /**
  * Bean config class for <code>com.buttongames.butterflyserver.http</code> package.
+ *
  * @author skogaby (skogabyskogaby@gmail.com)
  */
 @Configuration
 @ComponentScan({"com.buttongames.butterflyserver.spring.configuration",
-                "com.buttongames.butterflydao.spring.configuration"})
+        "com.buttongames.butterflydao.spring.configuration"})
 @PropertySource("classpath:butterflyserver.properties")
 public class HttpConfiguration {
 
     @Bean
-    public ButterflyHttpServer butterflyHttpServer(final ServicesRequestHandler servicesRequestHandler,
-                                                   final PcbEventRequestHandler pcbEventRequestHandler,
-                                                   final PcbTrackerRequestHandler pcbTrackerRequestHandler,
-                                                   final MessageRequestHandler messageRequestHandler,
-                                                   final FacilityRequestHandler facilityRequestHandler,
-                                                   final PackageRequestHandler packageRequestHandler,
-                                                   final EventLogRequestHandler eventLogRequestHandler,
-                                                   final TaxRequestHandler taxRequestHandler,
-                                                   final PlayerDataRequestHandler playerDataRequestHandler,
-                                                   final CardManageRequestHandler cardManageRequestHandler,
-                                                   final SystemRequestHandler systemRequestHandler,
-                                                   final EacoinRequestHandler eacoinRequestHandler,
-                                                   final MachineDao machineDao,
-                                                   final ButterflyUserDao userDao) {
-        return new ButterflyHttpServer(servicesRequestHandler, pcbEventRequestHandler, pcbTrackerRequestHandler,
+    public ButterflyHttpServer butterflyHttpServer(MdxHandler mdxHandler, MachineDao machineDao, ButterflyUserDao userDao, KfcHandler kfcHandler, M32Handler m32Handler, M39Handler m39Handler, TokenDao tokenDao, ApiUserHandler apiUserHandler, ApiCardHandler apiCardHandler, ApiMachineHandler apiMachineHandler, ApiMatixxHandler apiMatixxHandler, MatixxManageHandler matixxManageHandler) {
+        return new ButterflyHttpServer(mdxHandler, machineDao, userDao, kfcHandler, m32Handler, m39Handler, tokenDao, apiUserHandler, apiCardHandler, apiMachineHandler, apiMatixxHandler, matixxManageHandler);
+    }
+
+    @Bean
+    public MdxHandler mdxHandler(
+            final ServicesRequestHandler servicesRequestHandler,
+            final PcbEventRequestHandler pcbEventRequestHandler,
+            final PcbTrackerRequestHandler pcbTrackerRequestHandler,
+            final MessageRequestHandler messageRequestHandler,
+            final FacilityRequestHandler facilityRequestHandler,
+            final PackageRequestHandler packageRequestHandler,
+            final EventLogRequestHandler eventLogRequestHandler,
+            final TaxRequestHandler taxRequestHandler,
+            final PlayerDataRequestHandler playerDataRequestHandler,
+            final CardManageRequestHandler cardManageRequestHandler,
+            final SystemRequestHandler systemRequestHandler,
+            final EacoinRequestHandler eacoinRequestHandler,
+            final MachineDao machineDao,
+            final ButterflyUserDao userDao) {
+        return new MdxHandler(servicesRequestHandler, pcbEventRequestHandler, pcbTrackerRequestHandler,
                 messageRequestHandler, facilityRequestHandler, packageRequestHandler, eventLogRequestHandler,
                 taxRequestHandler, playerDataRequestHandler, cardManageRequestHandler, systemRequestHandler,
                 eacoinRequestHandler, machineDao, userDao);
     }
+
+    @Bean
+    public KfcHandler kfcHandler(final ServicesRequestHandler servicesRequestHandler,
+                                 final PcbEventRequestHandler pcbEventRequestHandler,
+                                 final PcbTrackerRequestHandler pcbTrackerRequestHandler,
+                                 final MessageRequestHandler messageRequestHandler,
+                                 final FacilityRequestHandler facilityRequestHandler,
+                                 final PackageRequestHandler packageRequestHandler,
+                                 final EventLogRequestHandler eventLogRequestHandler,
+                                 final TaxRequestHandler taxRequestHandler,
+                                 final PlayerDataRequestHandler playerDataRequestHandler,
+                                 final CardManageRequestHandler cardManageRequestHandler,
+                                 final SystemRequestHandler systemRequestHandler,
+                                 final EacoinRequestHandler eacoinRequestHandler,
+                                 final GameRequestHandler gameRequestHandler) {
+        return new KfcHandler(servicesRequestHandler, pcbEventRequestHandler, pcbTrackerRequestHandler,
+                messageRequestHandler, facilityRequestHandler, packageRequestHandler, eventLogRequestHandler,
+                taxRequestHandler, playerDataRequestHandler, cardManageRequestHandler, systemRequestHandler,
+                eacoinRequestHandler, gameRequestHandler);
+    }
+
 
     @Bean
     public CardIdUtils cardIdUtils() {
@@ -102,9 +145,9 @@ public class HttpConfiguration {
 
     @Bean
     public PlayerDataRequestHandler playerDataRequestHandler(final ButterflyUserDao userDao, final CardDao cardDao,
-                                                             final ProfileDao profileDao, final GhostDataDao ghostDataDao,
+                                                             final Ddr16ProfileDao ddr16ProfileDao, final GhostDataDao ghostDataDao,
                                                              final UserSongRecordDao songRecordDao) {
-        return new PlayerDataRequestHandler(userDao, cardDao, profileDao, ghostDataDao, songRecordDao);
+        return new PlayerDataRequestHandler(userDao, cardDao, ddr16ProfileDao, ghostDataDao, songRecordDao);
     }
 
     @Bean
@@ -126,5 +169,161 @@ public class HttpConfiguration {
     @Bean
     public EacoinRequestHandler eacoinRequestHandler(final CardDao cardDao) {
         return new EacoinRequestHandler(cardDao);
+    }
+
+    /**
+     * SDVX4
+     */
+    @Bean
+    public GameRequestHandler gameRequestHandler(final ButterflyUserDao userDao, final CardDao cardDao, final Sdvx4ProfileDao sdvx4ProfileDao, final Sdvx4SkillDao sdvx4SkillDao, final Sdvx4ParamDao sdvx4ParamDao) {
+        return new GameRequestHandler(userDao, cardDao, sdvx4ProfileDao, sdvx4SkillDao, sdvx4ParamDao);
+    }
+
+    /**
+     * Gitadora Matixx
+     */
+
+    @Bean M32Handler m32Handler(final MatixxHandler matixxHandler){
+        return new M32Handler(matixxHandler);
+    }
+
+    @Bean
+    public MatixxHandler matixxHandler(final ServicesRequestHandler servicesRequestHandler,
+                                       final PcbEventRequestHandler pcbEventRequestHandler,
+                                       final PcbTrackerRequestHandler pcbTrackerRequestHandler,
+                                       final MessageRequestHandler messageRequestHandler,
+                                       final FacilityRequestHandler facilityRequestHandler,
+                                       final PackageRequestHandler packageRequestHandler,
+                                       final EventLogRequestHandler eventLogRequestHandler,
+                                       final TaxRequestHandler taxRequestHandler,
+                                       final CardManageRequestHandler cardManageRequestHandler,
+                                       final SystemRequestHandler systemRequestHandler,
+                                       final EacoinRequestHandler eacoinRequestHandler,
+                                       final MatixxShopInfoRequestHandler matixxShopInfoRequestHandler,
+                                       final MatixxGameInfoRequestHandler matixxGameInfoRequestHandler,
+                                       final MatixxCardUtilRequestHandler matixxCardUtilRequestHandler,
+                                       final MatixxGameTopRequestHandler matixxGameTopRequestHandler,
+                                       final MatixxGameEndRequestHandler matixxGameEndRequestHandler,
+                                       final MatixxPlayableMusicRequestHandler matixxPlayableMusicRequestHandler,
+                                       final MatixxBemaniGakuenRequestHandler matixxBemaniGakuenRequestHandler) {
+        return new MatixxHandler(servicesRequestHandler, pcbEventRequestHandler,
+                pcbTrackerRequestHandler, messageRequestHandler,
+                facilityRequestHandler, packageRequestHandler,
+                eventLogRequestHandler ,taxRequestHandler,
+                cardManageRequestHandler, systemRequestHandler,
+                eacoinRequestHandler,matixxShopInfoRequestHandler,
+                matixxGameInfoRequestHandler, matixxCardUtilRequestHandler,
+                matixxGameTopRequestHandler, matixxGameEndRequestHandler,
+                matixxPlayableMusicRequestHandler, matixxBemaniGakuenRequestHandler);
+    }
+
+    @Bean
+    public MatixxShopInfoRequestHandler matixxShopInfoRequestHandler() {
+        return new MatixxShopInfoRequestHandler();
+    }
+
+    @Bean
+    public MatixxBemaniGakuenRequestHandler matixxBemaniGakuenRequestHandler() {
+        return new MatixxBemaniGakuenRequestHandler();
+    }
+
+    @Bean
+    public MatixxCardUtilRequestHandler matixxCardUtilRequestHandler(ButterflyUserDao userDao, CardDao cardDao, MatixxProfileDao matixxProfileDao) {
+        return new MatixxCardUtilRequestHandler(userDao, cardDao, matixxProfileDao);
+    }
+
+    @Bean
+    public MatixxGameEndRequestHandler matixxGameEndRequestHandler(CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxEventDao matixxEventDao, MatixxMusicDao matixxMusicDao) {
+        return new MatixxGameEndRequestHandler(cardDao, matixxProfileDao, matixxStageDao, matixxEventDao, matixxMusicDao);
+    }
+
+    @Bean
+    public MatixxGameInfoRequestHandler matixxGameInfoRequestHandler() {
+        return new MatixxGameInfoRequestHandler();
+    }
+
+    @Bean
+    public MatixxGameTopRequestHandler matixxGameTopRequestHandler(CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao) {
+        return new MatixxGameTopRequestHandler(cardDao, matixxProfileDao, matixxStageDao);
+    }
+
+    @Bean
+    public MatixxPlayableMusicRequestHandler matixxPlayableMusicRequestHandler(MatixxMusicDao matixxMusicDao) {
+        return new MatixxPlayableMusicRequestHandler(matixxMusicDao);
+    }
+
+    @Bean
+    public ApiUserHandler apiUserHandler(final ButterflyUserDao butterflyUserDao, final TokenDao tokenDao) {
+        return new ApiUserHandler(butterflyUserDao, tokenDao);
+    }
+
+    @Bean
+    public ApiCardHandler apiCardHandler(final ButterflyUserDao userDao, final TokenDao tokenDao, final CardDao cardDao) {
+        return new ApiCardHandler(userDao, tokenDao, cardDao);
+    }
+
+    @Bean
+    public ApiMachineHandler apiMachineHandler(ButterflyUserDao userDao, TokenDao tokenDao, MachineDao machineDao) {
+        return new ApiMachineHandler(userDao, tokenDao, machineDao);
+    }
+
+    @Bean
+    public ApiMatixxHandler apiMatixxHandler(ButterflyUserDao userDao, CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxMusicDao matixxMusicDao) {
+        return new ApiMatixxHandler(userDao, cardDao, matixxProfileDao, matixxStageDao, matixxMusicDao);
+    }
+
+    @Bean
+    public MatixxManageHandler matixxManageHandler(MatixxMusicDao matixxMusicDao) {
+        return new MatixxManageHandler(matixxMusicDao);
+    }
+
+    /**
+     * popn
+     */
+    @Bean
+    public M39Handler m39Handler(Popn24Handler popn24Handler) {
+        return new M39Handler(popn24Handler);
+    }
+
+    @Bean
+    public Popn24Handler popn24Handler(final ServicesRequestHandler servicesRequestHandler,
+                                       final PcbEventRequestHandler pcbEventRequestHandler,
+                                       final PcbTrackerRequestHandler pcbTrackerRequestHandler,
+                                       final MessageRequestHandler messageRequestHandler,
+                                       final FacilityRequestHandler facilityRequestHandler,
+                                       final PackageRequestHandler packageRequestHandler,
+                                       final EventLogRequestHandler eventLogRequestHandler,
+                                       final TaxRequestHandler taxRequestHandler,
+                                       final CardManageRequestHandler cardManageRequestHandler,
+                                       final SystemRequestHandler systemRequestHandler,
+                                       final EacoinRequestHandler eacoinRequestHandler,
+                                       final Info24Handler info24Handler,
+                                       final Lobby24Handler lobby24Handler,
+                                       final Pcb24Handler pcb24Handler,
+                                       final Player24Handler player24Handler) {
+        return new Popn24Handler(servicesRequestHandler, pcbEventRequestHandler, pcbTrackerRequestHandler,
+                messageRequestHandler, facilityRequestHandler, packageRequestHandler, eventLogRequestHandler,
+                taxRequestHandler, cardManageRequestHandler, systemRequestHandler,
+                eacoinRequestHandler, info24Handler, lobby24Handler, pcb24Handler, player24Handler);
+    }
+
+    @Bean
+    public Info24Handler info24Handler(){
+        return new Info24Handler();
+    }
+
+    @Bean
+    public Lobby24Handler lobby24Handler(){
+        return new Lobby24Handler();
+    }
+
+    @Bean
+    public Pcb24Handler pcb24Handler(){
+        return new Pcb24Handler();
+    }
+
+    @Bean
+    public Player24Handler player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao , Popn24ItemDao popn24ItemDao){
+        return new Player24Handler(cardDao,popn24AccountDao,popn24ProfileDao,popn24StageRecordDao,popn24ItemDao);
     }
 }

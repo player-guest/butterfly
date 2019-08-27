@@ -1,6 +1,7 @@
 package com.buttongames.butterflydao.hibernate.dao.impl;
 
 import com.buttongames.butterflydao.hibernate.dao.AbstractHibernateDao;
+import com.buttongames.butterflymodel.model.ButterflyUser;
 import com.buttongames.butterflymodel.model.Machine;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * DAO for interacting with <code>Machine</code> objects in the database.
@@ -35,5 +38,12 @@ public class MachineDao extends AbstractHibernateDao<Machine> {
         query.setParameter("pcbid", pcbId);
 
         return query.uniqueResult();
+    }
+
+    public List<Machine> findByUser(final ButterflyUser user) {
+        final Query<Machine> query = this.getCurrentSession().createQuery("from Machine where user = :user");
+        query.setParameter("user", user);
+
+        return query.getResultList();
     }
 }

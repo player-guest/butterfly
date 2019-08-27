@@ -1,15 +1,23 @@
 package com.buttongames.butterflydao.spring.configuration;
 
-import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.MachineDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.GhostDataDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.ProfileDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.Ddr16ProfileDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24AccountDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ItemDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ProfileDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24StageRecordDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ParamDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ProfileDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.ShopDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.GameplayEventLogDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.PcbEventLogDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.UserPhasesDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.UserSongRecordDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4SkillDao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -79,6 +87,7 @@ public class HibernateConfiguration {
         // locate the database in the user directory, and replace backslashes with forward slashes so it works on
         // Windows correctly, per sqlite-jdbc's spec
         final String dbPath = System.getProperty("db_path");
+        System.out.println("dbPath: "+dbPath);
         source.setUrl("jdbc:sqlite:" + dbPath.replace('\\', '/'));
 
         return source;
@@ -92,6 +101,11 @@ public class HibernateConfiguration {
     @Bean
     public ButterflyUserDao butterflyUserDao(final SessionFactory sessionFactory) {
         return new ButterflyUserDao(sessionFactory);
+    }
+
+    @Bean
+    public TokenDao tokenDao(final SessionFactory sessionFactory){
+        return new TokenDao(sessionFactory);
     }
 
     @Bean
@@ -125,8 +139,8 @@ public class HibernateConfiguration {
     }
 
     @Bean
-    public ProfileDao userProfileDao(final SessionFactory sessionFactory) {
-        return new ProfileDao(sessionFactory);
+    public Ddr16ProfileDao ddr16userProfileDao(final SessionFactory sessionFactory) {
+        return new Ddr16ProfileDao(sessionFactory);
     }
 
     @Bean
@@ -138,4 +152,62 @@ public class HibernateConfiguration {
     public GhostDataDao ghostDataDao(final SessionFactory sessionFactory) {
         return new GhostDataDao(sessionFactory);
     }
+
+    @Bean
+    public Sdvx4ProfileDao sdvxuserProfileDao(final SessionFactory sessionFactory) {
+        return new Sdvx4ProfileDao(sessionFactory);
+    }
+
+    @Bean
+    public Sdvx4ParamDao sdvxuserParamDao(final SessionFactory sessionFactory) {
+        return new Sdvx4ParamDao(sessionFactory);
+    }
+
+    @Bean
+    public Sdvx4SkillDao sdvxuserSkillDao(final SessionFactory sessionFactory) {
+        return new Sdvx4SkillDao(sessionFactory);
+    }
+
+    @Bean
+    public MatixxProfileDao matixxProfileDao(final SessionFactory sessionFactory) {
+        return new MatixxProfileDao(sessionFactory);
+    }
+
+    @Bean
+    public MatixxStageDao matixxStageDao(final SessionFactory sessionFactory){
+        return new MatixxStageDao(sessionFactory);
+    }
+
+    @Bean
+    public MatixxEventDao matixxEventDao(final SessionFactory sessionFactory){
+        return new MatixxEventDao(sessionFactory);
+    }
+
+    @Bean
+    public MatixxMusicDao matixxMusicDao(final SessionFactory sessionFactory){
+        return new MatixxMusicDao(sessionFactory);
+    }
+
+    /** Popn 24 */
+
+    @Bean
+    public Popn24AccountDao popn24AccountDao(final SessionFactory sessionFactory){
+        return new Popn24AccountDao(sessionFactory);
+    }
+
+    @Bean
+    public Popn24ProfileDao popn24ProfileDao(final SessionFactory sessionFactory){
+        return new Popn24ProfileDao(sessionFactory);
+    }
+
+    @Bean
+    public Popn24ItemDao popn24ItemDao(final SessionFactory sessionFactory){
+        return new Popn24ItemDao(sessionFactory);
+    }
+
+    @Bean
+    public Popn24StageRecordDao popn24StageRecordDao(final SessionFactory sessionFactory){
+        return new Popn24StageRecordDao(sessionFactory);
+    }
+
 }

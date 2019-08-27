@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <player24>
+        <phase/>
+        <phase>
+            <event_id __type="s16">3</event_id>
+            <phase __type="s16">1</phase>
+        </phase>
+        <phase>
+            <event_id __type="s16">5</event_id>
+            <phase __type="s16">1</phase>
+        </phase>
+        <phase>
+            <event_id __type="s16">9</event_id>
+            <phase __type="s16">1</phase>
+        </phase>
+        <phase>
+            <event_id __type="s16">16</event_id>
+            <phase __type="s16">1</phase>
+        </phase>
+        <phase>
+            <event_id __type="s16">17</event_id>
+            <phase __type="s16">1</phase>
+        </phase>
+        <phase>
+            <event_id __type="s16">18</event_id>
+            <phase __type="s16">1</phase>
+        </phase>
+        <phase>
+            <event_id __type="s16">19</event_id>
+            <phase __type="s16">1</phase>
+        </phase>
+        <phase>
+            <event_id __type="s16">20</event_id>
+            <phase __type="s16">1</phase>
+        </phase>
+        <play_id __type="s32">0</play_id>
+        <goods>
+            <item_id __type="s32">3</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">4</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">5</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">6</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">7</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">8</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">9</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">15</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">16</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">17</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">18</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">19</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">20</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">21</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">22</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">23</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">24</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">25</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">26</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">28</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">29</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">30</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">31</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">32</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">33</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">34</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">35</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">36</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">37</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">38</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">39</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">40</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">41</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">42</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">43</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">44</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">45</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">46</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">47</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">48</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">49</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">50</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">51</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">52</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">53</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">54</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">55</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">56</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">57</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">58</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">59</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">60</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">61</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">62</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">63</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">64</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">65</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">66</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">67</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">68</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">69</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">70</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">71</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">72</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">73</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">74</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">75</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">76</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">77</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">200</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">78</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">30</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">79</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">30</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">80</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">30</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">81</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">30</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">82</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">30</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">83</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">30</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">84</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">30</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">85</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">86</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">87</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">88</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">89</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">90</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">80</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">91</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">92</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">93</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">60</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">94</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">100</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">95</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">100</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <goods>
+            <item_id __type="s32">96</item_id>
+            <item_type __type="s16">3</item_type>
+            <price __type="s32">40</price>
+            <goods_type __type="s16">0</goods_type>
+        </goods>
+        <news>
+            <no __type="s16">1</no>
+            <type __type="u8">0</type>
+            <image_no __type="s16">1</image_no>
+            <title __type="str">Welcome to pop'n music usaneko!</title>
+            <main __type="str"/>
+        </news>
+        <news>
+            <no __type="s16">0</no>
+            <type __type="u8">0</type>
+            <image_no __type="s16">8</image_no>
+            <title __type="str"/>
+            <main __type="str"/>
+        </news>
+        <recommend>
+            <music_no __type="s32" __count="20">1562 1127 385 255 689 867 334 275 1666 1423 887 680 461 1400 298 483 1122 452 1659 408</music_no>
+        </recommend>
+    </player24>
+</response>
+

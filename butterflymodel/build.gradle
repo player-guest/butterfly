@@ -12,6 +12,9 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+
     // Hibernate, SQL support
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.0.Final'
     compile group: 'org.hibernate', name: 'hibernate-java8', version: '5.4.0.Final'

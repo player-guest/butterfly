@@ -1,8 +1,6 @@
 package com.buttongames.butterflycore.util;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 
 /**
  * Simple class with utility functions for dealing with time.
@@ -19,5 +17,16 @@ public class TimeUtils {
         final Instant instant = Instant.ofEpochSecond(millis);
 
         return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+
+    public static long getTime(){
+        long unixTime = System.currentTimeMillis();
+        return unixTime;
+    }
+
+    public static LocalDateTime getLocalDateTimeInUTC(){
+        ZonedDateTime nowUTC = ZonedDateTime.now(ZoneOffset.UTC);
+
+        return nowUTC.toLocalDateTime();
     }
 }

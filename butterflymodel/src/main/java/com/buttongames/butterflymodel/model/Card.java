@@ -1,14 +1,8 @@
 package com.buttongames.butterflymodel.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.google.gson.annotations.Expose;
+
+import javax.persistence.*;
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -30,19 +24,21 @@ public class Card implements Externalizable {
      * */
     @Id
     @GeneratedValue
+    @Expose
     @Column(name = "id")
     private long id;
 
     /**
      * The user this card belongs to
      */
-    @ManyToOne
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private ButterflyUser user;
 
     /**
      * The type of this card (old or FeliCa)
      */
+    @Expose
     @Column(name = "card_type")
     @Enumerated(EnumType.STRING)
     private CardType type;
@@ -50,12 +46,14 @@ public class Card implements Externalizable {
     /**
      * The internal NFC ID for this card
      */
+    @Expose
     @Column(name = "nfc_id")
     private String nfcId;
 
     /**
      * The external display ID for this card
      */
+    @Expose
     @Column(name = "display_id")
     private String displayId;
 
@@ -66,26 +64,34 @@ public class Card implements Externalizable {
     private String refId;
 
     /**
+     * The user's card PIN.
+     */
+    @Column(name = "pin")
+    private String pin;
+
+    /**
      * The date and time this card was registered
      */
+    @Expose
     @Column(name = "register_time")
     private LocalDateTime registerTime;
 
     /**
      * The date and time this card last logged into a game
      */
+    @Expose
     @Column(name = "last_play_time")
     private LocalDateTime lastPlayTime;
 
     public Card() { }
 
-    public Card(final ButterflyUser user, final CardType type, final String nfcId, final String displayId,
-                final String refId, final LocalDateTime registerTime, final LocalDateTime lastPlayTime) {
-        this.user = user;
+    public Card(final CardType type, final String nfcId, final String displayId,
+                final String refId, final String pin, final LocalDateTime registerTime, final LocalDateTime lastPlayTime) {
         this.type = type;
         this.nfcId = nfcId;
         this.displayId = displayId;
         this.refId = refId;
+        this.pin = pin;
         this.registerTime = registerTime;
         this.lastPlayTime = lastPlayTime;
     }
@@ -98,6 +104,7 @@ public class Card implements Externalizable {
         out.writeUTF(this.nfcId);
         out.writeUTF(this.displayId);
         out.writeUTF(this.refId);
+        out.writeUTF(this.pin);
         out.writeObject(this.registerTime);
         out.writeObject(this.lastPlayTime);
     }
@@ -110,6 +117,7 @@ public class Card implements Externalizable {
         this.setNfcId(in.readUTF());
         this.setDisplayId(in.readUTF());
         this.setRefId(in.readUTF());
+        this.setPin(in.readUTF());
         this.setRegisterTime((LocalDateTime) in.readObject());
         this.setLastPlayTime((LocalDateTime) in.readObject());
     }
@@ -160,6 +168,14 @@ public class Card implements Externalizable {
 
     public void setRefId(String refId) {
         this.refId = refId;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     public LocalDateTime getRegisterTime() {

@@ -52,7 +52,7 @@ public class UserSongRecord implements Externalizable {
     /** The user this record belongs to */
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserProfile user;
+    private ddr16UserProfile user;
 
     /** The PCBID of the machine this score was made on, for machine high scores */
     @Column(name = "machine_pcbid")
@@ -348,7 +348,7 @@ public class UserSongRecord implements Externalizable {
 
     public UserSongRecord() { }
 
-    public UserSongRecord(UserProfile user, String machinePcbId, int playSide, int playStyle, int area, int weight100, String shopName,
+    public UserSongRecord(ddr16UserProfile user, String machinePcbId, int playSide, int playStyle, int area, int weight100, String shopName,
                           boolean isPremium, boolean isEaPass, boolean isTakeover, boolean isRepeater, boolean isGameover,
                           String locationId, String shopArea, int stageNum, int songId, int noteType, int rank,
                           int clearKind, int score, int exScore, int maxCombo, int life, int fastCount, int slowCount,
@@ -512,7 +512,7 @@ public class UserSongRecord implements Externalizable {
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.setId(in.readLong());
-        this.setUser((UserProfile) in.readObject());
+        this.setUser((ddr16UserProfile) in.readObject());
         this.setMachinePcbId(in.readUTF());
         this.setPlaySide(in.readInt());
         this.setPlayStyle(in.readInt());
@@ -592,11 +592,11 @@ public class UserSongRecord implements Externalizable {
         this.id = id;
     }
 
-    public UserProfile getUser() {
+    public ddr16UserProfile getUser() {
         return user;
     }
 
-    public void setUser(UserProfile user) {
+    public void setUser(ddr16UserProfile user) {
         this.user = user;
     }
 

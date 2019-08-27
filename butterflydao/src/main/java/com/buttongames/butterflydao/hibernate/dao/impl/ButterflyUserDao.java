@@ -3,6 +3,7 @@ package com.buttongames.butterflydao.hibernate.dao.impl;
 import com.buttongames.butterflydao.hibernate.dao.AbstractHibernateDao;
 import com.buttongames.butterflymodel.model.ButterflyUser;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -22,5 +23,12 @@ public class ButterflyUserDao extends AbstractHibernateDao<ButterflyUser> {
     public ButterflyUserDao(final SessionFactory sessionFactory) {
         super(sessionFactory);
         setClazz(ButterflyUser.class);
+    }
+
+    public ButterflyUser getByEmail(String email){
+        final Query<ButterflyUser> query = this.getCurrentSession().createQuery("from ButterflyUser where email = :email");
+        query.setParameter("email",email);
+
+        return query.uniqueResult();
     }
 }

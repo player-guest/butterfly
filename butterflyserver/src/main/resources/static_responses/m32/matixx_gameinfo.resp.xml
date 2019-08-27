@@ -1,0 +1,4272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <matixx_gameinfo>
+        <now_date __type="u64">1565541688463</now_date>
+        <extra>
+            <extra_lv __type="u8">12</extra_lv>
+            <extramusic>
+                <music>
+                    <musicid __type="s32">2432</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2445</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2441</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2444</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2381</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2471</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2476</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2486</musicid>
+                    <get_border __type="u8">90</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2496</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2497</musicid>
+                    <get_border __type="u8">95</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2499</musicid>
+                    <get_border __type="u8">98</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2498</musicid>
+                    <get_border __type="u8">100</get_border>
+                </music>
+                <music>
+                    <musicid __type="s32">2456</musicid>
+                    <get_border __type="u8">0</get_border>
+                </music>
+            </extramusic>
+        </extra>
+        <infect_music>
+            <term __type="u8">1</term>
+            <music>
+                <musicid __type="s32">2112</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2407</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2438</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2110</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2111</musicid>
+            </music>
+        </infect_music>
+        <unlock_challenge>
+            <term __type="u8">1</term>
+            <music>
+                <musicid __type="s32">2110</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2111</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2112</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2117</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2129</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">102</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2168</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2179</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2180</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">133</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2181</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2184</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2186</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2197</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2198</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2217</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2218</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2219</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2230</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2233</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2236</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2244</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2252</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2258</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2259</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2260</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2261</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2262</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2263</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2264</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2265</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2266</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2267</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2268</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2269</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2270</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2271</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2275</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2276</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2277</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2278</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2279</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2282</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2285</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2286</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2288</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2289</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2291</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2292</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2293</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2294</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2296</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2297</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2298</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2302</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2303</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2304</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2305</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2306</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2307</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2308</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2317</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2318</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2319</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2320</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2324</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2325</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2326</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2327</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2328</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2329</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2331</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2332</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2333</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2334</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2335</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2336</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2337</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2338</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2339</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2340</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2341</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2342</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2343</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2345</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2347</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2349</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2350</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2351</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2352</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2354</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2355</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2357</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2359</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2360</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2361</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2362</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2363</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2369</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2375</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2378</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2380</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2381</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2384</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2385</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2387</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2388</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2390</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2392</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2393</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2395</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2404</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2405</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2406</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2407</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2409</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2410</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2411</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2413</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2414</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2416</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2422</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2424</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2426</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2429</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2430</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2432</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2434</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2437</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2438</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2441</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2442</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2444</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2445</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2447</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2453</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2454</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2455</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2456</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2457</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2458</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2459</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2460</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2461</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2462</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2463</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2464</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2465</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2466</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2467</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2468</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2469</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2470</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2471</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2472</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2473</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2474</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2475</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2476</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2477</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2478</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2479</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2480</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2481</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2482</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2483</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2484</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2485</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2486</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2487</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2488</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2489</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2490</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2491</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2492</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2493</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2494</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2495</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2496</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2497</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2498</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2499</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2500</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2501</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2502</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2503</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2504</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2505</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2506</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2507</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2508</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2509</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2510</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2511</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2512</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2513</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2514</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2515</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2516</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2517</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2518</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2534</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2542</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">500</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">512</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">515</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">528</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">614</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">621</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">753</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">809</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">815</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">822</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">908</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">911</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">951</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">961</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">964</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1005</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1018</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1019</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1112</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1116</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1316</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1322</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1401</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1406</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1420</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1424</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1425</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1426</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1427</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1430</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1509</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1513</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1516</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1518</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1522</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1525</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1615</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1622</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1704</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1705</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1707</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1708</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1709</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1713</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1716</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1717</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1719</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1723</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1726</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1734</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1743</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1745</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1746</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1747</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1801</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1802</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1805</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1811</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1814</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1818</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1821</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1822</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1824</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1828</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1829</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1831</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1838</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1839</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1852</musicid>
+            </music>
+        </unlock_challenge>
+        <trbitemdata>
+            <item>
+                <itemid __type="s32">1</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">2</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">3</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">4</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">5</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">6</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">7</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">8</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">9</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">10</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">11</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">12</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">13</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">14</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">15</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">16</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">17</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">18</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">19</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">20</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">21</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">22</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">23</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">24</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">25</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">26</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">27</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">28</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">29</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">30</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">31</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">32</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">33</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">34</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">35</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">36</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">37</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">38</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">39</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">40</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">41</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">42</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">43</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">44</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">45</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">46</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">47</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">48</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">49</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">50</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">51</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">52</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">53</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">54</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">55</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">56</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">57</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">58</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">59</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">60</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">61</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">62</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">63</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">64</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">65</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">66</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">67</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">68</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">69</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">70</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">71</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">72</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">73</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">74</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">75</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">76</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">77</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">78</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">79</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">80</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">81</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">82</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">83</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">84</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">85</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">86</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">87</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">88</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">89</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">90</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">91</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">92</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">93</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">94</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">95</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">96</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">97</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">98</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">99</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">100</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">101</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">102</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">103</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">104</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">105</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">106</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">107</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">108</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">109</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">110</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">111</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">112</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">113</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">114</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">115</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">116</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">117</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">118</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">119</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">120</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">121</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">122</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">123</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">124</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">125</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">126</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">127</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">128</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">129</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">130</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">131</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">132</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">133</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">134</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">135</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">136</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">137</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">138</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">139</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">140</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">141</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">142</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">143</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">144</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">145</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">146</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">147</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">148</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">149</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">150</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">151</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">152</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">153</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">154</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">155</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">156</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">157</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">158</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">159</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">160</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">161</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">162</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">163</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">164</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">165</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">166</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">167</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">168</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">169</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">170</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">171</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">172</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">173</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">174</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">175</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">176</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">177</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">178</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">179</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">180</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">181</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">182</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">183</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">184</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">185</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">186</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">187</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">188</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">189</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">190</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">191</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">192</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">193</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">194</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">195</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">196</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">197</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">198</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">199</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">200</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">201</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">202</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">203</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">204</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">205</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">206</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">207</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">208</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">209</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">210</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">211</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">212</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">213</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">214</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">215</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">216</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">217</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">218</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">219</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">220</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">221</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">222</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">223</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">224</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">225</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">226</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">227</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">228</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">229</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">230</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">231</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">232</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">233</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">234</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">235</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">236</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">237</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">238</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">239</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">240</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">241</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">242</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">243</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">244</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">245</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">246</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">247</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">248</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">249</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">250</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">251</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">252</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">253</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">254</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">255</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">256</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">257</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">258</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">259</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">260</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">261</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">262</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">263</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">264</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">265</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">266</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">267</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">268</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">269</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">270</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">271</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">272</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">273</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">274</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">275</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">276</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">277</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">278</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">279</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">280</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">281</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">282</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">283</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">284</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">285</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">286</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">287</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">288</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">289</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">290</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">291</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">292</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">293</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">294</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">295</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">296</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">297</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">298</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">299</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">300</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">301</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">302</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">303</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">304</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">305</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">306</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">307</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">308</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">309</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">310</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">311</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">312</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">313</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">314</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">315</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">316</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">317</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">318</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">319</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">320</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">321</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">322</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">323</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">324</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">325</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">326</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">327</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">328</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">329</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">330</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">331</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">332</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">333</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">334</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">335</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">336</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">337</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">338</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">339</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">340</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">341</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">342</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">343</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">344</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">345</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">346</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">347</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">348</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">349</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">350</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">351</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">352</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">353</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">354</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">355</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">356</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">357</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">358</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">359</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">360</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">361</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">362</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">363</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">364</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">365</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">366</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">367</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">368</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">369</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">370</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">371</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">372</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">373</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">374</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">375</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">376</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">377</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">378</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">379</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">380</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">381</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">382</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">383</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">384</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">385</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">386</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">387</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">388</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">389</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">390</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">391</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">392</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">393</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">394</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">395</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">396</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">397</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">398</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">399</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">400</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">401</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">402</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">403</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">404</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">405</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">406</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">407</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">408</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">409</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">410</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">411</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">412</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">413</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">414</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">415</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">416</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">417</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">418</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">419</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">420</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">421</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">422</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">423</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">424</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">425</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">426</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">427</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">428</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">429</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">430</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">431</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">432</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">433</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">434</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">435</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">436</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">437</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">438</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">439</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">440</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">441</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">442</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">443</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">444</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">445</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">446</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">447</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">448</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">449</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">450</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">451</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">452</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">453</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">454</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">455</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">456</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">457</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">458</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">459</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">460</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">461</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">462</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">463</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">464</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">465</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">466</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">467</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">468</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">469</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">470</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">471</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">472</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">473</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">474</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">475</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">476</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">477</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">478</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">479</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">480</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">481</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">482</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">483</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">484</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">485</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">486</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">487</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">488</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">489</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">490</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">491</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">492</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">493</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">494</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">495</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">496</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">497</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">498</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">499</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">500</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">501</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">502</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">503</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">504</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">505</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">506</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">507</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">508</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">509</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">510</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">511</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">512</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">513</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">514</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">515</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">516</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">517</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">518</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">519</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">520</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">521</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">522</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">523</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">524</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">525</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">526</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">527</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">528</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">529</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">530</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">531</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">532</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">533</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">534</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">535</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">536</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">537</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">538</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">539</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">540</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">541</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">542</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">543</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">544</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">545</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">546</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">547</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">548</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">549</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">550</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">551</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">552</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">553</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">554</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">555</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">556</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">557</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">558</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">559</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">560</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">561</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">562</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">563</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">564</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">565</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">566</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">567</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">568</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">569</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">570</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">571</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">572</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">573</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">574</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">575</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">576</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">577</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">578</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">579</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">580</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">581</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">582</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">583</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">584</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">585</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">586</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">587</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">588</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">589</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">590</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">591</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">592</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">593</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">594</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">595</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">596</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">597</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">598</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">599</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">600</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">601</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">602</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">603</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">604</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">605</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">606</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">607</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">608</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">609</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">610</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">611</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">612</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">613</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">614</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">615</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">616</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">617</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">618</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">619</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">620</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">621</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">622</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">623</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">624</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">625</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">626</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">627</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">628</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">629</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">630</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">631</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">632</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">633</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">634</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">635</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">636</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">637</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">638</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">639</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">640</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">641</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">642</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">643</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">644</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">645</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">646</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">647</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">648</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">649</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">650</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">651</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">652</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">653</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">654</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">655</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">656</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">657</itemid>
+                <rarity __type="s32">0</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">658</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">659</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">660</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">661</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">662</itemid>
+                <rarity __type="s32">1</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">663</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">664</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">665</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">666</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">667</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">668</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">669</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">670</itemid>
+                <rarity __type="s32">4</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">671</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">672</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">673</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">674</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">675</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">676</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">677</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">678</itemid>
+                <rarity __type="s32">2</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">679</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">680</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">681</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">682</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">683</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">684</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">685</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">686</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">687</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">688</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">689</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">690</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">691</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">692</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">693</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">694</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">695</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">696</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">697</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">698</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">699</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">700</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">701</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">702</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">703</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">704</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">705</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+            <item>
+                <itemid __type="s32">706</itemid>
+                <rarity __type="s32">3</rarity>
+            </item>
+        </trbitemdata>
+        <ctrl_movie>
+            <music>
+                <musicid __type="s32">-1</musicid>
+                <movieid __type="s32">-1</movieid>
+            </music>
+        </ctrl_movie>
+        <ng_jacket>
+            <music>
+                <musicid __type="s32">-1</musicid>
+            </music>
+        </ng_jacket>
+        <ranking>
+            <skill_0_999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_0_999>
+            <skill_1000_1499>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_1000_1499>
+            <skill_1500_1999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_1500_1999>
+            <skill_2000_2499>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_2000_2499>
+            <skill_2500_2999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_2500_2999>
+            <skill_3000_3499>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_3000_3499>
+            <skill_3500_3999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_3500_3999>
+            <skill_4000_4499>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_4000_4499>
+            <skill_4500_4999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_4500_4999>
+            <skill_5000_5499>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_5000_5499>
+            <skill_5500_5999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_5500_5999>
+            <skill_6000_6499>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_6000_6499>
+            <skill_6500_6999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_6500_6999>
+            <skill_7000_7499>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_7000_7499>
+            <skill_7500_7999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_7500_7999>
+            <skill_8000_8499>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_8000_8499>
+            <skill_8500_9999>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </skill_8500_9999>
+            <total>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </total>
+            <original>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </original>
+            <bemani>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </bemani>
+            <famous>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </famous>
+            <anime>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </anime>
+            <band>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </band>
+            <western>
+                <music>
+                    <musicid __type="s32">-1</musicid>
+                </music>
+            </western>
+        </ranking>
+        <processing_report_state __type="u8">0</processing_report_state>
+        <recommendmusic nr="41">
+            <music>
+                <musicid __type="s32">2108</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2433</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2402</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">16</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2133</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2401</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">836</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2105</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2138</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2488</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2346</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2247</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2429</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2332</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2100</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1981</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2147</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2249</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2263</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2024</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2406</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2082</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1840</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2046</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">15</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1967</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1855</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2152</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2444</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1517</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2465</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1962</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2499</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2414</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1983</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2498</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2445</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">2341</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">21</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1803</musicid>
+            </music>
+            <music>
+                <musicid __type="s32">1805</musicid>
+            </music>
+        </recommendmusic>
+        <battle>
+            <term __type="u8">1</term>
+        </battle>
+        <battle_chara>
+            <term __type="u8">1</term>
+        </battle_chara>
+        <data_ver_limit>
+            <term __type="u8">1</term>
+        </data_ver_limit>
+        <ea_pass_propel>
+            <term __type="u8">0</term>
+        </ea_pass_propel>
+        <demomusic nr="10">
+            <music>
+                <musicid __type="s32">2433</musicid>
+                <seq __type="s16">3</seq>
+                <start_addr __type="u32">0</start_addr>
+                <end_addr __type="u32">30000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2147</musicid>
+                <seq __type="s16">3</seq>
+                <start_addr __type="u32">80000</start_addr>
+                <end_addr __type="u32">110000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2247</musicid>
+                <seq __type="s16">5</seq>
+                <start_addr __type="u32">50000</start_addr>
+                <end_addr __type="u32">80000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2431</musicid>
+                <seq __type="s16">4</seq>
+                <start_addr __type="u32">30000</start_addr>
+                <end_addr __type="u32">60000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2479</musicid>
+                <seq __type="s16">5</seq>
+                <start_addr __type="u32">0</start_addr>
+                <end_addr __type="u32">30000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2465</musicid>
+                <seq __type="s16">9</seq>
+                <start_addr __type="u32">40000</start_addr>
+                <end_addr __type="u32">70000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2401</musicid>
+                <seq __type="s16">8</seq>
+                <start_addr __type="u32">0</start_addr>
+                <end_addr __type="u32">30000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2266</musicid>
+                <seq __type="s16">7</seq>
+                <start_addr __type="u32">10000</start_addr>
+                <end_addr __type="u32">40000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2198</musicid>
+                <seq __type="s16">8</seq>
+                <start_addr __type="u32">50000</start_addr>
+                <end_addr __type="u32">80000</end_addr>
+            </music>
+            <music>
+                <musicid __type="s32">2219</musicid>
+                <seq __type="s16">10</seq>
+                <start_addr __type="u32">0</start_addr>
+                <end_addr __type="u32">30000</end_addr>
+            </music>
+        </demomusic>
+        <monstar_subjugation>
+            <monstar_subjugation_1>
+                <term __type="u8">0</term>
+            </monstar_subjugation_1>
+            <monstar_subjugation_2>
+                <term __type="u8">0</term>
+            </monstar_subjugation_2>
+            <monstar_subjugation_3>
+                <term __type="u8">0</term>
+            </monstar_subjugation_3>
+            <monstar_subjugation_4>
+                <term __type="u8">0</term>
+            </monstar_subjugation_4>
+            <bonus_musicid __type="s32">2456</bonus_musicid>
+        </monstar_subjugation>
+        <phrase_combo_challenge>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge>
+        <phrase_combo_challenge_2>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_2>
+        <phrase_combo_challenge_3>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_3>
+        <phrase_combo_challenge_4>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_4>
+        <phrase_combo_challenge_5>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_5>
+        <phrase_combo_challenge_6>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_6>
+        <phrase_combo_challenge_7>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_7>
+        <phrase_combo_challenge_8>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_8>
+        <phrase_combo_challenge_9>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_9>
+        <phrase_combo_challenge_10>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_10>
+        <phrase_combo_challenge_11>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_11>
+        <phrase_combo_challenge_12>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_12>
+        <phrase_combo_challenge_13>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_13>
+        <phrase_combo_challenge_14>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_14>
+        <phrase_combo_challenge_15>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_15>
+        <phrase_combo_challenge_16>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_16>
+        <phrase_combo_challenge_17>
+            <term __type="u8">0</term>
+        </phrase_combo_challenge_17>
+        <kouyou_challenge_1>
+            <term __type="u8">0</term>
+            <bonus_musicid __type="s32">0</bonus_musicid>
+        </kouyou_challenge_1>
+        <kouyou_challenge_2>
+            <term __type="u8">0</term>
+            <bonus_musicid __type="s32">0</bonus_musicid>
+        </kouyou_challenge_2>
+        <kouyou_challenge_3>
+            <term __type="u8">0</term>
+            <bonus_musicid __type="s32">0</bonus_musicid>
+        </kouyou_challenge_3>
+        <event_skill>
+            <event>
+                <eventid __type="s32">0</eventid>
+                <title_id __type="s32">0</title_id>
+                <title_sub_id __type="s32">0</title_sub_id>
+                <icon_id __type="s32">0</icon_id>
+                <diff __type="s32">0</diff>
+            </event>
+        </event_skill>
+        <sticker_campaign>
+            <term __type="u8">0</term>
+            <sticker_list>
+                <sticker>
+                    <itemid __type="s32">675</itemid>
+                </sticker>
+                <sticker>
+                    <itemid __type="s32">676</itemid>
+                </sticker>
+                <sticker>
+                    <itemid __type="s32">677</itemid>
+                </sticker>
+                <sticker>
+                    <itemid __type="s32">678</itemid>
+                </sticker>
+            </sticker_list>
+        </sticker_campaign>
+        <kac2017>
+            <event>
+                <term __type="s32">0</term>
+                <since __type="u64">0</since>
+                <till __type="u64">0</till>
+                <is_open __type="bool">0</is_open>
+                <target_music>
+                    <music_id __type="s32">-1</music_id>
+                </target_music>
+                <reward>
+                    <is_available __type="bool">0</is_available>
+                </reward>
+            </event>
+        </kac2017>
+        <bear_fes>
+            <bear_fes_1>
+                <term __type="u8">0</term>
+            </bear_fes_1>
+            <bear_fes_2>
+                <term __type="u8">0</term>
+            </bear_fes_2>
+            <bear_fes_3>
+                <term __type="u8">0</term>
+            </bear_fes_3>
+            <bear_fes_4>
+                <term __type="u8">0</term>
+            </bear_fes_4>
+        </bear_fes>
+        <paseli_point_lottery>
+            <term __type="u8">0</term>
+        </paseli_point_lottery>
+        <jubeat_omiyage_challenge>
+            <data>
+                <linkage_id __type="s32">0</linkage_id>
+                <start_date __type="u64">0</start_date>
+                <end_date __type="u64">0</end_date>
+                <is_open __type="bool">0</is_open>
+            </data>
+        </jubeat_omiyage_challenge>
+        <nostalgia_concert>
+            <data>
+                <linkage_id __type="s32">0</linkage_id>
+                <start_date __type="u64">0</start_date>
+                <end_date __type="u64">0</end_date>
+                <is_open __type="bool">0</is_open>
+            </data>
+        </nostalgia_concert>
+        <long_otobear_fes_1>
+            <term __type="u8">1</term>
+        </long_otobear_fes_1>
+        <monthly_skill>
+            <term __type="u8">11</term>
+            <is_open __type="bool">0</is_open>
+            <target_music>
+                <music>
+                    <musicid __type="s32">1406</musicid>
+                </music>
+                <music>
+                    <musicid __type="s32">305</musicid>
+                </music>
+                <music>
+                    <musicid __type="s32">710</musicid>
+                </music>
+                <music>
+                    <musicid __type="s32">920</musicid>
+                </music>
+                <music>
+                    <musicid __type="s32">1520</musicid>
+                </music>
+            </target_music>
+        </monthly_skill>
+        <rockwave>
+            <event_list>
+                <event>
+                    <data_id __type="s32">0</data_id>
+                    <data_version __type="s32">0</data_version>
+                    <event_id __type="s32">0</event_id>
+                    <event_type __type="s32">0</event_type>
+                    <start_date __type="u64">0</start_date>
+                    <end_date __type="u64">0</end_date>
+                    <is_open __type="bool">0</is_open>
+                    <bg_no __type="s32">0</bg_no>
+                    <target_musicid __type="s32">-1</target_musicid>
+                    <clear_border __type="s32">0</clear_border>
+                    <reward_musicid __type="s32">-1</reward_musicid>
+                    <reward_stickerid __type="s32">0</reward_stickerid>
+                    <firstbit __type="s32">0</firstbit>
+                    <event_skill_id __type="s32">0</event_skill_id>
+                    <quest_no __type="s32">0</quest_no>
+                </event>
+            </event_list>
+        </rockwave>
+        <assert_report_state __type="u8">0</assert_report_state>
+        <temperature>
+            <is_send __type="bool">0</is_send>
+        </temperature>
+        <update_prog>
+            <term __type="u8">0</term>
+        </update_prog>
+        <bemani_summer_2018>
+            <is_open __type="bool">0</is_open>
+            <termdata>
+                <term __type="u8">1</term>
+                <is_open __type="bool">1</is_open>
+                <start_date __type="u64">0</start_date>
+                <end_date __type="u64">0</end_date>
+            </termdata>
+        </bemani_summer_2018>
+    </matixx_gameinfo>
+</response>
+

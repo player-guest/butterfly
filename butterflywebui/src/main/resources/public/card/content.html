@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Card</title>
+    <style>
+        body{
+            background-color: rgb(223, 255, 255);
+        }
+        tbody {
+            text-align: center;
+        }
+        #index_list tr{
+            background-color: rgb(182, 221, 221);
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <table width="95%">
+            <tbody>
+                <tr>
+                    <td height="20">
+                        <font color="black">
+                            Card
+                        </font>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="95%">
+            <tbody>
+                <tr>
+                    <td>
+                        <center>
+                            <table id="card_list" border="1" width="95%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Display ID</th>
+                                    <th>NFC ID</th>
+                                    <th>Type</th>
+                                    <th>Function</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+<button onclick="bindCard()">Add Card</button>
+<p style="color:red;">Caution: Binding multiple card may not work as expected.</p>
+    </center>
+
+    <script>
+        function getCard() {
+            let http = new XMLHttpRequest();
+            let url = "/api/card/list";
+            http.withCredentials = true;
+            http.onreadystatechange = function () {
+                if (http.readyState == XMLHttpRequest.DONE) {
+                    let resp = JSON.parse(http.responseText);
+                    if (http.status == 200) {
+                        let table = document.getElementById("card_list");
+                        if(resp.data.length>0){
+                            resp.data.forEach(function(item){
+                                let row = table.insertRow(-1);
+                                
+                                row.insertCell(0).innerText = item.id;
+                                row.insertCell(1).innerText = item.displayId;
+                                row.insertCell(2).innerText = item.nfcId;
+                                row.insertCell(3).innerText = item.type;
+                                row.insertCell(4).innerHTML = '<button onclick="unbind('+item.id+')">Unbind</button>';
+                            })
+                        }
+                    } else {
+                        alert(resp.data.message);
+                    }
+
+                }
+            }
+            http.open("GET", url);
+            http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            http.send();
+        
+        }
+
+        function bindCard(){
+            let nfcId = prompt("Please enter the card NFC ID","");
+            let passcode = prompt("Please enter the Passcode of this card","");
+            let http = new XMLHttpRequest();
+            let url = "/api/card/bind";
+            http.withCredentials = true;
+            http.onreadystatechange = function () {
+                if (http.readyState == XMLHttpRequest.DONE) {
+                    let resp = JSON.parse(http.responseText);
+                    if (http.status == 200) {
+                        alert("OK");
+                        let table = document.getElementById("card_list");
+                        table.innerHTML = "";
+                        location.reload();
+                    } else {
+                        alert(resp.data.message);
+                    }
+
+                }
+            }
+            http.open("POST", url);
+            http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            http.send(JSON.stringify({"nfcId":nfcId,"passcode":passcode}));
+        }
+
+        function unbind(id){
+            let http = new XMLHttpRequest();
+            let url = "/api/card/unbind";
+            http.withCredentials = true;
+            http.onreadystatechange = function () {
+                if (http.readyState == XMLHttpRequest.DONE) {
+                    let resp = JSON.parse(http.responseText);
+                    if (http.status == 200) {
+                        alert("OK");
+                        location.reload();
+                    } else {
+                        alert(resp.data.message);
+                    }
+
+                }
+            }
+            http.open("POST", url);
+            http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            http.send(JSON.stringify({"cardId":id}));
+            console.log(this.parentElement.nodeName);
+        }
+
+
+
+
+        window.onload = function(){
+            getCard();
+        }
+    </script>
+</body>
+
+</html>

@@ -2,8 +2,19 @@ package com.buttongames.butterflyserver.http;
 
 import com.buttongames.butterflycore.compression.Lz77;
 import com.buttongames.butterflycore.encryption.Rc4;
+import com.buttongames.butterflycore.util.JSONUtil;
+import com.buttongames.butterflycore.util.ObjectUtils;
+import com.buttongames.butterflycore.util.TimeUtils;
 import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.MachineDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.TokenDao;
+import com.buttongames.butterflymodel.model.ButterflyUser;
+import com.buttongames.butterflymodel.model.Token;
+import com.buttongames.butterflyserver.http.api.ApiCardHandler;
+import com.buttongames.butterflyserver.http.api.ApiMachineHandler;
+import com.buttongames.butterflyserver.http.api.ApiUserHandler;
+import com.buttongames.butterflyserver.http.api.game.ApiMatixxHandler;
+import com.buttongames.butterflyserver.http.api.game.MatixxManageHandler;
 import com.buttongames.butterflyserver.http.exception.CardCipherException;
 import com.buttongames.butterflyserver.http.exception.InvalidPcbIdException;
 import com.buttongames.butterflyserver.http.exception.InvalidRequestException;
@@ -12,19 +23,10 @@ import com.buttongames.butterflyserver.http.exception.InvalidRequestModelExcepti
 import com.buttongames.butterflyserver.http.exception.InvalidRequestModuleException;
 import com.buttongames.butterflyserver.http.exception.MismatchedRequestUriException;
 import com.buttongames.butterflyserver.http.exception.UnsupportedRequestException;
-import com.buttongames.butterflyserver.http.handlers.impl.CardManageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.EacoinRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.EventLogRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.FacilityRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.MessageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.PackageRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.PcbEventRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.PcbTrackerRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.PlayerDataRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.ServicesRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.SystemRequestHandler;
-import com.buttongames.butterflyserver.http.handlers.impl.TaxRequestHandler;
-import com.buttongames.butterflymodel.model.ButterflyUser;
+import com.buttongames.butterflyserver.http.handlers.KfcHandler;
+import com.buttongames.butterflyserver.http.handlers.M32Handler;
+import com.buttongames.butterflyserver.http.handlers.M39Handler;
+import com.buttongames.butterflyserver.http.handlers.MdxHandler;
 import com.buttongames.butterflymodel.model.Machine;
 import com.buttongames.butterflyserver.util.PropertyNames;
 import com.buttongames.butterflycore.xml.XmlUtils;
@@ -47,11 +49,7 @@ import java.time.LocalDateTime;
 import static com.buttongames.butterflycore.util.Constants.COMPRESSION_HEADER;
 import static com.buttongames.butterflycore.util.Constants.CRYPT_KEY_HEADER;
 import static com.buttongames.butterflycore.util.Constants.LZ77_COMPRESSION;
-import static spark.Spark.exception;
-import static spark.Spark.port;
-import static spark.Spark.post;
-import static spark.Spark.stop;
-import static spark.Spark.threadPool;
+import static spark.Spark.*;
 
 /**
  * The main HTTP server. This class is responsible for the top-level handling of incoming
@@ -75,50 +73,17 @@ public class ButterflyHttpServer {
 
     // Do a static setup of our supported models, modules, etc.
     static {
-        SUPPORTED_MODELS = ImmutableSet.of("mdx");
+        SUPPORTED_MODELS = ImmutableSet.of("mdx","kfc","m32","m39");
         SUPPORTED_MODULES = ImmutableSet.of("services", "pcbtracker", "message", "facility", "pcbevent",
-                "package", "eventlog", "tax", "playerdata", "cardmng", "system", "eacoin");
+                "package", "eventlog", "tax", "playerdata", "cardmng", "system", "eacoin","matixx_shopinfo","game");
     }
 
     /** The port the server listens on */
     @Value(PropertyNames.PORT)
     private String port;
 
-    /** Handler for requests for the <code>services</code> module. */
-    private final ServicesRequestHandler servicesRequestHandler;
-
-    /** Handler for requests for the <code>pcbevent</code> module. */
-    private final PcbEventRequestHandler pcbEventRequestHandler;
-
-    /** Handler for requests for the <code>pcbtracker</code> module. */
-    private final PcbTrackerRequestHandler pcbTrackerRequestHandler;
-
-    /** Handler for requests for the <code>message</code> module. */
-    private final MessageRequestHandler messageRequestHandler;
-
-    /** Handler for requests for the <code>facility</code> module. */
-    private final FacilityRequestHandler facilityRequestHandler;
-
-    /** Handler for requests for the <code>package</code> module. */
-    private final PackageRequestHandler packageRequestHandler;
-
-    /** Handler for requests for the <code>eventlog</code> module. */
-    private final EventLogRequestHandler eventLogRequestHandler;
-
-    /** Handler for requests for the <code>tax</code> module. */
-    private final TaxRequestHandler taxRequestHandler;
-
-    /** Handler for requests for the <code>playerdata</code> module. */
-    private final PlayerDataRequestHandler playerDataRequestHandler;
-
-    /** Handler for requests for the <code>cardmng</code> module. */
-    private final CardManageRequestHandler cardManageRequestHandler;
-
-    /** Handler for requests for the <code>system</code> module. */
-    private final SystemRequestHandler systemRequestHandler;
-
-    /** Handler for requests for the <code>eacoin</code> module. */
-    private final EacoinRequestHandler eacoinRequestHandler;
+    /** Handler for requests for the <code>mdx</code> model. */
+    private final MdxHandler mdxHandler;
 
     /** DAO for interacting with <code>Machine</code> objects in the database. */
     private final MachineDao machineDao;
@@ -126,38 +91,52 @@ public class ButterflyHttpServer {
     /** DAO for interacting with <code>ButterflyUser</code> objects in the database. */
     private final ButterflyUserDao userDao;
 
+    private final KfcHandler kfcHandler;
+
+    private  final M32Handler m32Handler;
+
+    private final M39Handler m39Handler;
+
+    private final TokenDao tokenDao;
+
+    private final ApiUserHandler apiUserHandler;
+
+    private final ApiCardHandler apiCardHandler;
+
+    private final ApiMachineHandler apiMachineHandler;
+
+    private final ApiMatixxHandler apiMatixxHandler;
+
+    private final MatixxManageHandler matixxManageHandler;
+
     /**
      * Constructor.
      */
     @Autowired
-    public ButterflyHttpServer(final ServicesRequestHandler servicesRequestHandler,
-                               final PcbEventRequestHandler pcbEventRequestHandler,
-                               final PcbTrackerRequestHandler pcbTrackerRequestHandler,
-                               final MessageRequestHandler messageRequestHandler,
-                               final FacilityRequestHandler facilityRequestHandler,
-                               final PackageRequestHandler packageRequestHandler,
-                               final EventLogRequestHandler eventLogRequestHandler,
-                               final TaxRequestHandler taxRequestHandler,
-                               final PlayerDataRequestHandler playerDataRequestHandler,
-                               final CardManageRequestHandler cardManageRequestHandler,
-                               final SystemRequestHandler systemRequestHandler,
-                               final EacoinRequestHandler eacoinRequestHandler,
-                               final MachineDao machineDao,
-                               final ButterflyUserDao userDao) {
-        this.servicesRequestHandler = servicesRequestHandler;
-        this.pcbEventRequestHandler = pcbEventRequestHandler;
-        this.pcbTrackerRequestHandler = pcbTrackerRequestHandler;
-        this.messageRequestHandler = messageRequestHandler;
-        this.facilityRequestHandler = facilityRequestHandler;
-        this.packageRequestHandler = packageRequestHandler;
-        this.eventLogRequestHandler = eventLogRequestHandler;
-        this.taxRequestHandler = taxRequestHandler;
-        this.playerDataRequestHandler = playerDataRequestHandler;
-        this.cardManageRequestHandler = cardManageRequestHandler;
-        this.systemRequestHandler = systemRequestHandler;
-        this.eacoinRequestHandler = eacoinRequestHandler;
+    public ButterflyHttpServer(MdxHandler mdxHandler,
+                               MachineDao machineDao,
+                               ButterflyUserDao userDao,
+                               KfcHandler kfcHandler,
+                               M32Handler m32Handler,
+                               M39Handler m39Handler,
+                               TokenDao tokenDao,
+                               ApiUserHandler apiUserHandler,
+                               ApiCardHandler apiCardHandler,
+                               ApiMachineHandler apiMachineHandler,
+                               ApiMatixxHandler apiMatixxHandler,
+                               MatixxManageHandler matixxManageHandler) {
+        this.mdxHandler = mdxHandler;
         this.machineDao = machineDao;
         this.userDao = userDao;
+        this.kfcHandler = kfcHandler;
+        this.m32Handler = m32Handler;
+        this.m39Handler = m39Handler;
+        this.tokenDao = tokenDao;
+        this.apiUserHandler = apiUserHandler;
+        this.apiCardHandler = apiCardHandler;
+        this.apiMachineHandler = apiMachineHandler;
+        this.apiMatixxHandler = apiMatixxHandler;
+        this.matixxManageHandler = matixxManageHandler;
     }
 
     /**
@@ -169,9 +148,15 @@ public class ButterflyHttpServer {
         int minThreads = 2;
         int timeOutMillis = 30000;
 
+        final String hostUrl = System.getProperty("hostUrl");
+        String Dport = System.getProperty("port");
+        String port = ObjectUtils.checkNull(Dport, this.port);
+
+        LOG.info("BaseUrl : "+hostUrl);
+
         // once routes are configured, the server automatically begins
         threadPool(maxThreads, minThreads, timeOutMillis);
-        port(Integer.parseInt(this.port));
+        port(Integer.parseInt(port));
         this.configureRoutesAndExceptions();
     }
 
@@ -186,40 +171,115 @@ public class ButterflyHttpServer {
      * Configures the routes on the server, and the exception handlers.
      */
     private void configureRoutesAndExceptions() {
+
+        path("/api",() -> {
+
+
+
+            before("/*",(req,resp)-> {
+                resp.type("application/json");
+                LOG.info("API Call:"+req.requestMethod()+" "+req.uri());
+                resp.header("Access-Control-Allow-Origin", "*");
+                resp.header("Access-Control-Allow-Methods","GET, POST");
+                resp.header("Access-Control-Allow-Headers","Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+                resp.header("Access-Control-Max-Age","86400");
+                if(req.requestMethod().equals("OPTIONS")){
+                    halt(200, "ok");
+                }
+            });
+
+            path("/user",()->{
+                post("/auth",(req,resp) -> apiUserHandler.handleRequest("auth", req, resp));
+                post("/register",(req,resp) -> apiUserHandler.handleRequest("register", req, resp));
+                post("/logout",(req,resp) -> apiUserHandler.handleRequest("logout", req, resp));
+            });
+
+            before("/admin/*",(req,resp)-> {
+                if(!checkAuth(req)){
+                    halt(401, JSONUtil.errorMsg("Unauthenticated"));
+                }else if(!getUser(req).getUser_group().equals("admin")){
+                    halt(401, JSONUtil.errorMsg("No Permission"));
+                }
+            });
+
+            path("/admin", ()->{
+                post("/musiclist",(req,resp)-> matixxManageHandler.handleRequest("set_musiclist", req, resp));
+            });
+
+            before("/card/*",(req,resp)-> {
+                if(!checkAuth(req)){
+                    halt(401, JSONUtil.errorMsg("Unauthenticated"));
+                }
+            });
+
+            path("/card",()->{
+                get("/list",(req,resp) -> apiCardHandler.handleRequest("get", getUser(req), req,resp));
+                post("/bind",(req,resp) -> apiCardHandler.handleRequest("bind", getUser(req), req,resp));
+                post("/unbind",(req,resp) -> apiCardHandler.handleRequest("unbind", getUser(req), req,resp));
+            });
+
+            before("/machine/*",(req,resp)-> {
+                if(!checkAuth(req)){
+                    halt(401, JSONUtil.errorMsg("Unauthenticated"));
+                }
+            });
+
+            path("/machine",()->{
+                get("/list",(req,resp) -> apiMachineHandler.handleRequest("get", getUser(req), req,resp));
+                post("/generate",(req,resp) -> apiMachineHandler.handleRequest("generate", getUser(req), req,resp));
+                post("/delete",(req,resp) -> apiMachineHandler.handleRequest("delete", getUser(req), req,resp));
+            });
+
+
+            path("/game",()->{
+
+                path("/matixx",()->{
+                    get("/profile", (req,resp)-> apiMatixxHandler.handleRequest("get_profile", getUser(req),req,resp));
+                    post("/profile", (req,resp)-> apiMatixxHandler.handleRequest("update_profile", getUser(req),req,resp));
+                    get("/musiclist", (req,resp)-> apiMatixxHandler.handleRequest("musiclist", getUser(req),req,resp));
+                    get("/recordlist", (req,resp)-> apiMatixxHandler.handleRequest("play_record_list", getUser(req),req,resp));
+                });
+
+            });
+            notFound((req, resp) -> {
+                resp.type("application/json");
+                return JSONUtil.errorMsg("404 Not found");
+            });
+
+            internalServerError((req, resp) -> {
+                resp.type("application/json");
+                return JSONUtil.errorMsg("500 Internal server error");
+            });
+
+
+
+
+
+
+        });
+
         // configure our root route; its handler will parse the request and go from there
-        post("/", ((request, response) -> {
+        post("/ea", ((request, response) -> {
             // send the request to the right module handler
             final Element requestBody = validateAndUnpackRequest(request);
-            final String requestModule = request.attribute("module");
+            final String requestModel = request.attribute("model");
+            final String modelType = requestModel.split(":")[0].toLowerCase();
 
-            if (requestModule.equals("services")) {
-                return this.servicesRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("pcbevent")) {
-                return this.pcbEventRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("pcbtracker")) {
-                return this.pcbTrackerRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("message")) {
-                return this.messageRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("facility")) {
-                return this.facilityRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("package")) {
-                return this.packageRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("eventlog")) {
-                return this.eventLogRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("tax")) {
-                return this.taxRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("playerdata")) {
-                return this.playerDataRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("cardmng")) {
-                return this.cardManageRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("system")) {
-                return this.systemRequestHandler.handleRequest(requestBody, request, response);
-            } else if (requestModule.equals("eacoin")) {
-                return this.eacoinRequestHandler.handleRequest(requestBody, request, response);
+
+            if (modelType.equals("mdx")) {
+                return this.mdxHandler.handleRequest(requestBody, request, response);
+            } else if(modelType.equals("kfc")) {
+                return this.kfcHandler.handleRequest(requestBody, request, response);
+            } else if(modelType.equals("m32")) {
+                return this.m32Handler.handleRequest(requestBody, request, response);
+            } else if(modelType.equals("m39")) {
+                return this.m39Handler.handleRequest(requestBody, request, response);
             } else {
                 throw new InvalidRequestModuleException();
             }
         }));
+
+
 
         // configure the exception handlers
         exception(InvalidRequestMethodException.class, ((exception, request, response) -> {
@@ -277,11 +337,6 @@ public class ButterflyHttpServer {
             throw new InvalidRequestModelException();
         }
 
-        // 2) validate the module is supported
-        if (!SUPPORTED_MODULES.contains(requestUriModule)) {
-            LOG.warn("Invalid module requested: " + requestUriModule);
-            throw new InvalidRequestModuleException();
-        }
 
         // 3) validate that the PCBID exists in the database
         final String encryptionKey = request.headers(CRYPT_KEY_HEADER);
@@ -298,6 +353,7 @@ public class ButterflyHttpServer {
                 compressionScheme.equals(LZ77_COMPRESSION)) {
             reqBody = Lz77.decompress(reqBody);
         }
+
 
         // convert the body to plaintext XML if it's binary XML
         Element rootNode = null;
@@ -324,14 +380,17 @@ public class ButterflyHttpServer {
         Machine machine = this.machineDao.findByPcbId(requestBodyPcbId);
 
         if (machine == null) {
-            // create a machine and leave them enabled, ban them later if you want or change this
-            // to ban-by-default
-            final LocalDateTime now = LocalDateTime.now();
-            final ButterflyUser newUser = new ButterflyUser("0000", now, now, 10000);
-            userDao.create(newUser);
-
-            machine = new Machine(newUser, requestBodyPcbId, LocalDateTime.now(), true, 0);
-            machineDao.create(machine);
+            // Not allow new pcbid by default
+            LOG.warn("Invalid PCBID requested: " + requestBodyPcbId);
+            throw new InvalidPcbIdException();
+//            // create a machine and leave them enabled, ban them later if you want or change this
+//            // to ban-by-default
+//            final LocalDateTime now = LocalDateTime.now();
+//            final ButterflyUser newUser = new ButterflyUser("0000", now, now, 10000);
+//            userDao.create(newUser);
+//
+//            machine = new Machine(newUser, requestBodyPcbId, LocalDateTime.now(), true, 0);
+//            machineDao.create(machine);
         } else if (!machine.isEnabled()) {
             throw new InvalidPcbIdException();
         }
@@ -355,5 +414,44 @@ public class ButterflyHttpServer {
 
         // 5) return the node corresponding to the actual call
         return moduleNode;
+    }
+
+    private boolean checkAuth(Request request){
+        String tokenstr = null;
+        // Cookies
+        if(request.cookie("token")!=null){
+            tokenstr = request.cookie("token");
+        }else if(request.headers("Authorization")!=null){
+            // Authorization header
+            tokenstr = request.headers("Authorization");
+        }
+
+        if(tokenstr!=null&&!tokenstr.equals("")){
+            Token token = tokenDao.findByToken(tokenstr);
+            if(token!=null){
+                LocalDateTime now = TimeUtils.getLocalDateTimeInUTC();
+                if(now.isBefore(token.getExpireTime())){
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    private ButterflyUser getUser(Request request){
+        String tokenstr = null;
+        // Cookies
+        if(request.cookie("token")!=null){
+            tokenstr = request.cookie("token");
+        }else if(request.headers("Authorization")!=null){
+            // Authorization header
+            tokenstr = request.headers("Authorization");
+        }
+
+        if(tokenstr!=null){
+            return tokenDao.findByToken(tokenstr).getUser();
+        }
+        return null;
     }
 }

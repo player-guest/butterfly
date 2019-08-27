@@ -31,7 +31,7 @@ public class GhostData implements Externalizable {
     /** The user this data belongs to */
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserProfile user;
+    private ddr16UserProfile user;
 
     /** The actual ghost steps for this data */
     @Column(name = "ghost_data", columnDefinition = "TEXT")
@@ -47,7 +47,7 @@ public class GhostData implements Externalizable {
 
     public GhostData() { }
 
-    public GhostData(UserProfile user, String ghostData, int mcode, int noteType) {
+    public GhostData(ddr16UserProfile user, String ghostData, int mcode, int noteType) {
         this.user = user;
         this.ghostData = ghostData;
         this.mcode = mcode;
@@ -66,7 +66,7 @@ public class GhostData implements Externalizable {
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.setId(in.readLong());
-        this.setUser((UserProfile) in.readObject());
+        this.setUser((ddr16UserProfile) in.readObject());
         this.setGhostData(in.readUTF());
         this.setMcode(in.readInt());
         this.setNoteType(in.readInt());
@@ -80,11 +80,11 @@ public class GhostData implements Externalizable {
         this.id = id;
     }
 
-    public UserProfile getUser() {
+    public ddr16UserProfile getUser() {
         return user;
     }
 
-    public void setUser(UserProfile user) {
+    public void setUser(ddr16UserProfile user) {
         this.user = user;
     }
 

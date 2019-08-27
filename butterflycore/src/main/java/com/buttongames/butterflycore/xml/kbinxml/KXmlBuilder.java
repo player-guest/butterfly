@@ -751,5 +751,79 @@ public final class KXmlBuilder extends BaseXMLBuilder {
     public KXmlBuilder ip(final String name, final String value) {
         return e(name).a("__type", "ip4").t(value);
     }
+
+    /** String */
+
+    public KXmlBuilder u8(final String name, final String value) {
+        return e(name).a("__type", "u8").t(value);
+    }
+
+    public KXmlBuilder u16(final String name, final String value) {
+        return e(name).a("__type", "u16").t(value);
+    }
+
+    public KXmlBuilder u32(final String name, final String value) {
+        return e(name).a("__type", "u32").t(value);
+    }
+
+    public KXmlBuilder u64(final String name, final String value) {
+        return e(name).a("__type", "u64").t(value);
+    }
+
+    public KXmlBuilder s8(final String name, final String value) {
+        return e(name).a("__type", "s8").t(value);
+    }
+
+    public KXmlBuilder s16(final String name, final String value) {
+        return e(name).a("__type", "s16").t(value);
+    }
+
+    public KXmlBuilder s32(final String name, final String value) {
+        return e(name).a("__type", "s32").t(value);
+    }
+
+    public KXmlBuilder s64(final String name, final String value) {
+        return e(name).a("__type", "s64").t(value);
+    }
+
+    public KXmlBuilder bool(final String name, final String value) {
+        return e(name).a("__type", "bool").t(value);
+    }
+
+    /** Count */
+
+    public KXmlBuilder u8(final String name, final String count, final String value) {
+        return e(name).a("__count", count).a("__type", "u8").t(value);
+    }
+
+    public KXmlBuilder u16(final String name, final String count, final String value) {
+        return e(name).a("__count", count).a("__type", "u16").t(value);
+    }
+
+    public KXmlBuilder u32(final String name, final String count, final String value) {
+        return e(name).a("__count", count).a("__type", "u32").t(value);
+    }
+
+    public KXmlBuilder u64(final String name, final String count, final String value) {
+        return e(name).a("__count", count).a("__type", "u64").t(value);
+    }
+
+    public KXmlBuilder s8(final String name, final String count, final String value) {
+        return e(name).a("__count", count).a("__type", "s8").t(value);
+    }
+
+    public KXmlBuilder s16(final String name, final String count, final String value) {
+        return e(name).a("__count", count).a("__type", "s16").t(value);
+    }
+
+    public KXmlBuilder s32(final String name, final String count, final String value) {
+        return e(name).a("__count", count).a("__type", "s32").t(value);
+    }
+
+    public KXmlBuilder s64(final String name, final String count, final String value) {
+        return e(name).a("__count", count).a("__type", "s64").t(value);
+    }
+
+
 }
 
