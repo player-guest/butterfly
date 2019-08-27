@@ -4,14 +4,9 @@ import com.buttongames.butterflycore.util.ObjectUtils;
 import com.buttongames.butterflycore.xml.XmlUtils;
 import com.buttongames.butterflycore.xml.kbinxml.KXmlBuilder;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24AccountDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ItemDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ProfileDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24StageRecordDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.*;
 import com.buttongames.butterflymodel.model.Card;
-import com.buttongames.butterflymodel.model.popn24.popn24Account;
-import com.buttongames.butterflymodel.model.popn24.popn24Profile;
-import com.buttongames.butterflymodel.model.popn24.popn24StageRecord;
+import com.buttongames.butterflymodel.model.popn24.*;
 import com.buttongames.butterflyserver.Main;
 import com.buttongames.butterflyserver.http.exception.InvalidRequestException;
 import com.buttongames.butterflyserver.http.exception.InvalidRequestMethodException;
@@ -24,6 +19,7 @@ import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import spark.Request;
 import spark.Response;
 
@@ -53,12 +49,15 @@ public class Player24Handler extends BaseRequestHandler {
 
     private final Popn24ItemDao popn24ItemDao;
 
-    public Player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao, Popn24ItemDao popn24ItemDao) {
+    private final Popn24CharaParamDao popn24CharaParamDao;
+
+    public Player24Handler(CardDao cardDao, Popn24AccountDao popn24AccountDao, Popn24ProfileDao popn24ProfileDao, Popn24StageRecordDao popn24StageRecordDao, Popn24ItemDao popn24ItemDao, Popn24CharaParamDao popn24CharaParamDao) {
         this.cardDao = cardDao;
         this.popn24AccountDao = popn24AccountDao;
         this.popn24ProfileDao = popn24ProfileDao;
         this.popn24StageRecordDao = popn24StageRecordDao;
         this.popn24ItemDao = popn24ItemDao;
+        this.popn24CharaParamDao = popn24CharaParamDao;
     }
 
     @Override
@@ -125,7 +124,7 @@ public class Player24Handler extends BaseRequestHandler {
             return this.handleNewRequest(requestBody,card,request,response);
         }
 
-        KXmlBuilder respBuilder = buildReadBody(ac,pf);
+        KXmlBuilder respBuilder = buildReadBody(ac,pf,card);
         final Document document = respBuilder.getDocument();
 
 
@@ -140,7 +139,7 @@ public class Player24Handler extends BaseRequestHandler {
         popn24Account ac = popn24AccountDao.findByCard(card);
         popn24Profile pf= popn24ProfileDao.findByCard(card);
 
-        KXmlBuilder respBuilder = buildReadBody(ac,pf);
+        KXmlBuilder respBuilder = buildReadBody(ac,pf,card);
         final Document document = respBuilder.getDocument();
 
         List<popn24StageRecord> stageList = popn24StageRecordDao.findByCard(card);
@@ -171,58 +170,64 @@ public class Player24Handler extends BaseRequestHandler {
     private Object handleWriteMusicRequest(final Element requestBody, final Card card, final Request request, final Response response) {
 
         Element node = (Element) XmlUtils.nodeAtPath(requestBody,"/player24");
-        popn24StageRecord record = new popn24StageRecord(card,
-                XmlUtils.intAtChild(node, "chara_num"),
-                XmlUtils.intAtChild(node, "mode"),
-                XmlUtils.intAtChild(node, "play_id"),
-                XmlUtils.intAtChild(node, "stage"),
-                XmlUtils.intAtChild(node, "music_num"),
-                XmlUtils.intAtChild(node, "sheet_num"),
-                XmlUtils.intAtChild(node, "clear_type"),
-                XmlUtils.intAtChild(node, "clear_rank"),
-                XmlUtils.intAtChild(node, "score"),
-                XmlUtils.intAtChild(node, "cool"),
-                XmlUtils.intAtChild(node, "great"),
-                XmlUtils.intAtChild(node, "good"),
-                XmlUtils.intAtChild(node, "bad"),
-                XmlUtils.intAtChild(node, "combo"),
-                XmlUtils.intAtChild(node, "highlight"),
-                XmlUtils.intAtChild(node, "gauge"),
-                XmlUtils.intAtChild(node, "gauge_type"),
-                XmlUtils.intAtChild(node, "is_netvs"),
-                XmlUtils.intAtChild(node, "is_win"),
-                XmlUtils.boolAtChild(node, "is_image_store"),
-                XmlUtils.intAtChild(node, "hispeed"),
-                XmlUtils.intAtChild(node, "popkun"),
-                XmlUtils.boolAtChild(node, "hidden"),
-                XmlUtils.intAtChild(node, "hidden_rate"),
-                XmlUtils.boolAtChild(node, "sudden"),
-                XmlUtils.intAtChild(node, "sudden_rate"),
-                XmlUtils.intAtChild(node, "randmir"),
-                XmlUtils.intAtChild(node, "ojama_0"),
-                XmlUtils.intAtChild(node, "ojama_1"),
-                XmlUtils.boolAtChild(node, "forever_0"),
-                XmlUtils.boolAtChild(node, "forever_1"),
-                XmlUtils.boolAtChild(node, "full_setting"),
-                XmlUtils.intAtChild(node, "guide_se"),
-                XmlUtils.intAtChild(node, "judge"),
-                XmlUtils.intAtChild(node, "slow"),
-                XmlUtils.intAtChild(node, "fast"),
-                XmlUtils.intAtChild(node, "netvs_ojama_type"),
-                XmlUtils.intAtChild(node, "netvs_type"),
-                XmlUtils.intAtChild(node, "netvs_rank"),
-                XmlUtils.intAtChild(node, "netvs_ojama_0"),
-                XmlUtils.intAtChild(node, "netvs_ojama_1"),
-                XmlUtils.intAtChild(node, "netvs_ojama_2"),
-                XmlUtils.boolAtChild(node, "is_staff"),
-                XmlUtils.intAtChild(node, "course_id"),
-                XmlUtils.strAtChild(node, "course_name") //maybe Null
-                );
+        try{
+            popn24StageRecord record = new popn24StageRecord(card,
+                    XmlUtils.intAtChild(node, "chara_num",0),
+                    XmlUtils.intAtChild(node, "mode"),
+                    XmlUtils.intAtChild(node, "play_id"),
+                    XmlUtils.intAtChild(node, "stage"),
+                    XmlUtils.intAtChild(node, "music_num"),
+                    XmlUtils.intAtChild(node, "sheet_num"),
+                    XmlUtils.intAtChild(node, "clear_type"),
+                    XmlUtils.intAtChild(node, "clear_rank"),
+                    XmlUtils.intAtChild(node, "score"),
+                    XmlUtils.intAtChild(node, "cool"),
+                    XmlUtils.intAtChild(node, "great"),
+                    XmlUtils.intAtChild(node, "good"),
+                    XmlUtils.intAtChild(node, "bad"),
+                    XmlUtils.intAtChild(node, "combo"),
+                    XmlUtils.intAtChild(node, "highlight"),
+                    XmlUtils.intAtChild(node, "gauge"),
+                    XmlUtils.intAtChild(node, "gauge_type"),
+                    XmlUtils.intAtChild(node, "is_netvs"),
+                    XmlUtils.intAtChild(node, "is_win"),
+                    XmlUtils.boolAtChild(node, "is_image_store"),
+                    XmlUtils.intAtChild(node, "hispeed"),
+                    XmlUtils.intAtChild(node, "popkun"),
+                    XmlUtils.boolAtChild(node, "hidden"),
+                    XmlUtils.intAtChild(node, "hidden_rate"),
+                    XmlUtils.boolAtChild(node, "sudden"),
+                    XmlUtils.intAtChild(node, "sudden_rate"),
+                    XmlUtils.intAtChild(node, "randmir"),
+                    XmlUtils.intAtChild(node, "ojama_0"),
+                    XmlUtils.intAtChild(node, "ojama_1"),
+                    XmlUtils.boolAtChild(node, "forever_0"),
+                    XmlUtils.boolAtChild(node, "forever_1"),
+                    XmlUtils.boolAtChild(node, "full_setting"),
+                    XmlUtils.intAtChild(node, "guide_se"),
+                    XmlUtils.intAtChild(node, "judge"),
+                    XmlUtils.intAtChild(node, "slow"),
+                    XmlUtils.intAtChild(node, "fast"),
+                    XmlUtils.intAtChild(node, "netvs_ojama_type"),
+                    XmlUtils.intAtChild(node, "netvs_type"),
+                    XmlUtils.intAtChild(node, "netvs_rank"),
+                    XmlUtils.intAtChild(node, "netvs_ojama_0"),
+                    XmlUtils.intAtChild(node, "netvs_ojama_1"),
+                    XmlUtils.intAtChild(node, "netvs_ojama_2"),
+                    XmlUtils.boolAtChild(node, "is_staff"),
+                    XmlUtils.intAtChild(node, "course_id"),
+                    XmlUtils.strAtChild(node, "course_name") //maybe Null
+            );
 
-        popn24StageRecordDao.create(record);
+            popn24StageRecordDao.create(record);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            LOG.warn("NullPointerException");
+        }finally {
+            KXmlBuilder respBuilder = KXmlBuilder.create("response").e("player24");
+            return this.sendResponse(request,response,respBuilder);
+        }
 
-        KXmlBuilder respBuilder = KXmlBuilder.create("response").e("player24");
-        return this.sendResponse(request,response,respBuilder);
     }
 
     private Object handleWriteRequest(final Element requestBody, final Card card, final Request request, final Response response) {
@@ -333,6 +338,47 @@ public class Player24Handler extends BaseRequestHandler {
             LOG.error(" Null pointer error, some field is null 2");
             e.printStackTrace();
         }
+
+        // Save Item
+        NodeList itemList = XmlUtils.nodesAtPath(requestBody,"/player24/item");
+        for(int i = 0;i<itemList.getLength();i++){
+            Element item  = (Element) itemList.item(i);
+            int type = XmlUtils.intAtChild(item,"type");
+            int itemId = XmlUtils.intAtChild(item,"id");
+            int param = XmlUtils.intAtChild(item,"param");
+            boolean is_new = XmlUtils.boolAtChild(item,"is_new");
+            long get_time = XmlUtils.longAtChild(item,"get_time");
+            popn24Item popn24ItemObj =  popn24ItemDao.findByItemid(card,itemId);
+            if(popn24ItemObj==null){
+                popn24ItemObj = new popn24Item(card,type,itemId,param,is_new,get_time);
+                popn24ItemDao.create(popn24ItemObj);
+            }else{
+                popn24ItemObj.setType(type);
+                popn24ItemObj.setParam(param);
+                popn24ItemObj.setIs_new(is_new);
+                popn24ItemObj.setGet_time(get_time);
+                popn24ItemDao.update(popn24ItemObj);
+            }
+        }
+
+        // Save CharaParam
+        NodeList charaList = XmlUtils.nodesAtPath(requestBody,"/player24/chara_param");
+        for(int i = 0;i<charaList.getLength();i++){
+            Element item  = (Element) charaList.item(i);
+            int chara_id = XmlUtils.intAtChild(item,"chara_id");
+            int friendship = XmlUtils.intAtChild(item,"friendship");
+            popn24CharaParam popn24CharaObj =  popn24CharaParamDao.findByCharaId(card,chara_id);
+            if(popn24CharaObj==null){
+                popn24CharaObj = new popn24CharaParam(card,chara_id,friendship);
+                popn24CharaParamDao.create(popn24CharaObj);
+            }else{
+                popn24CharaObj.setChara_id(chara_id);
+                popn24CharaObj.setFriendship(friendship);
+                popn24CharaParamDao.update(popn24CharaObj);
+            }
+        }
+
+
 
         KXmlBuilder respBuilder = KXmlBuilder.create("response").e("player24");
         return this.sendResponse(request,response,respBuilder);
@@ -545,7 +591,7 @@ public class Player24Handler extends BaseRequestHandler {
         return netvsnode;
     }
 
-    private KXmlBuilder buildReadBody(popn24Account ac, popn24Profile pf){
+    private KXmlBuilder buildReadBody(popn24Account ac, popn24Profile pf,Card card){
         String path = "/player";
         KXmlBuilder respBuilder = KXmlBuilder.create("response").e("player")
                 .s8("result", 0).up()
@@ -564,14 +610,16 @@ public class Player24Handler extends BaseRequestHandler {
         XmlUtils.importNodeToPath(document,buildCustomize(pf),path);
         XmlUtils.importNodeToPath(document,buildNetvs(pf),path);
 
-        String item ="<item>\n" +
-                "<type __type=\"u8\">0</type>\n" +
-                "<id __type=\"u16\">0</id>\n" +
-                "<param __type=\"u16\">0</param>\n" +
-                "<is_new __type=\"bool\">0</is_new>\n" +
-                "<get_time __type=\"u64\">0</get_time>\n" +
-                "</item>";
-        XmlUtils.importStringToPath(document,item,path);
+        List<popn24Item> itemList = popn24ItemDao.findByCard(card);
+        for(popn24Item item : itemList){
+            Node itemBuilder = KXmlBuilder.create("item")
+                    .u8("type", item.getType()).up()
+                    .u16("id", item.getItemId()).up()
+                    .u16("param", item.getParam()).up()
+                    .bool("is_new", item.isIs_new()).up()
+                    .u64("get_time", item.getGet_time()).up().up().getElement();
+            XmlUtils.importNodeToPath(document,itemBuilder,path);
+        }
 
         String eaappli = "<eaappli>\n" +
                 "<relation __type=\"s8\">1</relation>\n" +

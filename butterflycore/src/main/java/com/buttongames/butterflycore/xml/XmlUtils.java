@@ -264,6 +264,14 @@ public class XmlUtils {
         }
     }
 
+    public static Integer intAtChild(final Element doc, final String name, final int defaultValue) {
+        try{
+            return Integer.parseInt(doc.getElementsByTagName(name).item(0).getTextContent());
+        }catch (Exception e){
+            return defaultValue;
+        }
+    }
+
     /**
      * Returns the long value of a child element of the given document whose name is the given name
      * @param doc The document to search its children

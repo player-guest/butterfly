@@ -604,14 +604,14 @@ public class GameRequestHandler extends BaseRequestHandler {
      * Load the events data into memory.
      */
     private static void loadItem() {
-        try {
-            final byte[] respBody = ByteStreams.toByteArray(
-                    Main.class.getResourceAsStream("/static_responses/kfc/item.xml"));
-            final Element doc = XmlUtils.byteArrayToXmlFile(respBody);
-            ITEMS = XmlUtils.nodesAtPath(doc, "/response/game/item");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
+//        try {
+//            final byte[] respBody = ByteStreams.toByteArray(
+//                    Main.class.getResourceAsStream("/static_responses/kfc/item.xml"));
+//            final Element doc = XmlUtils.byteArrayToXmlFile(respBody);
+//            ITEMS = XmlUtils.nodesAtPath(doc, "/response/game/item");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.exit(1);
+//        }
     }
 }

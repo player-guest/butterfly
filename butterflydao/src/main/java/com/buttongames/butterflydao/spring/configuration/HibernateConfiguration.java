@@ -7,10 +7,7 @@ import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxEventDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24AccountDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ItemDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24ProfileDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.popn24.Popn24StageRecordDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.popn24.*;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ParamDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4ProfileDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.ShopDao;
@@ -208,6 +205,11 @@ public class HibernateConfiguration {
     @Bean
     public Popn24StageRecordDao popn24StageRecordDao(final SessionFactory sessionFactory){
         return new Popn24StageRecordDao(sessionFactory);
+    }
+
+    @Bean
+    public Popn24CharaParamDao popn24CharaParamDao(final SessionFactory sessionFactory){
+        return new Popn24CharaParamDao(sessionFactory);
     }
 
 }
