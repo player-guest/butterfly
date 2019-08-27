@@ -257,8 +257,8 @@ public class HttpConfiguration {
     }
 
     @Bean
-    public MatixxManageHandler matixxManageHandler(MatixxMusicDao matixxMusicDao) {
-        return new MatixxManageHandler(matixxMusicDao);
+    public MatixxManageHandler matixxManageHandler(MatixxMusicDao matixxMusicDao, MatixxStageDao matixxStageDao) {
+        return new MatixxManageHandler(matixxMusicDao,matixxStageDao);
     }
 
     /**

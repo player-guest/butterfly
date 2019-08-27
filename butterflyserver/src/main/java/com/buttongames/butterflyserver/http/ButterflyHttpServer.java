@@ -204,6 +204,7 @@ public class ButterflyHttpServer {
 
             path("/admin", ()->{
                 post("/musiclist",(req,resp)-> matixxManageHandler.handleRequest("set_musiclist", req, resp));
+                post("/fix_time",(req,resp)-> matixxManageHandler.handleRequest("fix_time", req, resp));
             });
 
             before("/card/*",(req,resp)-> {

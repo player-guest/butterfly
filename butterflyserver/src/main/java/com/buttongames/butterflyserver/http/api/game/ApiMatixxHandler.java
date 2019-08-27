@@ -1,6 +1,7 @@
 package com.buttongames.butterflyserver.http.api.game;
 
 import com.buttongames.butterflycore.util.JSONUtil;
+import com.buttongames.butterflycore.util.LocalDateTimeAdapter;
 import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
@@ -18,6 +19,7 @@ import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ApiMatixxHandler {
@@ -131,6 +133,7 @@ public class ApiMatixxHandler {
     private Object handlePlayRecordListRequest(final JSONObject reqBody, final Card card, final Request request, final Response response){
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .create();
 
         List<matixxStageRecord> list =  matixxStageDao.findByCard(card);

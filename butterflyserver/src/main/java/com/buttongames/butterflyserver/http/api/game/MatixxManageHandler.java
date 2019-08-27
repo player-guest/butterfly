@@ -3,7 +3,9 @@ package com.buttongames.butterflyserver.http.api.game;
 import com.buttongames.butterflycore.util.JSONUtil;
 import com.buttongames.butterflycore.xml.XmlUtils;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxMusic;
+import com.buttongames.butterflymodel.model.gdmatixx.matixxStageRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
@@ -11,23 +13,32 @@ import org.w3c.dom.NodeList;
 import spark.Request;
 import spark.Response;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.List;
+
 public class MatixxManageHandler {
 
     private final Logger LOG = LogManager.getLogger(MatixxManageHandler.class);
 
     final MatixxMusicDao matixxMusicDao;
 
-    public MatixxManageHandler(MatixxMusicDao matixxMusicDao) {
+    final MatixxStageDao matixxStageDao;
+
+    public MatixxManageHandler(MatixxMusicDao matixxMusicDao, MatixxStageDao matixxStageDao) {
         this.matixxMusicDao = matixxMusicDao;
+        this.matixxStageDao = matixxStageDao;
     }
 
     public Object handleRequest(final String function, final Request request, final Response response){
 
-        if (function.equals("set_musiclist")) {
-            return handleSetMusiclistRequest(request, response);
+        switch (function){
+            case "set_musiclist": return handleSetMusiclistRequest(request, response);
+            case "fix_time": return handleFixTimeRequest(request,response);
+            default: return null;
         }
-
-        return null;
     }
 
     private Object handleSetMusiclistRequest(final Request request, final Response response){
@@ -111,6 +122,19 @@ public class MatixxManageHandler {
                 }
             }
 
+        }
+        return JSONUtil.successMsg("OK");
+    }
+
+    public Object handleFixTimeRequest(final Request request, final Response response){
+
+        List<matixxStageRecord> stageRecordList = matixxStageDao.findAll();
+        for (matixxStageRecord record : stageRecordList){
+            LocalDateTime oldDate = record.getDate();
+            Instant instant1 = Instant.ofEpochMilli(oldDate.toEpochSecond(ZoneOffset.UTC));
+            LocalDateTime newDate = instant1.atZone(ZoneId.systemDefault()).toLocalDateTime();
+            record.setDate(newDate);
+            matixxStageDao.update(record);
         }
         return JSONUtil.successMsg("OK");
     }
