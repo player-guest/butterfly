@@ -179,7 +179,7 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
             // handle usergamedata_advanced.userload requests
             if (mode.equals("userload")) {
                 return this.handleUserLoadRequest(refid, request, response);
-            // handle usergamedata_advanced.rivalload requests
+                // handle usergamedata_advanced.rivalload requests
             } else if (mode.equals("rivalload")) {
                 int loadFlag = XmlUtils.intAtPath(requestBody, "/playerdata/data/loadflag");
 
@@ -189,6 +189,12 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
                     return this.handleAreaScoresRequest(shopArea, request, response);
                 } else if (loadFlag == 4) {
                     return this.handleGlobalScoresRequest(request, response);
+                } else if (loadFlag == 8) {
+                    return this.handleRivalScoresRequest(refid, request, response, 1);
+                } else if (loadFlag == 16) {
+                    return this.handleRivalScoresRequest(refid, request, response, 2);
+                } else if (loadFlag == 32) {
+                    return this.handleRivalScoresRequest(refid, request, response, 3);
                 }
             // handle usergamedata_advanced.usernew requests
             } else if (mode.equals("usernew")) {
@@ -258,6 +264,33 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
     }
 
     /**
+     * Handle a request to load the scores for a particular rival.
+     * @param refId The refId for the calling card
+     * @param request The Spark request
+     * @param response The Spark response
+     * @param which Which rival to load (1-3)
+     * @return A response object for Spark
+     */
+    private Object handleRivalScoresRequest(final String refId, final Request request, final Response response, final int which) {
+        final ddr16UserProfile user = this.ddr16ProfileDao.findByCard(this.cardDao.findByRefId(refId));
+        ddr16UserProfile rival;
+
+        if (which == 1) {
+            rival = user.getRival1();
+        } else if (which == 2) {
+            rival = user.getRival2();
+        } else {
+            rival = user.getRival3();
+        }
+
+        final List<UserSongRecord> rivalRecords = this.songRecordDao.findByUser(rival);
+        final HashMap<Integer, HashMap<Integer, Object[]>> topRecords = this.sortScoresByTopScore(rivalRecords);
+
+        return this.sendScoresToClient(request, response, topRecords);
+    }
+
+
+    /**
      * Handles a request for the global server scores.
      * @param request The Spark request
      * @param response The Spark response
@@ -316,8 +349,8 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
             // for each song/difficulty
             final List<UserSongRecord> userRecords =
                     this.songRecordDao.findByUser(
-                            this.ddr16ProfileDao.findByUser(
-                                    this.cardDao.findByRefId(refId).getUser()));
+                            this.ddr16ProfileDao.findByCard(
+                                    this.cardDao.findByRefId(refId)));
 
             // sort them by song and difficulty, then insert them into the response
             // key for top map is the song ID
@@ -395,7 +428,7 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
             throw new InvalidRequestException();
         }
 
-        ddr16UserProfile profile = this.ddr16ProfileDao.findByUser(card.getUser());
+        ddr16UserProfile profile = this.ddr16ProfileDao.findByCard(card);
 
         // if a profile exists, throw an error
         if (profile != null) {
@@ -410,7 +443,7 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
         // next session and that seems to be working...
         final String defaultLastCsv = "1,6c76656c,3431766c,1ad,3,1,3,4,1,7753ba,b65b5,8000000000000001,8000000000000001,0,0,5c2d1455,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,,,,,,,";
 
-        profile = new ddr16UserProfile(card.getUser(), null, dancerCode, 33, true, 0, 0, 0, -1, 0.0, DancerOption.BABYLON,
+        profile = new ddr16UserProfile(card, null, dancerCode, 33, true, 0, 0, 0, -1, 0.0, DancerOption.BABYLON,
                 SpeedOption.X_1_00, BoostOption.NORMAL, AppearanceOption.VISIBLE, TurnOption.OFF, StepZoneOption.ON,
                 ScrollOption.NORMAL, ArrowColorOption.RAINBOW, CutOption.OFF, FreezeArrowOption.ON, JumpsOption.ON,
                 ArrowSkinOption.NORMAL, ScreenFilterOption.DARK, GuideLinesOption.OFF, LifeGaugeOption.NORMAL,
@@ -444,7 +477,7 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
             throw new InvalidRequestException();
         }
 
-        final ddr16UserProfile profile = this.ddr16ProfileDao.findByUser(card.getUser());
+        final ddr16UserProfile profile = this.ddr16ProfileDao.findByCard(card);
 
         // if a profile doesn't exist, throw an error
         if (profile == null) {
@@ -508,7 +541,7 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
             throw new InvalidRequestException();
         }
 
-        ddr16UserProfile profile = this.ddr16ProfileDao.findByUser(card.getUser());
+        ddr16UserProfile profile = this.ddr16ProfileDao.findByCard(card);
 
         // if a profile doesn't exist, throw an error
         if (profile == null) {
@@ -641,8 +674,8 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
 
         // modify the contents to send back
         elems[GAME_RIVAL_SLOT_1_ACTIVE_OFFSET] = profile.getRival1() == null ? "0" : "1";
-        elems[GAME_RIVAL_SLOT_2_ACTIVE_OFFSET] = profile.getRival2() == null ? "0" : "1";
-        elems[GAME_RIVAL_SLOT_3_ACTIVE_OFFSET] = profile.getRival3() == null ? "0" : "1";
+        elems[GAME_RIVAL_SLOT_2_ACTIVE_OFFSET] = profile.getRival2() == null ? "0" : "2";
+        elems[GAME_RIVAL_SLOT_3_ACTIVE_OFFSET] = profile.getRival3() == null ? "0" : "3";
 
         if (profile.getRival1() != null) {
             elems[GAME_RIVAL_SLOT_1_DDRCODE_OFFSET] = Integer.toHexString(profile.getRival1().getDancerCode());
@@ -753,9 +786,9 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
         // parse out RIVAL values
         if (rival != null &&
                 rival.length != 0) {
-            final boolean rival1Active = rival[GAME_RIVAL_SLOT_1_ACTIVE_OFFSET].equals("1") ? true : false;
-            final boolean rival2Active = rival[GAME_RIVAL_SLOT_2_ACTIVE_OFFSET].equals("1") ? true : false;
-            final boolean rival3Active = rival[GAME_RIVAL_SLOT_3_ACTIVE_OFFSET].equals("1") ? true : false;
+            final boolean rival1Active = rival[GAME_RIVAL_SLOT_1_ACTIVE_OFFSET].equals("0") ? false : true;
+            final boolean rival2Active = rival[GAME_RIVAL_SLOT_2_ACTIVE_OFFSET].equals("0") ? false : true;
+            final boolean rival3Active = rival[GAME_RIVAL_SLOT_3_ACTIVE_OFFSET].equals("0") ? false : true;
             ddr16UserProfile rival1 = null;
             ddr16UserProfile rival2 = null;
             ddr16UserProfile rival3 = null;

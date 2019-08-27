@@ -1,6 +1,7 @@
 package com.buttongames.butterflymodel.model.ddr16;
 
 import com.buttongames.butterflymodel.model.ButterflyUser;
+import com.buttongames.butterflymodel.model.Card;
 import com.buttongames.butterflymodel.model.ddr16.options.AppearanceOption;
 import com.buttongames.butterflymodel.model.ddr16.options.ArrowColorOption;
 import com.buttongames.butterflymodel.model.ddr16.options.ArrowSkinOption;
@@ -53,6 +54,11 @@ public class ddr16UserProfile implements Externalizable {
     @OneToOne
     @JoinColumn(name = "user_id")
     private ButterflyUser user;
+
+    /** The card this profile belongs to */
+    @OneToOne
+    @JoinColumn(name = "card_id")
+    private Card card;
 
     /** The name of this profile */
     @Column(name = "name")
@@ -199,16 +205,44 @@ public class ddr16UserProfile implements Externalizable {
 
     public ddr16UserProfile() { }
 
-    public ddr16UserProfile(ButterflyUser user, String name, int dancerCode, int area, boolean displayWeight, int extraCharge,
-                            int singlesPlays, int doublesPlays, int totalPlays, double weight, DancerOption character,
-                            SpeedOption speedOption, BoostOption boostOption, AppearanceOption appearanceOption,
-                            TurnOption turnOption, StepZoneOption stepZoneOption, ScrollOption scrollOption,
-                            ArrowColorOption arrowColorOption, CutOption cutOption, FreezeArrowOption freezeArrowOption,
-                            JumpsOption jumpsOption, ArrowSkinOption arrowSkinOption, ScreenFilterOption screenFilterOption,
-                            GuideLinesOption guideLinesOption, LifeGaugeOption lifeGaugeOption, JudgementLayerOption judgementLayerOption,
-                            boolean showFastSlow, int lastCalories, ddr16UserProfile rival1, ddr16UserProfile rival2, ddr16UserProfile rival3,
-                            String unkLast) {
+    public ddr16UserProfile(Card card, String name, int dancerCode, int area, boolean displayWeight, int extraCharge, int singlesPlays, int doublesPlays, int totalPlays, double weight, DancerOption character, SpeedOption speedOption, BoostOption boostOption, AppearanceOption appearanceOption, TurnOption turnOption, StepZoneOption stepZoneOption, ScrollOption scrollOption, ArrowColorOption arrowColorOption, CutOption cutOption, FreezeArrowOption freezeArrowOption, JumpsOption jumpsOption, ArrowSkinOption arrowSkinOption, ScreenFilterOption screenFilterOption, GuideLinesOption guideLinesOption, LifeGaugeOption lifeGaugeOption, JudgementLayerOption judgementLayerOption, boolean showFastSlow, int lastCalories, ddr16UserProfile rival1, ddr16UserProfile rival2, ddr16UserProfile rival3, String unkLast) {
+        this.card = card;
+        this.name = name;
+        this.dancerCode = dancerCode;
+        this.area = area;
+        this.displayWeight = displayWeight;
+        this.extraCharge = extraCharge;
+        this.singlesPlays = singlesPlays;
+        this.doublesPlays = doublesPlays;
+        this.totalPlays = totalPlays;
+        this.weight = weight;
+        this.character = character;
+        this.speedOption = speedOption;
+        this.boostOption = boostOption;
+        this.appearanceOption = appearanceOption;
+        this.turnOption = turnOption;
+        this.stepZoneOption = stepZoneOption;
+        this.scrollOption = scrollOption;
+        this.arrowColorOption = arrowColorOption;
+        this.cutOption = cutOption;
+        this.freezeArrowOption = freezeArrowOption;
+        this.jumpsOption = jumpsOption;
+        this.arrowSkinOption = arrowSkinOption;
+        this.screenFilterOption = screenFilterOption;
+        this.guideLinesOption = guideLinesOption;
+        this.lifeGaugeOption = lifeGaugeOption;
+        this.judgementLayerOption = judgementLayerOption;
+        this.showFastSlow = showFastSlow;
+        this.lastCalories = lastCalories;
+        this.rival1 = rival1;
+        this.rival2 = rival2;
+        this.rival3 = rival3;
+        this.unkLast = unkLast;
+    }
+
+    public ddr16UserProfile(ButterflyUser user, Card card, String name, int dancerCode, int area, boolean displayWeight, int extraCharge, int singlesPlays, int doublesPlays, int totalPlays, double weight, DancerOption character, SpeedOption speedOption, BoostOption boostOption, AppearanceOption appearanceOption, TurnOption turnOption, StepZoneOption stepZoneOption, ScrollOption scrollOption, ArrowColorOption arrowColorOption, CutOption cutOption, FreezeArrowOption freezeArrowOption, JumpsOption jumpsOption, ArrowSkinOption arrowSkinOption, ScreenFilterOption screenFilterOption, GuideLinesOption guideLinesOption, LifeGaugeOption lifeGaugeOption, JudgementLayerOption judgementLayerOption, boolean showFastSlow, int lastCalories, ddr16UserProfile rival1, ddr16UserProfile rival2, ddr16UserProfile rival3, String unkLast) {
         this.user = user;
+        this.card = card;
         this.name = name;
         this.dancerCode = dancerCode;
         this.area = area;
@@ -320,7 +354,7 @@ public class ddr16UserProfile implements Externalizable {
         return id;
     }
 
-    private void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -330,6 +364,14 @@ public class ddr16UserProfile implements Externalizable {
 
     public void setUser(ButterflyUser user) {
         this.user = user;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     public String getName() {

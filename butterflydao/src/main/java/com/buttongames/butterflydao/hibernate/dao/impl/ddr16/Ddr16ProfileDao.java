@@ -2,6 +2,7 @@ package com.buttongames.butterflydao.hibernate.dao.impl.ddr16;
 
 import com.buttongames.butterflydao.hibernate.dao.AbstractHibernateDao;
 import com.buttongames.butterflymodel.model.ButterflyUser;
+import com.buttongames.butterflymodel.model.Card;
 import com.buttongames.butterflymodel.model.ddr16.ddr16UserProfile;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -34,6 +35,18 @@ public class Ddr16ProfileDao extends AbstractHibernateDao<ddr16UserProfile> {
     public ddr16UserProfile findByUser(final ButterflyUser user) {
         final Query<ddr16UserProfile> query = this.getCurrentSession().createQuery("from UserProfile where user = :user");
         query.setParameter("user", user);
+
+        return query.uniqueResult();
+    }
+
+    /**
+     * Find a DDR profile by card.
+     * @param card The owning card
+     * @return The profile for the given user
+     */
+    public ddr16UserProfile findByCard(final Card card) {
+        final Query<ddr16UserProfile> query = this.getCurrentSession().createQuery("from UserProfile where card = :card");
+        query.setParameter("card", card);
 
         return query.uniqueResult();
     }
