@@ -14,7 +14,7 @@ public class TimeUtils {
      * @return
      */
     public static LocalDateTime timeFromEpoch(final long millis) {
-        final Instant instant = Instant.ofEpochSecond(millis);
+        final Instant instant = Instant.ofEpochMilli(millis);
 
         return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
@@ -28,5 +28,9 @@ public class TimeUtils {
         ZonedDateTime nowUTC = ZonedDateTime.now(ZoneOffset.UTC);
 
         return nowUTC.toLocalDateTime();
+    }
+
+    public static LocalDateTime getLocalDateTime(){
+        return LocalDateTime.now();
     }
 }
