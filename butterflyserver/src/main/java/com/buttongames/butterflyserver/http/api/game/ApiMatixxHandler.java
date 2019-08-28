@@ -10,6 +10,7 @@ import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
 import com.buttongames.butterflymodel.model.ButterflyUser;
 import com.buttongames.butterflymodel.model.Card;
+import com.buttongames.butterflymodel.model.gdmatixx.matixxMusic;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerProfile;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerboard;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxStageRecord;
@@ -92,6 +93,8 @@ public class ApiMatixxHandler {
                 return handleGetPlayerBoard(card, request, response);
             case "set_playerboard":
                 return handleSetPlayerBoard(reqBody, card, request, response);
+            case "music_detail":
+                return handleMusicDetailRequest(reqBody, card, request, response);
             default: return 404;
         }
 
@@ -137,7 +140,18 @@ public class ApiMatixxHandler {
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
         return gson.toJson(matixxMusicDao.findAll());
+    }
 
+    private Object handleMusicDetailRequest(final JSONObject reqBody, final Card card, final Request request, final Response response){
+        final String recordId = reqBody.getString("id");
+
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                .create();
+
+        matixxMusic music =  matixxMusicDao.findByMusicId(Integer.parseInt(recordId));
+        return gson.toJson(music);
 
     }
 
