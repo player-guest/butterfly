@@ -252,8 +252,8 @@ public class HttpConfiguration {
     }
 
     @Bean
-    public ApiMatixxHandler apiMatixxHandler(ButterflyUserDao userDao, CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxMusicDao matixxMusicDao) {
-        return new ApiMatixxHandler(userDao, cardDao, matixxProfileDao, matixxStageDao, matixxMusicDao);
+    public ApiMatixxHandler apiMatixxHandler(ButterflyUserDao userDao, CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxMusicDao matixxMusicDao, MatixxPlayerboardDao matixxPlayerboardDao) {
+        return new ApiMatixxHandler(userDao, cardDao, matixxProfileDao, matixxStageDao, matixxMusicDao, matixxPlayerboardDao);
     }
 
     @Bean

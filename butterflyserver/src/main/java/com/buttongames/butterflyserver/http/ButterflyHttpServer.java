@@ -5,32 +5,25 @@ import com.buttongames.butterflycore.encryption.Rc4;
 import com.buttongames.butterflycore.util.JSONUtil;
 import com.buttongames.butterflycore.util.ObjectUtils;
 import com.buttongames.butterflycore.util.TimeUtils;
+import com.buttongames.butterflycore.xml.XmlUtils;
+import com.buttongames.butterflycore.xml.kbinxml.PublicKt;
 import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.MachineDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.TokenDao;
 import com.buttongames.butterflymodel.model.ButterflyUser;
+import com.buttongames.butterflymodel.model.Machine;
 import com.buttongames.butterflymodel.model.Token;
 import com.buttongames.butterflyserver.http.api.ApiCardHandler;
 import com.buttongames.butterflyserver.http.api.ApiMachineHandler;
 import com.buttongames.butterflyserver.http.api.ApiUserHandler;
 import com.buttongames.butterflyserver.http.api.game.ApiMatixxHandler;
 import com.buttongames.butterflyserver.http.api.game.MatixxManageHandler;
-import com.buttongames.butterflyserver.http.exception.CardCipherException;
-import com.buttongames.butterflyserver.http.exception.InvalidPcbIdException;
-import com.buttongames.butterflyserver.http.exception.InvalidRequestException;
-import com.buttongames.butterflyserver.http.exception.InvalidRequestMethodException;
-import com.buttongames.butterflyserver.http.exception.InvalidRequestModelException;
-import com.buttongames.butterflyserver.http.exception.InvalidRequestModuleException;
-import com.buttongames.butterflyserver.http.exception.MismatchedRequestUriException;
-import com.buttongames.butterflyserver.http.exception.UnsupportedRequestException;
+import com.buttongames.butterflyserver.http.exception.*;
 import com.buttongames.butterflyserver.http.handlers.KfcHandler;
 import com.buttongames.butterflyserver.http.handlers.M32Handler;
 import com.buttongames.butterflyserver.http.handlers.M39Handler;
 import com.buttongames.butterflyserver.http.handlers.MdxHandler;
-import com.buttongames.butterflymodel.model.Machine;
 import com.buttongames.butterflyserver.util.PropertyNames;
-import com.buttongames.butterflycore.xml.XmlUtils;
-import com.buttongames.butterflycore.xml.kbinxml.PublicKt;
 import com.google.common.collect.ImmutableSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,9 +39,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-import static com.buttongames.butterflycore.util.Constants.COMPRESSION_HEADER;
-import static com.buttongames.butterflycore.util.Constants.CRYPT_KEY_HEADER;
-import static com.buttongames.butterflycore.util.Constants.LZ77_COMPRESSION;
+import static com.buttongames.butterflycore.util.Constants.*;
 import static spark.Spark.*;
 
 /**
@@ -240,6 +231,8 @@ public class ButterflyHttpServer {
                     get("/musiclist", (req,resp)-> apiMatixxHandler.handleRequest("musiclist", getUser(req),req,resp));
                     get("/recordlist", (req,resp)-> apiMatixxHandler.handleRequest("play_record_list", getUser(req),req,resp));
                     post("/record", (req,resp)-> apiMatixxHandler.handleRequest("play_record_detail", getUser(req),req,resp));
+                    get("/playerboard", (req, resp) -> apiMatixxHandler.handleRequest("get_playerboard", getUser(req), req, resp));
+                    post("/playerboard", (req, resp) -> apiMatixxHandler.handleRequest("set_playerboard", getUser(req), req, resp));
                 });
 
             });
@@ -432,9 +425,7 @@ public class ButterflyHttpServer {
             Token token = tokenDao.findByToken(tokenstr);
             if(token!=null){
                 LocalDateTime now = TimeUtils.getLocalDateTimeInUTC();
-                if(now.isBefore(token.getExpireTime())){
-                    return true;
-                }
+                return now.isBefore(token.getExpireTime());
             }
 
         }

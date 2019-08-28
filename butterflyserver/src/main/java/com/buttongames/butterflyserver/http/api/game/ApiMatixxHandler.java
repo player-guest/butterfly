@@ -5,16 +5,19 @@ import com.buttongames.butterflycore.util.LocalDateTimeAdapter;
 import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxPlayerboardDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxProfileDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxStageDao;
 import com.buttongames.butterflymodel.model.ButterflyUser;
 import com.buttongames.butterflymodel.model.Card;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerProfile;
+import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerboard;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxStageRecord;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
@@ -37,12 +40,16 @@ public class ApiMatixxHandler {
 
     final MatixxMusicDao matixxMusicDao;
 
-    public ApiMatixxHandler(ButterflyUserDao butterflyUserDao, CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxMusicDao matixxMusicDao) {
+    final MatixxPlayerboardDao matixxPlayerboardDao;
+
+
+    public ApiMatixxHandler(ButterflyUserDao butterflyUserDao, CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxMusicDao matixxMusicDao, MatixxPlayerboardDao matixxPlayerboardDao) {
         this.butterflyUserDao = butterflyUserDao;
         this.cardDao = cardDao;
         this.matixxProfileDao = matixxProfileDao;
         this.matixxStageDao = matixxStageDao;
         this.matixxMusicDao = matixxMusicDao;
+        this.matixxPlayerboardDao = matixxPlayerboardDao;
     }
 
     public Object handleRequest(final String function, final ButterflyUser user, final Request request, final Response response) {
@@ -50,7 +57,7 @@ public class ApiMatixxHandler {
 
 
         if (function.equals("musiclist")) {
-            return handleMusicListRequest(reqBody, request, response);
+            return handleMusicListRequest(request, response);
         }
 
         /** Method after here need a matixx profile*/
@@ -75,16 +82,22 @@ public class ApiMatixxHandler {
         }
 
         switch (function){
-            case "get_profile": return handleGetProfileRequest(reqBody, profile, request, response);
+            case "get_profile":
+                return handleGetProfileRequest(profile, request, response);
             case "update_profile": return handleUpdateProfileRequest(reqBody, profile, request, response);
-            case "play_record_list": return handlePlayRecordListRequest(reqBody, card, request, response);
+            case "play_record_list":
+                return handlePlayRecordListRequest(card, request, response);
             case "play_record_detail": return handlePlayRecordRequest(reqBody,card,request,response);
+            case "get_playerboard":
+                return handleGetPlayerBoard(card, request, response);
+            case "set_playerboard":
+                return handleSetPlayerBoard(reqBody, card, request, response);
             default: return 404;
         }
 
     }
 
-    private Object handleGetProfileRequest(final JSONObject reqBody, final matixxPlayerProfile profile, final Request request, final Response response){
+    private Object handleGetProfileRequest(final matixxPlayerProfile profile, final Request request, final Response response) {
 
         final String player_name = profile.getName();
         final String player_title = profile.getTitle();
@@ -119,7 +132,7 @@ public class ApiMatixxHandler {
 
     }
 
-    private Object handleMusicListRequest(final JSONObject reqBody, final Request request, final Response response){
+    private Object handleMusicListRequest(final Request request, final Response response) {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
@@ -128,7 +141,7 @@ public class ApiMatixxHandler {
 
     }
 
-    private Object handlePlayRecordListRequest(final JSONObject reqBody, final Card card, final Request request, final Response response){
+    private Object handlePlayRecordListRequest(final Card card, final Request request, final Response response) {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
@@ -154,7 +167,43 @@ public class ApiMatixxHandler {
         }else {
             return gson.toJson(record);
         }
+    }
 
+    private Object handleGetPlayerBoard(final Card card, final Request request, final Response response) {
+        List<matixxPlayerboard> list = matixxPlayerboardDao.findByCard(card);
+
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+
+        return gson.toJson(list);
+    }
+
+    private Object handleSetPlayerBoard(final JSONObject reqBody, final Card card, final Request request, final Response response) {
+        JSONArray array = reqBody.getJSONArray("data");
+
+        array.forEach(item -> {
+            JSONObject json = (JSONObject) item;
+            int stickerId = json.getInt("id");
+            float pos_x = json.getFloat("pos_x");
+            float pos_y = json.getFloat("pos_y");
+            float scale_x = json.getFloat("scale_x");
+            float scale_y = json.getFloat("scale_y");
+            float rotate = json.getFloat("rotate");
+
+            matixxPlayerboard sticker = matixxPlayerboardDao.findBySticker(card, stickerId);
+            if (sticker != null) {
+                sticker.setPos_x(pos_x);
+                sticker.setPos_y(pos_y);
+                sticker.setScale_x(scale_x);
+                sticker.setScale_y(scale_y);
+                sticker.setRotate(rotate);
+            } else {
+                sticker = new matixxPlayerboard(card, stickerId, pos_x, pos_y, scale_x, scale_y, rotate);
+                matixxPlayerboardDao.create(sticker);
+            }
+        });
+        return handleGetPlayerBoard(card, request, response);
     }
 
 
