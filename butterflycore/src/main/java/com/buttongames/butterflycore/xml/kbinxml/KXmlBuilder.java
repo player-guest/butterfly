@@ -42,6 +42,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathExpressionException;
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.Properties;
 
 /**
@@ -748,7 +749,8 @@ public final class KXmlBuilder extends BaseXMLBuilder {
     }
 
     public KXmlBuilder flo(final String name, final float value) {
-        return e(name).a("__type", "float").t(String.valueOf(value));
+        DecimalFormat decimalFormat = new DecimalFormat("0.000000");
+        return e(name).a("__type", "float").t(decimalFormat.format(value));
     }
 
     /** String */

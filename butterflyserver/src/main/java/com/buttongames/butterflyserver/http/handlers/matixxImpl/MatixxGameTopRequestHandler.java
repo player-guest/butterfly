@@ -107,21 +107,21 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
 
             List<matixxPlayerboard> pblist = matixxPlayerboardDao.findByCard(card);
             boolean is_active = pblist != null;
-            Document playerboardDoc = KXmlBuilder.create("playerboard")
+            Node playerboardNode = KXmlBuilder.create("playerboard")
                     .s32("index", 1).up()
-                    .bool("is_active", is_active).up().getDocument();
+                    .bool("is_active", is_active).up().getElement();
+            XmlUtils.importNodeToPath(document, playerboardNode, path);
             for (matixxPlayerboard sticker : pblist) {
                 Node stickerNode = KXmlBuilder.create("sticker")
                         .s32("id", sticker.getStickerId()).up()
                         .flo("pos_x", sticker.getPos_x()).up()
                         .flo("pos_y", sticker.getPos_y()).up()
                         .flo("scale_x", sticker.getScale_x()).up()
-                        .flo("scale_x", sticker.getScale_y()).up()
+                        .flo("scale_y", sticker.getScale_y()).up()
                         .flo("rotate", sticker.getRotate()).up().up().getElement();
-                XmlUtils.importNodeToPath(playerboardDoc, stickerNode, "/");
+                XmlUtils.importNodeToPath(document, stickerNode, "/matixx_gametop/player/playerboard");
             }
-            Node playerboardNode = playerboardDoc.getDocumentElement();
-            XmlUtils.importNodeToPath(document, playerboardNode, path);
+
 
             Node player_info = KXmlBuilder.create("player_info").s8("player_type",matixxplayer.getPlayer_type()).up()
                     .s32("did",matixxplayer.getDid()).up()
