@@ -196,26 +196,21 @@ public class ApiMatixxHandler {
     private Object handleSetPlayerBoard(final JSONObject reqBody, final Card card, final Request request, final Response response) {
         JSONArray array = reqBody.getJSONArray("data");
 
+        List<matixxPlayerboard> oldList = matixxPlayerboardDao.findByCard(card);
+        oldList.forEach(matixxPlayerboardDao::delete);
+
         array.forEach(item -> {
             JSONObject json = (JSONObject) item;
-            int stickerId = json.getInt("id");
+            int stickerId = json.getInt("stickerId");
             float pos_x = json.getFloat("pos_x");
             float pos_y = json.getFloat("pos_y");
             float scale_x = json.getFloat("scale_x");
             float scale_y = json.getFloat("scale_y");
             float rotate = json.getFloat("rotate");
 
-            matixxPlayerboard sticker = matixxPlayerboardDao.findBySticker(card, stickerId);
-            if (sticker != null) {
-                sticker.setPos_x(pos_x);
-                sticker.setPos_y(pos_y);
-                sticker.setScale_x(scale_x);
-                sticker.setScale_y(scale_y);
-                sticker.setRotate(rotate);
-            } else {
-                sticker = new matixxPlayerboard(card, stickerId, pos_x, pos_y, scale_x, scale_y, rotate);
-                matixxPlayerboardDao.create(sticker);
-            }
+            matixxPlayerboard sticker = new matixxPlayerboard(card, stickerId, pos_x, pos_y, scale_x, scale_y, rotate);
+            matixxPlayerboardDao.create(sticker);
+
         });
         return handleGetPlayerBoard(card, request, response);
     }

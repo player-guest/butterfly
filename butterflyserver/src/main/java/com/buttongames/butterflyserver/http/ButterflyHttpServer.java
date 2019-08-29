@@ -229,6 +229,7 @@ public class ButterflyHttpServer {
                     get("/profile", (req,resp)-> apiMatixxHandler.handleRequest("get_profile", getUser(req),req,resp));
                     post("/profile", (req,resp)-> apiMatixxHandler.handleRequest("update_profile", getUser(req),req,resp));
                     get("/musiclist", (req,resp)-> apiMatixxHandler.handleRequest("musiclist", getUser(req),req,resp));
+                    post("/music", (req, resp) -> apiMatixxHandler.handleRequest("music_detail", getUser(req), req, resp));
                     get("/recordlist", (req,resp)-> apiMatixxHandler.handleRequest("play_record_list", getUser(req),req,resp));
                     post("/record", (req,resp)-> apiMatixxHandler.handleRequest("play_record_detail", getUser(req),req,resp));
                     get("/playerboard", (req, resp) -> apiMatixxHandler.handleRequest("get_playerboard", getUser(req), req, resp));

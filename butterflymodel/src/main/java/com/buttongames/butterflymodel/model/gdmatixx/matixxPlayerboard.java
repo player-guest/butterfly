@@ -1,6 +1,7 @@
 package com.buttongames.butterflymodel.model.gdmatixx;
 
 import com.buttongames.butterflymodel.model.Card;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ public class matixxPlayerboard implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Expose
     @GeneratedValue
     @Column(name = "id")
     private long id;
@@ -20,21 +22,27 @@ public class matixxPlayerboard implements Serializable {
     @JoinColumn(name = "card")
     private Card card;
 
+    @Expose
     @Column(name = "stickerId")
     private int stickerId;
 
+    @Expose
     @Column(name = "pos_x")
     private float pos_x;
 
+    @Expose
     @Column(name = "pos_y")
     private float pos_y;
 
+    @Expose
     @Column(name = "scale_x")
     private float scale_x;
 
+    @Expose
     @Column(name = "scale_y")
     private float scale_y;
 
+    @Expose
     @Column(name = "rotate")
     private float rotate;
 
