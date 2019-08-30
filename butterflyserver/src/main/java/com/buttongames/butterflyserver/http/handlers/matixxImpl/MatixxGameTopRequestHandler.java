@@ -32,7 +32,7 @@ import java.util.Map;
 
 /**
  * Handler for any requests that come to the <code>matixx_gametop</code> module.
- * @author
+ * @author player-guest
  */
 @Component
 public class MatixxGameTopRequestHandler extends BaseRequestHandler {
@@ -440,7 +440,7 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
     }
 
     /**
-     * Sorts scores into a hierarchy of top score by song/difficulty. Used for the various score requests.
+     * Sorts scores into a hierarchy of top percent by song/difficulty. Used for the various score requests.
      * @param records The records to sort
      * @return The sorted results
      */
@@ -462,7 +462,7 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
                     Object[] currRecord = topScores.get(record.getMusic().getMusicid()).get(record.getSeq());
                     currRecord[0] = ((Integer) currRecord[0]) + 1;
 
-                    if (((matixxStageRecord) currRecord[1]).getScore() < record.getScore()) {
+                    if (((matixxStageRecord) currRecord[1]).getPerc() < record.getPerc()) {
                         currRecord[1] = record;
                     }
 
