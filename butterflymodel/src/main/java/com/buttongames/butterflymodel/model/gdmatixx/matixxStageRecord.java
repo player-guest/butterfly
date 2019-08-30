@@ -36,7 +36,7 @@ public class matixxStageRecord implements Serializable {
     @Expose
     @ManyToOne
     @JoinColumn(name = "musicid")
-    private matixxMusic musicid;
+    private matixxMusic music;
 
     @Expose
     @Column(name = "seq")
@@ -163,11 +163,11 @@ public class matixxStageRecord implements Serializable {
     public matixxStageRecord() {
     }
 
-    public matixxStageRecord(Card card, LocalDateTime date, String type, matixxMusic musicid, int seq, int skill, int new_skill, boolean clear, boolean auto_clear, boolean fullcombo, boolean excellent, int medal, int perc, int new_perc, int rank, int score, int combo, int max_combo_perc, int flags, int phrase_combo_perc, int perfect, int great, int good, int ok, int miss, int perfect_perc, int great_perc, int good_perc, int ok_perc, int miss_perc, String meter, String meter_prog, String before_meter, String before_meter_prog, boolean is_new_meter, int phrase_data_num, String phrase_addr, String phrase_type, String phrase_status, int phrase_end_addr) {
+    public matixxStageRecord(Card card, LocalDateTime date, String type, matixxMusic music, int seq, int skill, int new_skill, boolean clear, boolean auto_clear, boolean fullcombo, boolean excellent, int medal, int perc, int new_perc, int rank, int score, int combo, int max_combo_perc, int flags, int phrase_combo_perc, int perfect, int great, int good, int ok, int miss, int perfect_perc, int great_perc, int good_perc, int ok_perc, int miss_perc, String meter, String meter_prog, String before_meter, String before_meter_prog, boolean is_new_meter, int phrase_data_num, String phrase_addr, String phrase_type, String phrase_status, int phrase_end_addr) {
         this.card = card;
         this.date = date;
         this.type = type;
-        this.musicid = musicid;
+        this.music = music;
         this.seq = seq;
         this.skill = skill;
         this.new_skill = new_skill;
@@ -238,12 +238,12 @@ public class matixxStageRecord implements Serializable {
         this.type = type;
     }
 
-    public matixxMusic getMusicid() {
-        return musicid;
+    public matixxMusic getMusic() {
+        return music;
     }
 
-    public void setMusicid(matixxMusic musicid) {
-        this.musicid = musicid;
+    public void setMusic(matixxMusic music) {
+        this.music = music;
     }
 
     public int getSeq() {

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
@@ -34,5 +35,13 @@ public class MatixxMusicDao extends AbstractHibernateDao<matixxMusic> {
         Query<matixxMusic> query = getCurrentSession().createQuery("from matixxMusic where list_type = :list_type");
         query.setParameter("list_type",list_type);
         return query.getResultList();
+    }
+
+    public List<Integer> findByVersion(int version) {
+        Query<matixxMusic> query = getCurrentSession().createQuery("from matixxMusic where first_ver = :first_ver");
+        query.setParameter("first_ver",version +" "+ (version-1));
+        List<Integer> idList = new LinkedList<>();
+        query.getResultList().forEach(item->idList.add(item.getMusicid()));
+        return idList;
     }
 }

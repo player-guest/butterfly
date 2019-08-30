@@ -227,16 +227,18 @@ public class ButterflyHttpServer {
 
                 path("/matixx",()->{
                     get("/profile", (req,resp)-> apiMatixxHandler.handleRequest("get_profile", getUser(req),req,resp));
-                    post("/profile", (req,resp)-> apiMatixxHandler.handleRequest("update_profile", getUser(req),req,resp));
-                    get("/musiclist", (req,resp)-> apiMatixxHandler.handleRequest("musiclist", getUser(req),req,resp));
-                    post("/music", (req, resp) -> apiMatixxHandler.handleRequest("music_detail", getUser(req), req, resp));
-                    get("/recordlist", (req,resp)-> apiMatixxHandler.handleRequest("play_record_list", getUser(req),req,resp));
-                    post("/record", (req,resp)-> apiMatixxHandler.handleRequest("play_record_detail", getUser(req),req,resp));
+                    post("/profile", (req,resp)-> apiMatixxHandler.handleRequest("set_profile", getUser(req),req,resp));
+                    get("/musiclist", (req,resp)-> apiMatixxHandler.handleRequest("get_musiclist", getUser(req),req,resp));
+                    post("/music", (req, resp) -> apiMatixxHandler.handleRequest("get_music_detail", getUser(req), req, resp));
+                    get("/recordlist", (req,resp)-> apiMatixxHandler.handleRequest("get_play_record_list", getUser(req),req,resp));
+                    post("/record", (req,resp)-> apiMatixxHandler.handleRequest("get_play_record_detail", getUser(req),req,resp));
                     get("/playerboard", (req, resp) -> apiMatixxHandler.handleRequest("get_playerboard", getUser(req), req, resp));
                     post("/playerboard", (req, resp) -> apiMatixxHandler.handleRequest("set_playerboard", getUser(req), req, resp));
+                    get("/skill", (req, resp) -> apiMatixxHandler.handleRequest("get_skill", getUser(req), req, resp));
                 });
 
             });
+
             notFound((req, resp) -> {
                 resp.type("application/json");
                 return JSONUtil.errorMsg("404 Not found");

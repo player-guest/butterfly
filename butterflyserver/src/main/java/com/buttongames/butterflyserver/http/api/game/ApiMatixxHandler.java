@@ -2,6 +2,7 @@ package com.buttongames.butterflyserver.http.api.game;
 
 import com.buttongames.butterflycore.util.JSONUtil;
 import com.buttongames.butterflycore.util.LocalDateTimeAdapter;
+import com.buttongames.butterflycore.xml.XmlUtils;
 import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
@@ -14,6 +15,9 @@ import com.buttongames.butterflymodel.model.gdmatixx.matixxMusic;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerProfile;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxPlayerboard;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxStageRecord;
+import com.google.common.collect.ImmutableSet;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.LogManager;
@@ -24,6 +28,9 @@ import spark.Request;
 import spark.Response;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public class ApiMatixxHandler {
@@ -57,10 +64,6 @@ public class ApiMatixxHandler {
         JSONObject reqBody = JSONUtil.getBody(request.body());
 
 
-        if (function.equals("musiclist")) {
-            return handleMusicListRequest(request, response);
-        }
-
         /** Method after here need a matixx profile*/
         Card card ;
         List<Card> cardList = cardDao.findByUser(user);
@@ -85,16 +88,18 @@ public class ApiMatixxHandler {
         switch (function){
             case "get_profile":
                 return handleGetProfileRequest(profile, request, response);
-            case "update_profile": return handleUpdateProfileRequest(reqBody, profile, request, response);
-            case "play_record_list":
+            case "set_profile": return handleUpdateProfileRequest(reqBody, profile, request, response);
+            case "get_musiclist": return handleMusicListRequest(request,response);
+            case "get_music_detail":
+                return handleMusicDetailRequest(reqBody, card, request, response);
+            case "get_play_record_list":
                 return handlePlayRecordListRequest(card, request, response);
-            case "play_record_detail": return handlePlayRecordRequest(reqBody,card,request,response);
+            case "get_play_record_detail": return handlePlayRecordRequest(reqBody,card,request,response);
             case "get_playerboard":
                 return handleGetPlayerBoard(card, request, response);
             case "set_playerboard":
                 return handleSetPlayerBoard(reqBody, card, request, response);
-            case "music_detail":
-                return handleMusicDetailRequest(reqBody, card, request, response);
+            case "get_skill": return handlePlayerSkill(card,request,response);
             default: return 404;
         }
 
@@ -104,12 +109,13 @@ public class ApiMatixxHandler {
 
         final String player_name = profile.getName();
         final String player_title = profile.getTitle();
-        final String[] player_skill = profile.getSkilldata().split(",");
 
-        return JSONUtil.create("SUCCESS", new JSONObject().put("player_name", player_name)
+        final String gf_skill = XmlUtils.strAtPath(XmlUtils.stringToXmlFile(profile.getGf_record()),"/max_record/skill");
+        final String dm_skill = XmlUtils.strAtPath(XmlUtils.stringToXmlFile(profile.getDm_record()),"/max_record/skill");
+        return new JSONObject().put("player_name", player_name)
                 .put("player_title", player_title)
-                .put("player_skill", player_skill[0])
-        );
+                .put("gf_skill", gf_skill)
+                .put("dm_skill",dm_skill);
     }
 
     private Object handleUpdateProfileRequest(final JSONObject reqBody, final matixxPlayerProfile profile, final Request request, final Response response){
@@ -215,6 +221,90 @@ public class ApiMatixxHandler {
         return handleGetPlayerBoard(card, request, response);
     }
 
+    private Object handlePlayerSkill(final Card card, final Request request, final Response response){
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .setExclusionStrategies(new SkillExclusionStrategy())
+                .create();
+
+        matixxPlayerProfile profile = matixxProfileDao.findByCard(card);
+        final String gf_skill = XmlUtils.strAtPath(XmlUtils.stringToXmlFile(profile.getGf_record()),"/max_record/skill");
+        final String dm_skill = XmlUtils.strAtPath(XmlUtils.stringToXmlFile(profile.getDm_record()),"/max_record/skill");
+
+        List<matixxStageRecord> gfRecord = matixxStageDao.findByCard(card,"a");
+        List<matixxStageRecord> dmRecord = matixxStageDao.findByCard(card,"b");
+
+
+        List<Integer> hotList = matixxMusicDao.findByVersion(24);
+
+        final List<matixxStageRecord> gfHotList = new ArrayList<>();
+        final List<matixxStageRecord> gfOtherList = new ArrayList<>();
+        sortScoresByTopSkill(gfRecord).forEach((integer, matixxStageRecord) -> {
+            if(hotList.contains(integer)){
+                gfHotList.add(matixxStageRecord);
+            }else {
+                gfOtherList.add(matixxStageRecord);
+            }
+        });
+        getSortedArray(gfHotList);
+        getSortedArray(gfOtherList);
+
+        final List<matixxStageRecord> dmHotList = new ArrayList<>();
+        final List<matixxStageRecord> dmOtherList = new ArrayList<>();
+        sortScoresByTopSkill(dmRecord).forEach((integer, matixxStageRecord) -> {
+            if(hotList.contains(integer)){
+                dmHotList.add(matixxStageRecord);
+            }else {
+                dmOtherList.add(matixxStageRecord);
+            }
+        });
+
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("gf_skill", gf_skill);
+        result.put("dm_skill", dm_skill);
+        result.put("gfHotList", gfHotList);
+        result.put("gfOtherList", gfOtherList);
+        result.put("dmHotList", dmHotList);
+        result.put("dmOtherList", dmOtherList);
+
+        return gson.toJson(result);
+    }
+
+    private HashMap<Integer, matixxStageRecord> sortScoresByTopSkill(final List<matixxStageRecord> records) {
+        final HashMap<Integer, matixxStageRecord> topSkill = new HashMap<>();
+
+        for(matixxStageRecord record : records){
+            if(!topSkill.containsKey(record.getMusic().getMusicid())){
+                topSkill.put(record.getMusic().getMusicid(), record);
+            } else {
+                if( topSkill.get(record.getMusic().getMusicid()).getSkill() < record.getSkill() ){
+                    topSkill.put(record.getMusic().getMusicid(),record);
+                }
+            }
+        }
+
+        return topSkill;
+    }
+
+    private List<matixxStageRecord> getSortedArray(List<matixxStageRecord> list){
+        list.sort(Comparator.comparing(matixxStageRecord::getSkill));
+        return list;
+    }
+
+    private static class SkillExclusionStrategy implements ExclusionStrategy {
+
+
+
+        public boolean shouldSkipField(FieldAttributes f) {
+            ImmutableSet<String> i = ImmutableSet.of("id","type","music","musicid","guitar_diff","bass_diff","drum_diff","title_name","seq","skill","perc");
+            String n = f.getName();
+            return !i.contains(n);
+        }
+
+        public boolean shouldSkipClass(Class<?> clazz) {
+            return false;
+        }
+    }
 
 
 }

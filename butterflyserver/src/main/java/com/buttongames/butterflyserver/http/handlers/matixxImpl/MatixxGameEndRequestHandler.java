@@ -224,8 +224,10 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
 
 
                 //favoritemusic
-                final Node favoritemusic = XmlUtils.nodeAtPath(player,"/favoritemusic");
-                matixxplayer.setFavoritemusic(XmlUtils.getStringFromNode(favoritemusic));
+                final String music_list_1 = XmlUtils.strAtPath(player,"/favoritemusic/music_list_1");
+                final String music_list_2 = XmlUtils.strAtPath(player,"/favoritemusic/music_list_2");
+                final String music_list_3 = XmlUtils.strAtPath(player,"/favoritemusic/music_list_3");
+                matixxplayer.setFavoritemusic(music_list_1+","+music_list_2+","+music_list_3);
 
                 //monthly_skill
 

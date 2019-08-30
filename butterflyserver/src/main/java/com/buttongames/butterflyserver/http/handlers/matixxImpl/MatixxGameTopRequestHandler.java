@@ -180,18 +180,15 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
             XmlUtils.importNodeToPath(document,skilldatanode,path);
 
             //This is for unlock song
-            KXmlBuilder secretmusic = KXmlBuilder.create("secretmusic");
-            secretmusic = secretmusic.e("music").s32("musicid",2475).up()
-                    .u16("seq",225).up()
-                    .s32("kind",52).up().up();
-            XmlUtils.importNodeToPath(document, secretmusic.getElement(), path);
+            XmlUtils.importStringToPath(document, matixxplayer.getSecretmusic(), path);
 
-            String favmuisc = "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1";
+            String[] favmuisc = matixxplayer.getFavoritemusic().split(",");
             Node favoritemusic = KXmlBuilder.create("favoritemusic")
-                    .s32("list_1", "100", favmuisc).up()
-                    .s32("list_2", "100", favmuisc).up()
-                    .s32("list_3", "100", favmuisc).up().up().getElement();
+                    .s32("list_1", "100", favmuisc[0]).up()
+                    .s32("list_2", "100", favmuisc[1]).up()
+                    .s32("list_3", "100", favmuisc[2]).up().up().getElement();
             XmlUtils.importNodeToPath(document,favoritemusic,path);
+
 
             if(matixxplayer.getChara_list()==null||matixxplayer.getChara_list().equals("")){
                 XmlUtils.importStringToPath(document, "<chara_list><chara><charaid __type=\"s32\">1</charaid></chara></chara_list>", path);
@@ -455,21 +452,21 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
         final HashMap<Integer, HashMap<Integer, Object[]>> topScores = new HashMap<>();
 
         for (matixxStageRecord record : records) {
-            if (!topScores.containsKey(record.getMusicid().getMusicid())) {
-                topScores.put(record.getMusicid().getMusicid(), new HashMap<>());
-                topScores.get(record.getMusicid().getMusicid()).put(record.getSeq(), new Object[] { 1, record });
+            if (!topScores.containsKey(record.getMusic().getMusicid())) {
+                topScores.put(record.getMusic().getMusicid(), new HashMap<>());
+                topScores.get(record.getMusic().getMusicid()).put(record.getSeq(), new Object[] { 1, record });
             } else {
-                if (!topScores.get(record.getMusicid().getMusicid()).containsKey(record.getSeq())) {
-                    topScores.get(record.getMusicid().getMusicid()).put(record.getSeq(), new Object[] { 1, record });
+                if (!topScores.get(record.getMusic().getMusicid()).containsKey(record.getSeq())) {
+                    topScores.get(record.getMusic().getMusicid()).put(record.getSeq(), new Object[] { 1, record });
                 } else {
-                    Object[] currRecord = topScores.get(record.getMusicid().getMusicid()).get(record.getSeq());
+                    Object[] currRecord = topScores.get(record.getMusic().getMusicid()).get(record.getSeq());
                     currRecord[0] = ((Integer) currRecord[0]) + 1;
 
                     if (((matixxStageRecord) currRecord[1]).getScore() < record.getScore()) {
                         currRecord[1] = record;
                     }
 
-                    topScores.get(record.getMusicid().getMusicid()).put(record.getSeq(), currRecord);
+                    topScores.get(record.getMusic().getMusicid()).put(record.getSeq(), currRecord);
                 }
             }
         }

@@ -40,4 +40,11 @@ public class MatixxProfileDao extends AbstractHibernateDao<matixxPlayerProfile> 
 
         return query.uniqueResult();
     }
+
+    public matixxPlayerProfile findByDid(int did){
+        final Query<matixxPlayerProfile> query = this.getCurrentSession().createQuery("from matixxPlayerProfile where did = :did");
+        query.setParameter("did", did);
+
+        return query.uniqueResult();
+    }
 }

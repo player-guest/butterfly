@@ -8,12 +8,11 @@ import com.google.gson.JsonSerializer;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 public class LocalDateTimeAdapter implements JsonSerializer<LocalDateTime> {
 
     @Override
     public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
-        return new JsonPrimitive(src.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+        return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
     }
 }
