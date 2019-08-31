@@ -254,10 +254,10 @@ public class ButterflyHttpServer {
             final String modelType = requestModel.split(":")[0].toLowerCase();
 
             switch (modelType) {
-                case "mdx": this.mdxHandler.handleRequest(requestBody, request, response);
-                case "kfc": this.kfcHandler.handleRequest(requestBody, request, response);
-                case "m32": this.m32Handler.handleRequest(requestBody, request, response);
-                case "m39": this.m39Handler.handleRequest(requestBody, request, response);
+                case "mdx": return this.mdxHandler.handleRequest(requestBody, request, response);
+                case "kfc": return this.kfcHandler.handleRequest(requestBody, request, response);
+                case "m32": return this.m32Handler.handleRequest(requestBody, request, response);
+                case "m39": return this.m39Handler.handleRequest(requestBody, request, response);
                 default: throw new InvalidRequestModuleException();
             }
         }));

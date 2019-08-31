@@ -1,37 +1,22 @@
 package com.buttongames.butterflyserver.http.handlers.ddr16impl;
 
-import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.Ddr16ProfileDao;
-import com.buttongames.butterflyserver.Main;
+import com.buttongames.butterflycore.util.TimeUtils;
+import com.buttongames.butterflycore.xml.XmlUtils;
+import com.buttongames.butterflycore.xml.kbinxml.KXmlBuilder;
 import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
+import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.Ddr16ProfileDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.GhostDataDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.ddr16.UserSongRecordDao;
+import com.buttongames.butterflymodel.model.Card;
+import com.buttongames.butterflymodel.model.ddr16.GhostData;
+import com.buttongames.butterflymodel.model.ddr16.UserSongRecord;
+import com.buttongames.butterflymodel.model.ddr16.ddr16UserProfile;
+import com.buttongames.butterflymodel.model.ddr16.options.*;
+import com.buttongames.butterflyserver.Main;
 import com.buttongames.butterflyserver.http.exception.InvalidRequestException;
 import com.buttongames.butterflyserver.http.exception.UnsupportedRequestException;
 import com.buttongames.butterflyserver.http.handlers.BaseRequestHandler;
-import com.buttongames.butterflymodel.model.Card;
-import com.buttongames.butterflymodel.model.ddr16.GhostData;
-import com.buttongames.butterflymodel.model.ddr16.ddr16UserProfile;
-import com.buttongames.butterflymodel.model.ddr16.UserSongRecord;
-import com.buttongames.butterflymodel.model.ddr16.options.AppearanceOption;
-import com.buttongames.butterflymodel.model.ddr16.options.ArrowColorOption;
-import com.buttongames.butterflymodel.model.ddr16.options.ArrowSkinOption;
-import com.buttongames.butterflymodel.model.ddr16.options.BoostOption;
-import com.buttongames.butterflymodel.model.ddr16.options.CutOption;
-import com.buttongames.butterflymodel.model.ddr16.options.DancerOption;
-import com.buttongames.butterflymodel.model.ddr16.options.FreezeArrowOption;
-import com.buttongames.butterflymodel.model.ddr16.options.GuideLinesOption;
-import com.buttongames.butterflymodel.model.ddr16.options.JudgementLayerOption;
-import com.buttongames.butterflymodel.model.ddr16.options.JumpsOption;
-import com.buttongames.butterflymodel.model.ddr16.options.LifeGaugeOption;
-import com.buttongames.butterflymodel.model.ddr16.options.ScreenFilterOption;
-import com.buttongames.butterflymodel.model.ddr16.options.ScrollOption;
-import com.buttongames.butterflymodel.model.ddr16.options.SpeedOption;
-import com.buttongames.butterflymodel.model.ddr16.options.StepZoneOption;
-import com.buttongames.butterflymodel.model.ddr16.options.TurnOption;
-import com.buttongames.butterflycore.util.TimeUtils;
-import com.buttongames.butterflycore.xml.kbinxml.KXmlBuilder;
-import com.buttongames.butterflycore.xml.XmlUtils;
 import com.buttongames.butterflyserver.util.PropertyNames;
 import com.google.common.io.ByteStreams;
 import org.apache.logging.log4j.LogManager;
@@ -46,12 +31,7 @@ import spark.Request;
 import spark.Response;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Handler for any requests that come to the <code>playerdata</code> module.
@@ -486,9 +466,20 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
 
         final ddr16UserProfile profile = this.ddr16ProfileDao.findByCard(card);
 
-        // if a profile doesn't exist, throw an error
+        // handle for a card registered in database but doesn't have a ddr profile
         if (profile == null) {
-            throw new InvalidRequestException();
+            KXmlBuilder builder = KXmlBuilder.create("response")
+                    .e("playerdata")
+                    .s32("result", 0).up()
+                    .e("player")
+                    .u32("record_num", 4).up()
+                    .e("record");
+            // send this static response will let player create a new profile
+            builder = builder.str("d", "MSwwLGZmZmZmZmYsMSwwLDAsMCwwLDAsZmZmZmZmZmZmZmZmZmZmZiwwLDAsMCwwLDAsMCwwLDAsMC4wMDAwMDAsMC4wMDAwMDAsMC4wMDAwMDAsMC4wMDAwMDAsMC4wMDAwMDAsMC4wMDAwMDAsMC4wMDAwMDAsLDAwMDAtMDAwMA==").up();
+            builder = builder.str("d", "MCwzLDAsMCwwLDAsMCwzLDAsMCwwLDAsMywyLDAsMiwxLDEwLjAwMDAwMCwxMC4wMDAwMDAsMTAuMDAwMDAwLDEwLjAwMDAwMCwwLjAwMDAwMCwwLjAwMDAwMCwwLjAwMDAwMCwwLjAwMDAwMA==").up();
+            builder = builder.str("d", "MSwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAuMDAwMDAwLDAuMDAwMDAwLDAuMDAwMDAwLDAuMDAwMDAwLDAuMDAwMDAwLDAuMDAwMDAwLDAuMDAwMDAwLDAuMDAwMDAwLCwsLCwsLCw=").up();
+            builder = builder.str("d", "MCwzLDAsMCwwLDAsMCwzLDAsMCwwLDAsMSwyLDAsMCwwLDEwLjAwMDAwMCwxMC4wMDAwMDAsMTAuMDAwMDAwLDEwLjAwMDAwMCwwLjAwMDAwMCwwLjAwMDAwMCwwLjAwMDAwMCwwLjAwMDAwMA==").up();
+            return this.sendResponse(request, response, builder);
         }
 
         // figure out which fields are requested
@@ -714,7 +705,7 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
         if (common != null &&
                 common.length != 0) {
             final int area = Integer.parseInt(common[GAME_COMMON_AREA_OFFSET], 16);
-            final boolean displayWeight = common[GAME_COMMON_WEIGHT_DISPLAY_OFFSET].equals("1") ? true : false;
+            final boolean displayWeight = common[GAME_COMMON_WEIGHT_DISPLAY_OFFSET].equals("1");
             final DancerOption character = DancerOption.values()[Integer.parseInt(common[GAME_COMMON_CHARACTER_OFFSET], 16)];
             final int extraCharge = Integer.parseInt(common[GAME_COMMON_EXTRA_CHARGE_OFFSET], 16);
             final int singlePlays = Integer.parseInt(common[GAME_COMMON_SINGLE_PLAYS_OFFSET], 16);
@@ -762,7 +753,7 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
             final GuideLinesOption guideLinesOption = GuideLinesOption.values()[Integer.parseInt(option[GAME_OPTION_GUIDELINE_OFFSET], 16)];
             final LifeGaugeOption lifeGaugeOption = LifeGaugeOption.values()[Integer.parseInt(option[GAME_OPTION_GAUGE_OFFSET], 16)];
             final JudgementLayerOption judgementLayerOption = JudgementLayerOption.values()[Integer.parseInt(option[GAME_OPTION_COMBO_POSITION_OFFSET], 16)];
-            final boolean showFastSlow = option[GAME_OPTION_FAST_SLOW_OFFSET].equals("1") ? true : false;
+            final boolean showFastSlow = option[GAME_OPTION_FAST_SLOW_OFFSET].equals("1");
 
             profile.setSpeedOption(speedOption);
             profile.setBoostOption(boostOption);
@@ -794,9 +785,9 @@ public class PlayerDataRequestHandler extends BaseRequestHandler {
         // parse out RIVAL values
         if (rival != null &&
                 rival.length != 0) {
-            final boolean rival1Active = rival[GAME_RIVAL_SLOT_1_ACTIVE_OFFSET].equals("0") ? false : true;
-            final boolean rival2Active = rival[GAME_RIVAL_SLOT_2_ACTIVE_OFFSET].equals("0") ? false : true;
-            final boolean rival3Active = rival[GAME_RIVAL_SLOT_3_ACTIVE_OFFSET].equals("0") ? false : true;
+            final boolean rival1Active = !rival[GAME_RIVAL_SLOT_1_ACTIVE_OFFSET].equals("0");
+            final boolean rival2Active = !rival[GAME_RIVAL_SLOT_2_ACTIVE_OFFSET].equals("0");
+            final boolean rival3Active = !rival[GAME_RIVAL_SLOT_3_ACTIVE_OFFSET].equals("0");
             ddr16UserProfile rival1 = null;
             ddr16UserProfile rival2 = null;
             ddr16UserProfile rival3 = null;

@@ -33,7 +33,7 @@ public class Ddr16ProfileDao extends AbstractHibernateDao<ddr16UserProfile> {
      * @return The profile for the given user
      */
     public ddr16UserProfile findByUser(final ButterflyUser user) {
-        final Query<ddr16UserProfile> query = this.getCurrentSession().createQuery("from UserProfile where user = :user");
+        final Query<ddr16UserProfile> query = this.getCurrentSession().createQuery("from ddr16UserProfile where user = :user");
         query.setParameter("user", user);
 
         return query.uniqueResult();
@@ -45,7 +45,7 @@ public class Ddr16ProfileDao extends AbstractHibernateDao<ddr16UserProfile> {
      * @return The profile for the given user
      */
     public ddr16UserProfile findByCard(final Card card) {
-        final Query<ddr16UserProfile> query = this.getCurrentSession().createQuery("from UserProfile where card = :card");
+        final Query<ddr16UserProfile> query = this.getCurrentSession().createQuery("from ddr16UserProfile where card = :card");
         query.setParameter("card", card);
 
         return query.uniqueResult();
@@ -57,7 +57,7 @@ public class Ddr16ProfileDao extends AbstractHibernateDao<ddr16UserProfile> {
      * @return The profile for the given dancer code
      */
     public ddr16UserProfile findByDancerCode(final int dancerCode) {
-        final Query<ddr16UserProfile> query = this.getCurrentSession().createQuery("from UserProfile where dancer_code = :dancerCode");
+        final Query<ddr16UserProfile> query = this.getCurrentSession().createQuery("from ddr16UserProfile where dancer_code = :dancerCode");
         query.setParameter("dancerCode", dancerCode);
 
         return query.uniqueResult();
