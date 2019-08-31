@@ -4,10 +4,8 @@ import com.buttongames.butterflycore.util.ObjectUtils;
 import com.buttongames.butterflycore.xml.kbinxml.KXmlBuilder;
 import com.buttongames.butterflydao.hibernate.dao.impl.gdmatixx.MatixxMusicDao;
 import com.buttongames.butterflymodel.model.gdmatixx.matixxMusic;
-import com.buttongames.butterflyserver.Main;
 import com.buttongames.butterflyserver.http.exception.UnsupportedRequestException;
 import com.buttongames.butterflyserver.http.handlers.BaseRequestHandler;
-import com.google.common.io.ByteStreams;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -18,7 +16,7 @@ import spark.Response;
 import java.util.List;
 
 /**
- * Handler for any requests that come to the <code>matixx_shopinfo</code> module.
+ * Handler for any requests that come to the <code>matixx_playablemusic</code> module.
  * @author
  */
 @Component
@@ -33,7 +31,7 @@ public class MatixxPlayableMusicRequestHandler extends BaseRequestHandler {
     }
 
     /**
-     * Handles an incoming request for the <code>matixx_shopinfo</code> module.
+     * Handles an incoming request for the <code>matixx_playablemusic</code> module.
      * @param requestBody The XML document of the incoming request.
      * @param request The Spark request
      * @param response The Spark response
@@ -50,6 +48,12 @@ public class MatixxPlayableMusicRequestHandler extends BaseRequestHandler {
         throw new UnsupportedRequestException();
     }
 
+    /**
+     * Handles an incoming request for <code>matixx_playablemusic.get</code>
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleGetRequest(Request request, Response response) {
 
         List<matixxMusic> list = matixxMusicDao.findAll();
@@ -58,22 +62,25 @@ public class MatixxPlayableMusicRequestHandler extends BaseRequestHandler {
                 .e("hot").s32("major", -1).up()
                 .s32("minor",-1).up().up();
 
-        respBuilder = respBuilder.e("musicinfo").attr("nr",new String().valueOf(list.size()));
+        respBuilder = respBuilder.e("musicinfo").attr("nr",String.valueOf(list.size()));
 
-        for(int i = 0 ;i<list.size();i++){
-            matixxMusic item = list.get(i);
+        for (matixxMusic item :
+                list) {
+
             boolean isHot = false;
-            if(ObjectUtils.checkNull(item.getFirst_ver().split(" ")[0],"0").equals("24")){
-                isHot =true;
+            // Return Hot status by first version, here use 24. Some of the new song is not mark as hot.
+            // TODO: Load hot status from a hot table
+            if (ObjectUtils.checkNull(item.getFirst_ver().split(" ")[0], "0").equals("24")) {
+                isHot = true;
             }
 
             respBuilder = respBuilder.e("music")
                     .s32("id", item.getMusicid()).up()
                     .bool("cont_gf", true).up()
-                    .bool("cont_dm",true).up()
+                    .bool("cont_dm", true).up()
                     .bool("is_secret", false).up()
-                    .bool("is_hot",isHot).up()
-                    .u16("diff", "15", item.getGuitar_diff()+" "+item.getBass_diff()+" "+item.getDrum_diff()).up().up();
+                    .bool("is_hot", isHot).up()
+                    .u16("diff", "15", item.getGuitar_diff() + " " + item.getBass_diff() + " " + item.getDrum_diff()).up().up();
         }
 
         return this.sendResponse(request,response,respBuilder);

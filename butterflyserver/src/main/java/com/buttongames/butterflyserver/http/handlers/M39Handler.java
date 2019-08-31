@@ -1,6 +1,5 @@
 package com.buttongames.butterflyserver.http.handlers;
 
-import com.buttongames.butterflyserver.http.exception.InvalidRequestModelException;
 import com.buttongames.butterflyserver.http.exception.InvalidRequestModuleException;
 import com.buttongames.butterflyserver.http.handlers.popn24Impl.Popn24Handler;
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +14,9 @@ import spark.Response;
 public class M39Handler {
     private static final Logger LOG = LogManager.getLogger(M39Handler.class);
 
+    /**
+     * Handler for 24
+     */
     private final Popn24Handler popn24Handler;
 
     @Autowired
@@ -27,11 +29,11 @@ public class M39Handler {
         final int version = new Integer(request.attribute("model").toString().split(":")[4].toLowerCase());
 
         if(version >= 2018101700){
-            //v25 peace
+            // v25 peace
+            // popn 25 use same network request as 24.
             return this.popn24Handler.handleRequest(requestBody,request,response);
-//            LOG.warn("Invalid version requested: " + version);
-//            throw new InvalidRequestModelException();
         }else if(version <= 2018101500 && version >= 2016121400){
+            // v24 usaneko
             return this.popn24Handler.handleRequest(requestBody,request,response);
         }else {
             throw new InvalidRequestModuleException();

@@ -9,6 +9,10 @@ import org.w3c.dom.Element;
 import spark.Request;
 import spark.Response;
 
+/**
+ * Main handler for Matixx.
+ * @author player-guest
+ */
 @Component
 public class MatixxHandler {
 
@@ -45,18 +49,25 @@ public class MatixxHandler {
     /** Handler for requests for the <code>eacoin</code> module. */
     private final EacoinRequestHandler eacoinRequestHandler;
 
+    /** Handler for requests for the <code>matixx_shopinfo</code> module. */
     private final MatixxShopInfoRequestHandler matixxShopInfoRequestHandler;
 
+    /** Handler for requests for the <code>matixx_gameinfo</code> module. */
     private final MatixxGameInfoRequestHandler matixxGameInfoRequestHandler;
 
+    /** Handler for requests for the <code>matixx_shopinfo</code> module. */
     private final MatixxCardUtilRequestHandler matixxCardUtilRequestHandler;
 
+    /** Handler for requests for the <code>matixx_shopinfo</code> module. */
     private final MatixxGameTopRequestHandler matixxGameTopRequestHandler;
 
+    /** Handler for requests for the <code>matixx_shopinfo</code> module. */
     private final MatixxGameEndRequestHandler matixxGameEndRequestHandler;
 
+    /** Handler for requests for the <code>matixx_shopinfo</code> module. */
     private final MatixxPlayableMusicRequestHandler matixxPlayableMusicRequestHandler;
 
+    /** Handler for requests for the <code>matixx_shopinfo</code> module. */
     private final MatixxBemaniGakuenRequestHandler matixxBemaniGakuenRequestHandler;
 
     private static final ImmutableSet<String> MATIXX_SUPPORTED_MODULES = ImmutableSet.of("matixx_shopinfo",

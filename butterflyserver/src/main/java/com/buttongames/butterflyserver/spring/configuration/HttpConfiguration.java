@@ -242,13 +242,13 @@ public class HttpConfiguration {
     }
 
     @Bean
-    public ApiCardHandler apiCardHandler(final ButterflyUserDao userDao, final TokenDao tokenDao, final CardDao cardDao) {
-        return new ApiCardHandler(userDao, tokenDao, cardDao);
+    public ApiCardHandler apiCardHandler(final CardDao cardDao) {
+        return new ApiCardHandler(cardDao);
     }
 
     @Bean
-    public ApiMachineHandler apiMachineHandler(ButterflyUserDao userDao, TokenDao tokenDao, MachineDao machineDao) {
-        return new ApiMachineHandler(userDao, tokenDao, machineDao);
+    public ApiMachineHandler apiMachineHandler(MachineDao machineDao) {
+        return new ApiMachineHandler(machineDao);
     }
 
     @Bean

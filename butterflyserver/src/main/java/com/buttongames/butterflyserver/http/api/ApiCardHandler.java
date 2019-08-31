@@ -1,9 +1,7 @@
 package com.buttongames.butterflyserver.http.api;
 
 import com.buttongames.butterflycore.util.JSONUtil;
-import com.buttongames.butterflydao.hibernate.dao.impl.ButterflyUserDao;
 import com.buttongames.butterflydao.hibernate.dao.impl.CardDao;
-import com.buttongames.butterflydao.hibernate.dao.impl.TokenDao;
 import com.buttongames.butterflymodel.model.ButterflyUser;
 import com.buttongames.butterflymodel.model.Card;
 import com.google.gson.Gson;
@@ -16,27 +14,37 @@ import spark.Response;
 
 import java.util.List;
 
+/**
+ * API handler for any requests that come to the <code>card</code> module.
+ * @author player-guest
+ */
 public class ApiCardHandler {
 
     private final Logger LOG = LogManager.getLogger(ApiUserHandler.class);
 
-    final ButterflyUserDao userDao;
+    /**
+     * The DAO for managing cards profile in the database.
+     */
+    final private CardDao cardDao;
 
-    final TokenDao tokenDao;
-
-    final CardDao cardDao;
-
-    public ApiCardHandler(ButterflyUserDao userDao, TokenDao tokenDao, CardDao cardDao) {
-        this.userDao = userDao;
-        this.tokenDao = tokenDao;
+    public ApiCardHandler(CardDao cardDao) {
         this.cardDao = cardDao;
     }
 
+    /**
+     * Handles an incoming request for the <code>card</code> module.
+     * this is the request handle user login info
+     * @param function The method of incoming request.
+     * @param user The ButterflyUser of incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     public Object handleRequest(final String function, final ButterflyUser user, final Request request, final Response response) {
         JSONObject reqBody = JSONUtil.getBody(request.body());
 
         if(function.equals("get")){
-            return handleGetRequest(reqBody, user, request, response);
+            return handleGetRequest(user, request, response);
         }else if(function.equals("bind")){
             return handleBindRequest(reqBody, user, request, response);
         }else if(function.equals("unbind")){
@@ -45,7 +53,14 @@ public class ApiCardHandler {
         return null;
     }
 
-    private Object handleGetRequest(final JSONObject reqBody, final ButterflyUser user, final Request request, final Response response){
+    /**
+     * Handles get user card list request
+     * @param user The ButterflyUser of incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
+    private Object handleGetRequest(final ButterflyUser user, final Request request, final Response response){
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
@@ -55,6 +70,14 @@ public class ApiCardHandler {
 
     }
 
+    /**
+     * Handles user card binding
+     * @param reqBody The JSON body of the incoming request.
+     * @param user The ButterflyUser of incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleBindRequest(final JSONObject reqBody, final ButterflyUser user,  final Request request, final Response response){
 
         final String nfcId = reqBody.getString("nfcId");
@@ -88,6 +111,14 @@ public class ApiCardHandler {
 
     }
 
+    /**
+     * Handles user card unbind
+     * @param reqBody The JSON body of the incoming request.
+     * @param user The ButterflyUser of incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleUnbindRequest(final JSONObject reqBody, final ButterflyUser user,  final Request request, final Response response){
         final long cardId = reqBody.getLong("id");
 

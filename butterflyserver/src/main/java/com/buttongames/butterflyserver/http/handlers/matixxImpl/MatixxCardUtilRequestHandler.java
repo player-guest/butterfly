@@ -21,8 +21,8 @@ import spark.Response;
 import java.util.Random;
 
 /**
- * Handler for any requests that come to the <code>matixx_shopinfo</code> module.
- * @author
+ * Handler for any requests that come to the <code>matixx_cardutil</code> module.
+ * @author player-guest
  */
 @Component
 public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
@@ -38,6 +38,9 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
      */
     private final CardDao cardDao;
 
+    /**
+     * The DAO for managing matixx profiles in the database.
+     */
     private final MatixxProfileDao matixxProfileDao;
 
     public MatixxCardUtilRequestHandler(ButterflyUserDao userDao, CardDao cardDao, MatixxProfileDao matixxProfileDao) {
@@ -47,7 +50,7 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
     }
 
     /**
-     * Handles an incoming request for the <code>matixx_shopinfo</code> module.
+     * Handles an incoming request for the <code>matixx_cardutil</code> module.
      * @param requestBody The XML document of the incoming request.
      * @param request The Spark request
      * @param response The Spark response
@@ -66,6 +69,13 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
         throw new UnsupportedRequestException();
     }
 
+    /**
+     * Handles a request to check if a matixx profile exist.
+     * @param requestBody The XML document of the incoming request
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleCheckRequest(final Element requestBody,Request request, Response response) {
 
         NodeList players = XmlUtils.nodesAtPath(requestBody,"/matixx_cardutil/player");
@@ -103,6 +113,13 @@ public class MatixxCardUtilRequestHandler extends BaseRequestHandler {
 
     }
 
+    /**
+     * Handles a request to create a new profile for matixx.
+     * @param requestBody The XML document of the incoming request
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleRegistRequest(final Element requestBody,Request request, Response response) {
 
         NodeList players = XmlUtils.nodesAtPath(requestBody,"/matixx_cardutil/player");

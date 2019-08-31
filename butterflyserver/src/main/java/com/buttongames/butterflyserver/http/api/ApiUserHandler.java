@@ -16,19 +16,37 @@ import spark.Response;
 
 import java.time.temporal.ChronoUnit;
 
+/**
+ * API handler for any requests that come to the <code>user</code> module.
+ * @author player-guest
+ */
 public class ApiUserHandler {
 
     private final Logger LOG = LogManager.getLogger(ApiUserHandler.class);
 
-    final ButterflyUserDao userDao;
+    /**
+     * The DAO for managing users in the database.
+     */
+    final private ButterflyUserDao userDao;
 
-    final TokenDao tokenDao;
+    /**
+     * The DAO for managing tokens in the database.
+     */
+    final private TokenDao tokenDao;
 
     public ApiUserHandler(ButterflyUserDao userDao, TokenDao tokenDao) {
         this.userDao = userDao;
         this.tokenDao = tokenDao;
     }
 
+    /**
+     * Handles an incoming request for the <code>user</code> module.
+     * this is the request handle user login info
+     * @param function The method of incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     public Object handleRequest(final String function, final Request request, final Response response) {
         JSONObject reqBody = JSONUtil.getBody(request.body());
 
@@ -42,6 +60,13 @@ public class ApiUserHandler {
         return null;
     }
 
+    /**
+     * Handles user login and token generation
+     * @param reqBody The JSON body of the incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleAuthRequest(final JSONObject reqBody, final Request request, final Response response){
         final String email = reqBody.getString("email");
         final String password = reqBody.getString("password");
@@ -69,6 +94,13 @@ public class ApiUserHandler {
         return jsonString;
     }
 
+    /**
+     * Handles user register
+     * @param reqBody The JSON body of the incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleRegisterRequest(final JSONObject reqBody, final Request request, final Response response){
         final String email = reqBody.getString("email");
         final String password = reqBody.getString("password");
@@ -86,6 +118,13 @@ public class ApiUserHandler {
         }
     }
 
+    /**
+     * Handles user logout and token
+     * @param reqBody The JSON body of the incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleLogoutRequest(final JSONObject reqBody, final Request request, final Response response){
         final String cookietoken = request.cookie("token");
         final String authtoken = request.headers("Authorization");
@@ -102,13 +141,8 @@ public class ApiUserHandler {
             return JSONUtil.successMsg("Logouted");
         }
 
-
         response.status(403);
         return JSONUtil.errorMsg("Token Unavailable");
-
-
-
-
 
     }
 }

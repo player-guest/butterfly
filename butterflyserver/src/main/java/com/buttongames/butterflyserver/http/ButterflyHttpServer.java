@@ -57,16 +57,9 @@ public class ButterflyHttpServer {
      */
     private static final ImmutableSet<String> SUPPORTED_MODELS;
 
-    /**
-     * Static set of all the modules this server supports.
-     */
-    private static final ImmutableSet<String> SUPPORTED_MODULES;
-
     // Do a static setup of our supported models, modules, etc.
     static {
         SUPPORTED_MODELS = ImmutableSet.of("mdx","kfc","m32","m39");
-        SUPPORTED_MODULES = ImmutableSet.of("services", "pcbtracker", "message", "facility", "pcbevent",
-                "package", "eventlog", "tax", "playerdata", "cardmng", "system", "eacoin","matixx_shopinfo","game");
     }
 
     /** The port the server listens on */
@@ -165,8 +158,6 @@ public class ButterflyHttpServer {
 
         path("/api",() -> {
 
-
-
             before("/*",(req,resp)-> {
                 resp.type("application/json");
                 LOG.info("API Call:"+req.requestMethod()+" "+req.uri());
@@ -253,11 +244,6 @@ public class ButterflyHttpServer {
                 return JSONUtil.errorMsg("500 Internal server error");
             });
 
-
-
-
-
-
         });
 
         // configure our root route; its handler will parse the request and go from there
@@ -267,17 +253,12 @@ public class ButterflyHttpServer {
             final String requestModel = request.attribute("model");
             final String modelType = requestModel.split(":")[0].toLowerCase();
 
-
-            if (modelType.equals("mdx")) {
-                return this.mdxHandler.handleRequest(requestBody, request, response);
-            } else if(modelType.equals("kfc")) {
-                return this.kfcHandler.handleRequest(requestBody, request, response);
-            } else if(modelType.equals("m32")) {
-                return this.m32Handler.handleRequest(requestBody, request, response);
-            } else if(modelType.equals("m39")) {
-                return this.m39Handler.handleRequest(requestBody, request, response);
-            } else {
-                throw new InvalidRequestModuleException();
+            switch (modelType) {
+                case "mdx": this.mdxHandler.handleRequest(requestBody, request, response);
+                case "kfc": this.kfcHandler.handleRequest(requestBody, request, response);
+                case "m32": this.m32Handler.handleRequest(requestBody, request, response);
+                case "m39": this.m39Handler.handleRequest(requestBody, request, response);
+                default: throw new InvalidRequestModuleException();
             }
         }));
 
@@ -418,6 +399,11 @@ public class ButterflyHttpServer {
         return moduleNode;
     }
 
+    /**
+     * Check user authentication status
+     * @param request The incoming request.
+     * @return user authentication status
+     */
     private boolean checkAuth(Request request){
         String tokenstr = null;
         // Cookies
@@ -439,6 +425,11 @@ public class ButterflyHttpServer {
         return false;
     }
 
+    /**
+     * Get ButtyerflyUser from token
+     * @param request The incoming request.
+     * @return ButterflyUser
+     */
     private ButterflyUser getUser(Request request){
         String tokenstr = null;
         // Cookies

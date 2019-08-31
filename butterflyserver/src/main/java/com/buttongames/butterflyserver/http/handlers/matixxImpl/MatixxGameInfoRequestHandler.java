@@ -14,7 +14,7 @@ import spark.Response;
 
 /**
  * Handler for any requests that come to the <code>matixx_gameinfo</code> module.
- * @author
+ * @author player-guest
  */
 @Component
 public class MatixxGameInfoRequestHandler extends BaseRequestHandler {
@@ -41,8 +41,14 @@ public class MatixxGameInfoRequestHandler extends BaseRequestHandler {
         throw new UnsupportedRequestException();
     }
 
+    /**
+     * Handles a request to load matixx_gameinfo, containing music and event info.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleGetRequest(Request request, Response response) {
-
+        // TODO: Enable and Disable event
         try {
             final byte[] respBody = ByteStreams.toByteArray(
                     Main.class.getResourceAsStream("/static_responses/m32/matixx_gameinfo.resp.xml"));

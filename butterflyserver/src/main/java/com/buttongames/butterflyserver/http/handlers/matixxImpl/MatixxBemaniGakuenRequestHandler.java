@@ -13,8 +13,8 @@ import spark.Request;
 import spark.Response;
 
 /**
- * Handler for any requests that come to the <code>matixx_shopinfo</code> module.
- * @author
+ * Handler for any requests that come to the <code>matixx_bemanigakuen</code> module.
+ * @author player-guest
  */
 @Component
 public class MatixxBemaniGakuenRequestHandler extends BaseRequestHandler {
@@ -25,7 +25,7 @@ public class MatixxBemaniGakuenRequestHandler extends BaseRequestHandler {
     private final Logger LOG = LogManager.getLogger(MatixxShopInfoRequestHandler.class);
 
     /**
-     * Handles an incoming request for the <code>matixx_shopinfo</code> module.
+     * Handles an incoming request for the <code>matixx_bemanigakuen</code> module.
      * @param requestBody The XML document of the incoming request.
      * @param request The Spark request
      * @param response The Spark response
@@ -42,6 +42,12 @@ public class MatixxBemaniGakuenRequestHandler extends BaseRequestHandler {
         throw new UnsupportedRequestException();
     }
 
+    /**
+     * Handles a request to this method, static file.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     private Object handleGetMusicInfoRequest(Request request, Response response) {
         // TODO: File not here
         try {

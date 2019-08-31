@@ -33,22 +33,44 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * API handler for any requests that come to the <code>matixx</code> module.
+ * @author player-guest
+ */
 public class ApiMatixxHandler {
 
 
     private final Logger LOG = LogManager.getLogger(ApiMatixxHandler.class);
 
-    final ButterflyUserDao butterflyUserDao;
+    /**
+     * The DAO for managing users in the database.
+     */
+    final private ButterflyUserDao butterflyUserDao;
 
-    final CardDao cardDao;
+    /**
+     * The DAO for managing cards in the database.
+     */
+    final private CardDao cardDao;
 
-    final MatixxProfileDao matixxProfileDao;
+    /**
+     * The DAO for managing matixx profiles in the database.
+     */
+    final private MatixxProfileDao matixxProfileDao;
 
-    final MatixxStageDao matixxStageDao;
+    /**
+     * The DAO for managing matixx stages in the database.
+     */
+    final private MatixxStageDao matixxStageDao;
 
-    final MatixxMusicDao matixxMusicDao;
+    /**
+     * The DAO for managing matixx musics in the database.
+     */
+    final private MatixxMusicDao matixxMusicDao;
 
-    final MatixxPlayerboardDao matixxPlayerboardDao;
+    /**
+     * The DAO for managing matixx playerboard in the database.
+     */
+    final private MatixxPlayerboardDao matixxPlayerboardDao;
 
 
     public ApiMatixxHandler(ButterflyUserDao butterflyUserDao, CardDao cardDao, MatixxProfileDao matixxProfileDao, MatixxStageDao matixxStageDao, MatixxMusicDao matixxMusicDao, MatixxPlayerboardDao matixxPlayerboardDao) {
@@ -60,6 +82,14 @@ public class ApiMatixxHandler {
         this.matixxPlayerboardDao = matixxPlayerboardDao;
     }
 
+    /**
+     * Handles an incoming request for the <code>game/matixx</code> module.
+     * this is the request handle user login info
+     * @param function The method of incoming request.
+     * @param request The Spark request
+     * @param response The Spark response
+     * @return A response object for Spark
+     */
     public Object handleRequest(final String function, final ButterflyUser user, final Request request, final Response response) {
         JSONObject reqBody = JSONUtil.getBody(request.body());
 
