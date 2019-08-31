@@ -1,5 +1,7 @@
 package com.buttongames.butterflymodel.model;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -23,10 +25,12 @@ public class ButterflyUser implements Serializable {
      * The integer user ID for this user. Serves as the primary key in the database.
      */
     @Id
+    @Expose
     @GeneratedValue
     @Column(name = "id")
     private long id;
 
+    @Expose
     @Column(name = "email")
     private String email;
 
@@ -40,6 +44,7 @@ public class ButterflyUser implements Serializable {
     /**
      * The date and time this user was registered.
      */
+    @Expose
     @Column(name = "register_time")
     private LocalDateTime registerTime;
 
@@ -52,9 +57,11 @@ public class ButterflyUser implements Serializable {
     /**
      * The amount of Paseli this user has.
      */
+    @Expose
     @Column(name = "paseli_balance")
     private int paseliBalance;
 
+    @Expose
     @Column(name = "user_group")
     private String user_group;
 

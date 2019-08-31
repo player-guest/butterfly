@@ -15,9 +15,9 @@ import com.buttongames.butterflymodel.model.Machine;
 import com.buttongames.butterflymodel.model.Token;
 import com.buttongames.butterflyserver.http.api.ApiCardHandler;
 import com.buttongames.butterflyserver.http.api.ApiMachineHandler;
+import com.buttongames.butterflyserver.http.api.ApiManageHandler;
 import com.buttongames.butterflyserver.http.api.ApiUserHandler;
 import com.buttongames.butterflyserver.http.api.game.ApiMatixxHandler;
-import com.buttongames.butterflyserver.http.api.game.MatixxManageHandler;
 import com.buttongames.butterflyserver.http.exception.*;
 import com.buttongames.butterflyserver.http.handlers.KfcHandler;
 import com.buttongames.butterflyserver.http.handlers.M32Handler;
@@ -98,7 +98,7 @@ public class ButterflyHttpServer {
 
     private final ApiMatixxHandler apiMatixxHandler;
 
-    private final MatixxManageHandler matixxManageHandler;
+    private final ApiManageHandler apiManageHandler;
 
     /**
      * Constructor.
@@ -115,7 +115,7 @@ public class ButterflyHttpServer {
                                ApiCardHandler apiCardHandler,
                                ApiMachineHandler apiMachineHandler,
                                ApiMatixxHandler apiMatixxHandler,
-                               MatixxManageHandler matixxManageHandler) {
+                               ApiManageHandler apiManageHandler) {
         this.mdxHandler = mdxHandler;
         this.machineDao = machineDao;
         this.userDao = userDao;
@@ -127,7 +127,7 @@ public class ButterflyHttpServer {
         this.apiCardHandler = apiCardHandler;
         this.apiMachineHandler = apiMachineHandler;
         this.apiMatixxHandler = apiMatixxHandler;
-        this.matixxManageHandler = matixxManageHandler;
+        this.apiManageHandler = apiManageHandler;
     }
 
     /**
@@ -194,8 +194,12 @@ public class ButterflyHttpServer {
             });
 
             path("/admin", ()->{
-                post("/musiclist",(req,resp)-> matixxManageHandler.handleRequest("set_musiclist", req, resp));
-                post("/fix_time",(req,resp)-> matixxManageHandler.handleRequest("fix_time", req, resp));
+                post("/matixx/musiclist",(req,resp)-> apiManageHandler.handleRequest("set_matixx_musiclist", req, resp));
+                post("/fix_time",(req,resp)-> apiManageHandler.handleRequest("fix_time", req, resp));
+                get("/userlist",(req,resp)-> apiManageHandler.handleRequest("get_userlist", req, resp));
+                get("/cardlist",(req,resp)-> apiManageHandler.handleRequest("get_cardlist", req, resp));
+                get("/matixx_playerprofilelist",(req,resp)-> apiManageHandler.handleRequest("get_matixx_playerprofilelist", req, resp));
+
             });
 
             before("/card/*",(req,resp)-> {

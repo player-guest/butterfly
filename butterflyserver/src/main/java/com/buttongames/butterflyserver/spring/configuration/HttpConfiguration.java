@@ -11,9 +11,9 @@ import com.buttongames.butterflydao.hibernate.dao.impl.sdvxiv.Sdvx4SkillDao;
 import com.buttongames.butterflyserver.http.ButterflyHttpServer;
 import com.buttongames.butterflyserver.http.api.ApiCardHandler;
 import com.buttongames.butterflyserver.http.api.ApiMachineHandler;
+import com.buttongames.butterflyserver.http.api.ApiManageHandler;
 import com.buttongames.butterflyserver.http.api.ApiUserHandler;
 import com.buttongames.butterflyserver.http.api.game.ApiMatixxHandler;
-import com.buttongames.butterflyserver.http.api.game.MatixxManageHandler;
 import com.buttongames.butterflyserver.http.handlers.KfcHandler;
 import com.buttongames.butterflyserver.http.handlers.M32Handler;
 import com.buttongames.butterflyserver.http.handlers.M39Handler;
@@ -40,8 +40,8 @@ import org.springframework.context.annotation.PropertySource;
 public class HttpConfiguration {
 
     @Bean
-    public ButterflyHttpServer butterflyHttpServer(MdxHandler mdxHandler, MachineDao machineDao, ButterflyUserDao userDao, KfcHandler kfcHandler, M32Handler m32Handler, M39Handler m39Handler, TokenDao tokenDao, ApiUserHandler apiUserHandler, ApiCardHandler apiCardHandler, ApiMachineHandler apiMachineHandler, ApiMatixxHandler apiMatixxHandler, MatixxManageHandler matixxManageHandler) {
-        return new ButterflyHttpServer(mdxHandler, machineDao, userDao, kfcHandler, m32Handler, m39Handler, tokenDao, apiUserHandler, apiCardHandler, apiMachineHandler, apiMatixxHandler, matixxManageHandler);
+    public ButterflyHttpServer butterflyHttpServer(MdxHandler mdxHandler, MachineDao machineDao, ButterflyUserDao userDao, KfcHandler kfcHandler, M32Handler m32Handler, M39Handler m39Handler, TokenDao tokenDao, ApiUserHandler apiUserHandler, ApiCardHandler apiCardHandler, ApiMachineHandler apiMachineHandler, ApiMatixxHandler apiMatixxHandler, ApiManageHandler apiManageHandler) {
+        return new ButterflyHttpServer(mdxHandler, machineDao, userDao, kfcHandler, m32Handler, m39Handler, tokenDao, apiUserHandler, apiCardHandler, apiMachineHandler, apiMatixxHandler, apiManageHandler);
     }
 
     @Bean
@@ -257,8 +257,8 @@ public class HttpConfiguration {
     }
 
     @Bean
-    public MatixxManageHandler matixxManageHandler(MatixxMusicDao matixxMusicDao, MatixxStageDao matixxStageDao) {
-        return new MatixxManageHandler(matixxMusicDao,matixxStageDao);
+    public ApiManageHandler matixxManageHandler(MatixxMusicDao matixxMusicDao, MatixxStageDao matixxStageDao, ButterflyUserDao userDao, MatixxProfileDao matixxProfileDao, CardDao cardDao) {
+        return new ApiManageHandler(matixxMusicDao,matixxStageDao,userDao,matixxProfileDao,cardDao);
     }
 
     /**

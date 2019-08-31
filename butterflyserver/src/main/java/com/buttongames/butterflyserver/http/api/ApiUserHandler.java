@@ -56,6 +56,7 @@ public class ApiUserHandler {
                 response.cookie("/","token",token.getToken(),2628000,false,true);
                 String jsonString = new JSONObject()
                         .put("userId", user.getId())
+                        .put("group",user.getUser_group())
                         .put("token", token.getToken())
                         .put("expire", token.getExpireTime()).toString();
                 return jsonString;

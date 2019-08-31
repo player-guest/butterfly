@@ -92,6 +92,9 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
                     throw new InvalidRequestException();
                 }
 
+                card.setLastPlayTime(LocalDateTime.now());
+                cardDao.update(card);
+
                 matixxPlayerProfile matixxplayer;
                 matixxplayer = matixxProfileDao.findByCard(card);
 
