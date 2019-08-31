@@ -397,6 +397,8 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
                 String meter_progstr = "";
                 String mdata1 = "-1 ";
                 String mdata2 = "";
+                int fullcomboflag = 0;
+                int excflag = 0;
                 for(int l = 1;l<9;l++){
                     if (entry.getValue().containsKey(l)) {
                         Object[] record = entry.getValue().get(l);
@@ -406,6 +408,10 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
                         mdata1 = mdata1.concat(ObjectUtils.checkNull(topRecord.getPerc(),"-1")+" ");
                         mdata2 = mdata2.concat(ObjectUtils.checkNull(topRecord.getRank(),"-1")+" ");
 
+                        @SuppressWarnings("unchecked")
+                        HashMap<String,Boolean> temp_map = (HashMap<String,Boolean>) record[0];
+                        fullcomboflag += getFlagCount(l,temp_map.get("f"));
+                        excflag += getFlagCount(l,temp_map.get("e"));
                     }else{
                         meterstr = meterstr.concat("0 ");
                         meter_progstr = meter_progstr.concat("-1 ");
@@ -417,15 +423,25 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
                 matixxStageRecord maxskill = getMusicMaxSkill(entry.getValue());
 
                 musiclist = musiclist.s16("mdata", "20", mdata1+mdata2+" -1 -1 -1").up()
-                        .u16("flag","5","0 0 0 64 0").up()
+                        .u16("flag","5",fullcomboflag+" "+excflag+" 0 0 0").up()
                         .s16("sdata","2",maxskill.getSeq()+" "+maxskill.getSkill()).up()
                         .u64("meter", "8",meterstr).up()
                         .s16("meter_prog","8",meter_progstr).up().up();
 
             }
-            //flag 64 0 0 0 0= BASS ADV fullcombo
-            //0 64 0 0 0 0= BASS ADV Exc
-            //
+            //flag 128 0 0 0 0 BASS EXT fullcombo
+            //     64  0 0 0 0 BASS ADV fullcombo
+            //     32  0 0 0 0 BASS BSC fullcombo
+            //     16  0 0 0 0 GTAR MAS fullcombo
+            //     8   0 0 0 0 GTAR EXT fullcombo
+            //     4   0 0 0 0 GTAR ADV fullcombo
+            //     2   0 0 0 0 GTAR BSC fullcombo
+
+            //     0 64 0 0 0= BASS ADV Exc
+
+            //     0 128 0 0 0 BASS EXT Exc
+            //     0 192 0 0 0 BASS EXT Exc + BASS ADV Exc
+
 
             XmlUtils.importNodeToPath(document,musiclist.getElement(),path);
 
@@ -454,13 +470,20 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
         for (matixxStageRecord record : records) {
             if (!topScores.containsKey(record.getMusic().getMusicid())) {
                 topScores.put(record.getMusic().getMusicid(), new HashMap<>());
-                topScores.get(record.getMusic().getMusicid()).put(record.getSeq(), new Object[] { 1, record });
+
+                topScores.get(record.getMusic().getMusicid()).put(record.getSeq(), new Object[] { getFlagMap(record), record });
             } else {
                 if (!topScores.get(record.getMusic().getMusicid()).containsKey(record.getSeq())) {
-                    topScores.get(record.getMusic().getMusicid()).put(record.getSeq(), new Object[] { 1, record });
+
+                    topScores.get(record.getMusic().getMusicid()).put(record.getSeq(), new Object[] { getFlagMap(record), record });
                 } else {
                     Object[] currRecord = topScores.get(record.getMusic().getMusicid()).get(record.getSeq());
-                    currRecord[0] = ((Integer) currRecord[0]) + 1;
+
+                    @SuppressWarnings("unchecked")
+                    HashMap<String,Boolean> temp_map = (HashMap<String,Boolean>) currRecord[0];
+                    if(record.isFullcombo()) { temp_map.put("f", true); }
+                    if(record.isExcellent()) { temp_map.put("f", true); }
+                    currRecord[0] = temp_map;
 
                     if (((matixxStageRecord) currRecord[1]).getPerc() < record.getPerc()) {
                         currRecord[1] = record;
@@ -488,5 +511,26 @@ public class MatixxGameTopRequestHandler extends BaseRequestHandler {
 
         }
         return currentrecord;
+    }
+
+    private HashMap<String,Boolean> getFlagMap(matixxStageRecord record){
+        HashMap<String,Boolean> flagmap = new HashMap<>();
+        flagmap.put("f",record.isFullcombo());
+        flagmap.put("e",record.isExcellent());
+        return flagmap;
+    }
+
+    private int getFlagCount(int seq, boolean flag) {
+        switch(seq){
+            case 1: return flag ? 2 : 0;
+            case 2: return flag ? 4 : 0;
+            case 3: return flag ? 8 : 0;
+            case 4: return flag ? 16 : 0;
+            case 5: return flag ? 32 : 0;
+            case 6: return flag ? 64 : 0;
+            case 7: return flag ? 128 : 0;
+            case 8: return flag ? 256 : 0;
+            default: return 0;
+        }
     }
 }
