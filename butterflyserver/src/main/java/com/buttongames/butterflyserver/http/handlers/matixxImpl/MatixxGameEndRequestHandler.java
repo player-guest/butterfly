@@ -139,100 +139,143 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
                     }
 
 
-                    final Element pinode = (Element) XmlUtils.nodeAtPath(player,"/playinfo");
+                    if(XmlUtils.nodeAtPath(player,"/playinfo")!=null) {
+                        final Element pinode = (Element) XmlUtils.nodeAtPath(player, "/playinfo");
 
-                    String playinfo = "";
-                    playinfo = playinfo.concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"cabid"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"play"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"playtime"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"playterm"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"session_cnt"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"matching_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"extra_stage"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"extra_play"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"extra_clear"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"encore_play"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"encore_clear"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"pencore_play"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"pencore_clear"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"max_clear_diff"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"max_full_diff"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"max_exce_diff"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"clear_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"full_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"exce_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"no_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"e_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"d_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"c_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"b_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"a_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"s_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"ss_num"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"last_category"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"last_musicid"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"last_seq"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode,"disp_level"),"0")+",");
+                        String playinfo = "";
+                        playinfo = playinfo.concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "cabid"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "play"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "playtime"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "playterm"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "session_cnt"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "matching_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "extra_stage"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "extra_play"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "extra_clear"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "encore_play"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "encore_clear"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "pencore_play"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "pencore_clear"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "max_clear_diff"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "max_full_diff"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "max_exce_diff"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "clear_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "full_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "exce_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "no_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "e_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "d_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "c_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "b_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "a_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "s_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "ss_num"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "last_category"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "last_musicid"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "last_seq"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtChild(pinode, "disp_level"), "0") + ",");
 
-                    matixxplayer.setPlayinfo(playinfo);
-                    player.removeChild(pinode);
+                        matixxplayer.setPlayinfo(playinfo);
+                        player.removeChild(pinode);
+                    }else {
+                        LOG.warn("playinfo not saving");
+                    }
 
                     //title_parts
                     final Node title_parts = XmlUtils.nodeAtPath(player,"/title_parts");
-                    String title_partsxml = XmlUtils.getStringFromNode(title_parts);
-                    player.removeChild(title_parts);
+                    if(title_parts!=null){
+                        String title_partsxml = XmlUtils.getStringFromNode(title_parts);
+                        player.removeChild(title_parts);
+                    }else {
+                        LOG.warn("title_parts not saving");
+                    }
+
 
                     //secretmusic
                     final Node secretmusic = XmlUtils.nodeAtPath(player,"/secretmusic");
-                    String secretmusicxml = XmlUtils.getStringFromNode(secretmusic);
-                    matixxplayer.setSecretmusic(secretmusicxml);
-                    player.removeChild(secretmusic);
+                    if(secretmusic!=null){
+                        String secretmusicxml = XmlUtils.getStringFromNode(secretmusic);
+                        matixxplayer.setSecretmusic(secretmusicxml);
+                        player.removeChild(secretmusic);
+                    }else {
+                        LOG.warn("secretmusic not saving");
+                    }
+
 
                     //trbitem
 
 
                     //chara_list
                     final Node chara_list = XmlUtils.nodeAtPath(player,"/chara_list");
-                    String chara_listxml = XmlUtils.getStringFromNode(chara_list);
-                    matixxplayer.setChara_list(chara_listxml);
-                    player.removeChild(chara_list);
+                    if(chara_list!=null){
+                        String chara_listxml = XmlUtils.getStringFromNode(chara_list);
+                        matixxplayer.setChara_list(chara_listxml);
+                        player.removeChild(chara_list);
+                    }else {
+                        LOG.warn("chara_list not saving");
+                    }
+
 
                     //tutorial
-                    String tutorial = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/tutorial/progress"), "0") + ",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/tutorial/disp_state"),"0"));
-                    matixxplayer.setTutorial(tutorial);
-                    player.removeChild(XmlUtils.nodeAtPath(player,"/tutorial"));
+                    if(XmlUtils.nodeAtPath(player, "/tutorial")!=null){
+                        String tutorial = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/tutorial/progress"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/tutorial/disp_state"),"0"));
+                        matixxplayer.setTutorial(tutorial);
+                        player.removeChild(XmlUtils.nodeAtPath(player,"/tutorial"));
+                    }else {
+                        LOG.warn("tutorial not saving");
+                    }
+
 
                     //information (maybe just save the content)
                     final Node information = XmlUtils.nodeAtPath(player,"/information");
-                    matixxplayer.setInformation(XmlUtils.getStringFromNode(information));
-                    player.removeChild(information);
+                    if(information!=null){
+                        matixxplayer.setInformation(XmlUtils.getStringFromNode(information));
+                        player.removeChild(information);
+                    }else {
+                        LOG.warn("information not saving");
+                    }
+
 
                     //reward
                     final Node reward = XmlUtils.nodeAtPath(player,"/reward");
-                    matixxplayer.setReward(XmlUtils.getStringFromNode(reward));
-                    player.removeChild(reward);
+                    if(reward!=null){
+                        matixxplayer.setReward(XmlUtils.getStringFromNode(reward));
+                        player.removeChild(reward);
+                    }else {
+                        LOG.warn("reward not saving");
+                    }
+
 
                     //skilldata
-                    String skilldata = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/skilldata/skill"), "0") + ",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/skilldata/all_skill"),"0"));
-                    matixxplayer.setSkilldata(skilldata);
-                    player.removeChild(XmlUtils.nodeAtPath(player,"/skilldata"));
+                    if(XmlUtils.nodeAtPath(player,"/skilldata")!=null){
+                        String skilldata = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/skilldata/skill"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/skilldata/all_skill"),"0"));
+                        matixxplayer.setSkilldata(skilldata);
+                        player.removeChild(XmlUtils.nodeAtPath(player,"/skilldata"));
+                    }else {
+                        LOG.warn("skilldata not saving");
+                    }
 
 
                     //groove (maybe for encore gauge
-                    String groove = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/groove/extra_gauge"), "0") + ",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_gauge"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_cnt"),"0")+",")
-                            .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_success"),"0"));
-                    matixxplayer.setGroove(groove);
-                    player.removeChild(XmlUtils.nodeAtPath(player,"/groove"));
+                    if(XmlUtils.nodeAtPath(player,"/groove")!=null){
+                        String groove = "".concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player, "/groove/extra_gauge"), "0") + ",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_gauge"),"0")+",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_cnt"),"0")+",")
+                                .concat(ObjectUtils.checkNull(XmlUtils.strAtPath(player,"/groove/encore_success"),"0"));
+                        matixxplayer.setGroove(groove);
+                        player.removeChild(XmlUtils.nodeAtPath(player,"/groove"));
+                    }else {
+                        LOG.warn("groove not saving");
+                    }
+
 
                     //record (gf or dm?)
                     final Node record = XmlUtils.nodeAtPath(player,"/record");
 
-                    Node max = XmlUtils.nodeAtPath((Element) record,"/max");
-                    if(max!=null) {
+                    if(record!=null) {
+                        Node max = XmlUtils.nodeAtPath((Element) record,"/max");
                         max.getOwnerDocument().renameNode(max,max.getNamespaceURI(),"max_record");
                         Node diff = XmlUtils.nodeAtPath((Element) record,"/diff");
                         diff.getOwnerDocument().renameNode(diff,diff.getNamespaceURI(),"diff_record");
@@ -247,7 +290,7 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
                         }
                         player.removeChild(record);
                     }else{
-                        LOG.warn("/max not found");
+                        LOG.warn("/record not found");
                     }
 
                     //battledata
@@ -255,11 +298,14 @@ public class MatixxGameEndRequestHandler extends BaseRequestHandler {
                     //sessiondata
 
                     //favoritemusic
-                    final String music_list_1 = XmlUtils.strAtPath(player,"/favoritemusic/music_list_1");
-                    final String music_list_2 = XmlUtils.strAtPath(player,"/favoritemusic/music_list_2");
-                    final String music_list_3 = XmlUtils.strAtPath(player,"/favoritemusic/music_list_3");
-                    matixxplayer.setFavoritemusic(music_list_1+","+music_list_2+","+music_list_3);
-
+                    if(XmlUtils.nodeAtPath(player,"/favoritemusic")!=null) {
+                        final String music_list_1 = XmlUtils.strAtPath(player, "/favoritemusic/music_list_1");
+                        final String music_list_2 = XmlUtils.strAtPath(player, "/favoritemusic/music_list_2");
+                        final String music_list_3 = XmlUtils.strAtPath(player, "/favoritemusic/music_list_3");
+                        matixxplayer.setFavoritemusic(music_list_1 + "," + music_list_2 + "," + music_list_3);
+                    }else{
+                        LOG.warn("/favoritemusic not found");
+                    }
                     //monthly_skill
 
 

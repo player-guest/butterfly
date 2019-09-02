@@ -268,6 +268,7 @@ public class ButterflyHttpServer {
         exception(InvalidRequestMethodException.class, ((exception, request, response) -> {
                     response.status(400);
                     response.body("Invalid request method.");
+                    LOG.error(XmlUtils.getStringFromElement(validateAndUnpackRequest(request)));
                 }));
         exception(InvalidRequestModelException.class, ((exception, request, response) -> {
                     response.status(400);
@@ -276,6 +277,7 @@ public class ButterflyHttpServer {
         exception(InvalidRequestModuleException.class, ((exception, request, response) -> {
                     response.status(400);
                     response.body("Invalid request module.");
+                    LOG.error(XmlUtils.getStringFromElement(validateAndUnpackRequest(request)));
                 }));
         exception(MismatchedRequestUriException.class, (((exception, request, response) -> {
                     response.status(400);
@@ -288,7 +290,7 @@ public class ButterflyHttpServer {
         exception(UnsupportedRequestException.class, (((exception, request, response) -> {
                     response.status(400);
                     response.body("This request is probably valid, but currently unsupported.");
-
+                    LOG.error(XmlUtils.getStringFromElement(validateAndUnpackRequest(request)));
                     LOG.info(String.format("RECEIVED AN UNSUPPORTED REQUEST: %s.%s",
                             request.attribute("module"), request.attribute("method")));
                 })));
@@ -296,6 +298,13 @@ public class ButterflyHttpServer {
                     response.status(403);
                     response.body("Issue with converting the requested card ID, likely invalid ID.");
                 })));
+        exception(NullPointerException.class, (((exception, request, response) -> {
+            exception.printStackTrace();
+            LOG.error(XmlUtils.getStringFromElement(validateAndUnpackRequest(request)));
+            response.status(400);
+            response.body("Fail to read incoming request, please report a bug.");
+        })));
+
     }
 
     /**
